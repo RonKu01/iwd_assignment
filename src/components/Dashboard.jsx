@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 function Dashboard() {
     return (
         <>
+        <div className="dashboard" id="dashboard">
             <main>
                 <h2>Welcome to the Dashboard Page!</h2>
                 <label>User id</label> <br/>
@@ -11,6 +12,7 @@ function Dashboard() {
             <nav>
                 <Link to="/">Logout</Link>
             </nav>
+        </div>
         </>
     );
 }
