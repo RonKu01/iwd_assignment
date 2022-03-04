@@ -5,7 +5,7 @@ function Main() {
     return (
         <>
             <main>
-                <h1>hello world</h1>
+                <h1>hello wed</h1>
                 <h2>Welcome to the homepage!</h2>
                 <p>You can do this, I believe in you.</p>
             </main>
