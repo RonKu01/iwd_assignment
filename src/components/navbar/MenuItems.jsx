@@ -11,12 +11,12 @@ export const MenuItems = [
     },
     {
         title: 'Login',
-        url: '#',
+        url: '/login',
         cName: 'nav-links'
     },
     {
         title: 'Register',
-        url: '#',
+        url: '/register',
         cName: 'nav-links'
     },
 
