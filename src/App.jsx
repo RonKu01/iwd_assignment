@@ -1,24 +1,21 @@
 import React, {Component} from 'react';
 import { Routes, Route, Link } from "react-router-dom";
-import Main from "./components/Main";
-import Login from "./components/Login";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Main from "./components/main/Main";
+import Login from "./components/login/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import Navbar from "./components/navbar/Navbar"
-
+import "./App.css";
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
         );
     }
 }

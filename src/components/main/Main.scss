@@ -1,0 +1,35 @@
+$assetsPath: "../../assets";
+
+.body-container {
+  background-image: url("#{$assetsPath}/tech_med.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.card{
+  margin: 10% auto auto;
+  height: auto;
+  width: 40%;
+
+  @media screen and (max-width: 1024px) {
+    margin: 25% auto auto;
+  }
+}
+
+.card-body{
+  margin: auto;
+  height: auto;
+  width: auto;
+}
+
+.card-text{
+  font-weight: bold;
+  font-size: 80px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 30px;
+  }
+
+}

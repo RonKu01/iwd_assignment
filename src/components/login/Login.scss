@@ -1,0 +1,24 @@
+$assetsPath: "../../assets";
+
+.body-container {
+  background-image: url("#{$assetsPath}/tech_med.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.main-container {
+  box-shadow: 0 4px 8px 0 lightblue;
+  max-width: 50rem;
+  background-color: white;
+  width: 30%;
+  height: auto;
+  margin: 10% auto auto;
+  padding: 3rem;
+
+  @media screen and (max-width: 1024px) {
+    width: 70%;
+  }
+
+}

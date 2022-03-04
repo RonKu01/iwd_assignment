@@ -1,5 +1,5 @@
 .NavbarItems{
-    background-color: blue;
+    background-color: cadetblue;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -12,8 +12,11 @@
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
-}
 
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
+}
 
 .nav-menu{
     display: grid;
@@ -24,7 +27,15 @@
     width: 70vw;
     justify-content: end;
     margin-right: 2rem;
+    margin-top: 1rem;
 
+    @media screen and (max-width: 1024px) {
+        width: 50vw;
+        grid-gap: 20px;
+        justify-content: center;
+        grid-template-columns: repeat(5, auto);
+        margin-left: 1rem;
+    }
 
 }
 
@@ -32,12 +43,20 @@
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
+
+    @media screen and (max-width: 1024px) {
+        padding: 0.1rem 0.5rem;
+    }
 }
 
 .nav-links:hover{
     background-color: lightblue;
     border-radius: 4px;
     transition: all 0.2s ease-out;
+
+    @media screen and (max-width: 1024px) {
+        border-radius: 1px;
+    }
 }
 
 .nav-links-mobile{
