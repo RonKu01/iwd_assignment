@@ -1,0 +1,52 @@
+import React, {Component, useState} from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import {Button, Form} from "react-bootstrap";
+import Navbar from "../navbar/Navbar";
+import "./Register.scss";
+
+function Register() {
+
+        const [date, setDate] = useState(new Date());
+
+        return (
+        <div className="body-container">
+            <Navbar />
+            <main className="main-container">
+                <h1>Registration</h1>
+                <div className="pt-1"/>
+                <Form>
+                    <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Label>Full Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter your full name" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="forumDOB" >
+                        <Form.Label>Date of Birth</Form.Label>
+                        <Form.Control type="date" placeholder="Date of Birth" value={date} onChange={(e) => setDate(e.target.value)}  />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formAddress" >
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control as="textarea" rows={3} placeholder="Enter your Address" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formUsername" >
+                        <Form.Label>Preferred Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter your preferred Username" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formCheckbox" >
+                        <Form.Check type="checkbox" label="Show Password" />
+                    </Form.Group>
+                    <div className="d-grid gap-2">
+                        <Button variant="primary" href="/dashboard">Register</Button>
+
+                        <Button variant="outline-primary" className="mb-3" type="submit" href="/login">Login Here</Button>
+                    </div>
+                </Form>
+            </main>
+        </div>
+    );
+}
+
+export default Register;

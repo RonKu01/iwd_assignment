@@ -12,13 +12,16 @@ $assetsPath: "../../assets";
   box-shadow: 0 4px 8px 0 lightblue;
   max-width: 50rem;
   background-color: white;
-  width: 30%;
+  width: 40%;
   height: auto;
-  margin: 10% auto auto;
+  margin: 1.5% auto 1.5rem;
   padding: 3rem;
 
   @media screen and (max-width: 1024px) {
-    width: 70%;
+    width: 85%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
   }
 
 }

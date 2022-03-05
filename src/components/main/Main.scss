@@ -5,7 +5,7 @@ $assetsPath: "../../assets";
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
+  height: 300vh;
 }
 
 .card{
@@ -16,6 +16,7 @@ $assetsPath: "../../assets";
 
   @media screen and (max-width: 1024px) {
     margin: 25% auto auto;
+    width: 80%;
   }
 }
 
