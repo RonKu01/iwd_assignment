@@ -7,6 +7,7 @@ import "./Register.scss";
 function Register() {
 
         const [date, setDate] = useState(new Date());
+        const [showPass, setShowPass] = useState(true);
 
         return (
         <div className="body-container">
@@ -33,14 +34,13 @@ function Register() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formPassword" >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type={showPass ? "password" : "text"} placeholder="Password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formCheckbox" >
-                        <Form.Check type="checkbox" label="Show Password" />
+                        <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
                     <div className="d-grid gap-2">
                         <Button variant="primary" href="/dashboard">Register</Button>
-
                         <Button variant="outline-primary" className="mb-3" type="submit" href="/login">Login Here</Button>
                     </div>
                 </Form>

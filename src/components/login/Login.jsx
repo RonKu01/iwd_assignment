@@ -5,6 +5,9 @@ import Navbar from "../navbar/Navbar";
 import "./Login.scss";
 
 function Login() {
+
+    const [showPass, setShowPass] = useState(true);
+
     return (
         <div className="body-container">
             <Navbar />
@@ -18,10 +21,10 @@ function Login() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formPassword" >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type={showPass ? "password" : "text"} placeholder="Password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formCheckbox" >
-                        <Form.Check type="checkbox" label="Show Password" />
+                        <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
                     <div className="d-grid gap-2">
                         <Button variant="primary" className="mb-3" type="submit" href="/dashboard">Login</Button>
