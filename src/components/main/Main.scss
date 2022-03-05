@@ -9,7 +9,7 @@ $assetsPath: "../../assets";
 }
 
 .card{
-  margin: 10% auto auto;
+  margin: 10% auto 2%;
   height: auto;
   width: 40%;
   box-shadow: 0 6px 10px 0 lightblue;
@@ -33,5 +33,21 @@ $assetsPath: "../../assets";
   @media screen and (max-width: 1024px) {
     font-size: 30px;
   }
+}
 
+.main-container {
+  box-shadow: 0 4px 8px 0 lightblue;
+  max-width: 50rem;
+  background-color: white;
+  width: 40%;
+  height: auto;
+  margin: 2% auto 2%;
+  padding: 3rem;
+
+  @media screen and (max-width: 1024px) {
+    width: 85%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
 }

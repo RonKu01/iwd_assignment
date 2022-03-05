@@ -9,13 +9,12 @@ class Navbar extends Component{
         this.setState({clicked: !this.state.clicked})
     }
 
-
     render(){
         return(
             <nav className='NavbarItems'>
-                <h1 className="navbar-logo">Home</h1>
+                <h1 className="navbar-logo">Medical Centre</h1>
                 <div className='menu-icon' onClick={this.handleClick}>
-                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}/>
                 </div>
                 <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                     {MenuItems.map((item, index) => {
@@ -25,13 +24,9 @@ class Navbar extends Component{
                                 {item.title}
                                 </a>
                             </li>
-
                         )
                     })}
-
-
                 </ul>
-
             </nav>
         )
     }

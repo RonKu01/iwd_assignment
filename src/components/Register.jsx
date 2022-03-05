@@ -1,8 +1,6 @@
-import React, {Component, useState} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
-import Navbar from "../navbar/Navbar";
-import "./Register.scss";
+import Navbar from "./navbar/Navbar";
 
 function Register() {
 

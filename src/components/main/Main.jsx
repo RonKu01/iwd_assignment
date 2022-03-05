@@ -1,8 +1,7 @@
-import React, {Component} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React from "react";
+import {Button, Card} from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import "./Main.scss";
-import {Button, Card} from "react-bootstrap";
 
 function Main() {
     return (

@@ -1,13 +1,9 @@
-import React, {Component, useState} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
-import Navbar from "../navbar/Navbar";
-import "./Login.scss";
+import Navbar from "./navbar/Navbar";
 
 function Login() {
-
     const [showPass, setShowPass] = useState(true);
-
     return (
         <div className="body-container">
             <Navbar />
