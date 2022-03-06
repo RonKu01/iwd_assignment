@@ -38,7 +38,7 @@ function Register() {
                         <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
                     <div className="d-grid gap-2">
-                        <Button variant="primary" href="/dashboard">Register</Button>
+                        <Button variant="primary" href="/dashboard_admin">Register</Button>
                         <Button variant="outline-primary" className="mb-3" type="submit" href="/login">Login Here</Button>
                     </div>
                 </Form>

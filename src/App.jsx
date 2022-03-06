@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from "./components/main/Main";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
+import Dashboard_Admin from "./components/dashboard/Dashboard_Admin";
+import Patient from "./components/patient/patient";
 import "./App.css";
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
                 <Route path="/" element={<Main />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard_admin" element={<Dashboard_Admin />} />
+                <Route path="/patient" element={<Patient />} />
             </Routes>
         );
     }

@@ -1,5 +1,5 @@
 .NavbarItems{
-    background-color: cadetblue;
+    background-color: darkblue;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@
     color: white;
     justify-self: start;
     margin-left: 20px;
-    cursor: pointer;
+    //cursor: pointer;
 
     @media screen and (max-width: 1024px) {
         display: none;

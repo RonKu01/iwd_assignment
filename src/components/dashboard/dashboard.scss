@@ -1,0 +1,31 @@
+$assetsPath: "../../assets";
+
+.body-dashboard {
+  background-image: url("#{$assetsPath}/login_page.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300vh;
+}
+
+.card{
+  margin: 5% auto 3%;
+  height: auto;
+  width: 40%;
+  box-shadow: 0 6px 10px 0 lightblue;
+
+  @media screen and (max-width: 1024px) {
+    margin: 5% auto 5%;
+    width: 80%;
+  }
+}
+
+.card-text{
+  font-weight: bold;
+  font-size: 80px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 30px;
+  }
+}
+
