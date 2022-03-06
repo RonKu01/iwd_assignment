@@ -5,19 +5,22 @@ $assetsPath: "../../assets";
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: rgba(0,0,0,1);
   height: 300vh;
 }
 
 .card{
-  margin: 10% auto 2%;
+  margin: 5% auto 2%;
   height: auto;
-  width: 40%;
+  width: 50%;
   box-shadow: 0 6px 10px 0 lightblue;
+  opacity: 1;
 
   @media screen and (max-width: 1024px) {
     margin: 25% auto auto;
     width: 80%;
   }
+
 }
 
 .card-body{
@@ -26,7 +29,7 @@ $assetsPath: "../../assets";
   width: auto;
 }
 
-.card-text{
+.title-text{
   font-weight: bold;
   font-size: 80px;
 

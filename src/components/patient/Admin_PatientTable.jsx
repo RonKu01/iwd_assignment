@@ -14,14 +14,18 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 const { SearchBar } = Search;
 const pagination = paginationFactory({
     sizePerPageList: [ {
-        text: '5th', value: 5
+        text: '5', value: 5
     }, {
-        text: '10th', value: 10
+        text: '10', value: 10
     }],
 });
 
+function Admin_PatientTable() {
 
-function Patient() {
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showAdd, setShowAdd] = useState(false);
+    const handleCloseAdd = () => setShowAdd(false);
+    const handleShowAdd = () => setShowAdd(true);
 
     const [editModalInfo, setEditModalInfo] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -30,11 +34,42 @@ function Patient() {
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
 
+    const toggleTrueFalseAdd = () => {
+        setShowAddModal(handleShowAdd);
+    }
+    const toggleTrueFalseEdit = () => {
+        setShowEditModal(handleShowEdit);
+    }
 
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showAdd, setShowAdd] = useState(false);
-    const handleCloseAdd = () => setShowAdd(false);
-    const handleShowAdd = () => setShowAdd(true);
+    const AddModalContent = () => {
+        return(
+            <Modal show={showAdd} onHide={handleCloseAdd}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add Student</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>test</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
+                    <Button variant="primary" onClick={handleCloseEdit}>Add</Button>
+                </Modal.Footer>
+            </Modal>
+        )
+    }
+    const EditModalContent = () => {
+        return(
+            <Modal show={showEdit} onHide={handleCloseEdit}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{editModalInfo.username}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{editModalInfo.patient_address}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
+                    <Button variant="danger" onClick={handleCloseEdit}>Delete</Button>
+                    <Button variant="primary" onClick={handleCloseEdit}>Save Changes</Button>
+                </Modal.Footer>
+            </Modal>
+        )
+    }
 
     const columns = [
         {
@@ -64,44 +99,6 @@ function Patient() {
             setEditModalInfo(row)
             toggleTrueFalseEdit()
         }
-    }
-    const toggleTrueFalseEdit = () => {
-        setShowEditModal(handleShowEdit);
-    }
-
-    const toggleTrueFalseAdd = () => {
-        setShowAddModal(handleShowAdd);
-    }
-
-    const EditModalContent = () => {
-        return(
-            <Modal show={showEdit} onHide={handleCloseEdit}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{editModalInfo.username}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>{editModalInfo.patient_address}</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-                    <Button variant="danger" onClick={handleCloseEdit}>Delete</Button>
-                    <Button variant="primary" onClick={handleCloseEdit}>Save Changes</Button>
-                </Modal.Footer>
-            </Modal>
-        )
-    }
-
-    const AddModalContent = () => {
-        return(
-            <Modal show={showAdd} onHide={handleCloseAdd}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Student</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>test</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-                    <Button variant="primary" onClick={handleCloseEdit}>Add</Button>
-                </Modal.Footer>
-            </Modal>
-        )
     }
 
     return (
@@ -134,6 +131,6 @@ function Patient() {
     );
 }
 
-export default Patient;
+export default Admin_PatientTable;
 
 

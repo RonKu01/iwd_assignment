@@ -8,10 +8,10 @@ $assetsPath: "../../assets";
   height: 300vh;
 }
 
-.card{
+.card-new{
   margin: 5% auto 3%;
   height: auto;
-  width: 40%;
+  width: 70%;
   box-shadow: 0 6px 10px 0 lightblue;
 
   @media screen and (max-width: 1024px) {
@@ -20,7 +20,7 @@ $assetsPath: "../../assets";
   }
 }
 
-.card-text{
+.card-basic-text{
   font-weight: bold;
   font-size: 80px;
 
