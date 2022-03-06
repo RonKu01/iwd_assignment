@@ -70,7 +70,7 @@ function Patient() {
     }
 
     const toggleTrueFalseAdd = () => {
-        setShowEditModal(handleShowAdd);
+        setShowAddModal(handleShowAdd);
     }
 
     const EditModalContent = () => {
