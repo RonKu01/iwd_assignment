@@ -1,7 +1,8 @@
 $assetsPath: "../../assets";
 
 .body-dashboard {
-  background-image: url("#{$assetsPath}/login_page.jpg");
+  //background-image: url("#{$assetsPath}/login_page.jpg");
+  background-color: white;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

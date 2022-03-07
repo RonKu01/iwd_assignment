@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import "../components/main/Main.scss";
-import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
+import {Card, Col, Row} from "react-bootstrap";
 import image1 from "../assets/login_page.jpg";
 
 function Dashboard_Patient() {
     return (
-        <div className="body-container">
+        <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
             <Row xl={3} className="g-1">
                 <Col lg={true}>
