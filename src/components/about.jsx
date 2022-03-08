@@ -4,7 +4,7 @@ import "../components/main/Main.scss";
 import {Card, Col, Row} from "react-bootstrap";
 import image1 from "../assets/login_page.jpg";
 
-function Specialism() {
+function About() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
@@ -126,6 +126,6 @@ function Specialism() {
     );
 }
 
-export default Specialism;
+export default About;
 
 

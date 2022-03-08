@@ -30,3 +30,15 @@ $assetsPath: "../../assets";
   }
 }
 
+a.link-nostyle:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a.link-nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+
