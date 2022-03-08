@@ -10,17 +10,19 @@ function Dashboard_Patient() {
             <Navbar />
             <Row xl={3} className="g-1">
                 <Col lg={true}>
-                    <Card className="card-new">
-                        <Card.Img variant="top" src={image1} height="180" />
-                        <Card.Body>
-                            <Card.Title>Psychiatrist</Card.Title>
-                            <Card.Text>
-                                Psychiatry is the medical specialty devoted to the study, diagnosis,
-                                treatment, and prevention of mental disorders, among which are affective, behavioural,
-                                cognitive and perceptual abnormalities.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
+                    <a class="link-nostyle" href="">
+                        <Card className="card-new">
+                            <Card.Img variant="top" src={image1} height="180" />
+                            <Card.Body>
+                                <Card.Title>Psychiatrist</Card.Title>
+                                <Card.Text>
+                                    Psychiatry is the medical specialty devoted to the study, diagnosis,
+                                    treatment, and prevention of mental disorders, among which are affective, behavioural,
+                                    cognitive and perceptual abnormalities.
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </a>
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
