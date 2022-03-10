@@ -6,12 +6,10 @@ import Main from "./components/main/Main";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard_Admin from "./components/dashboard/Dashboard_Admin";
-import Admin_PatientTable from "./components/patient/Admin_PatientTable";
+import PatientTable from "./components/admin/PatientTable";
 import Dashboard_Patient from "./components/dashboard/Dashboard_Student";
 import About from "./components/about";
 import Psychiatrist from "./components/specialism/Psychiatrist";
-
-
 
 class App extends Component {
     render() {
@@ -25,7 +23,7 @@ class App extends Component {
                 <Route path="/dashboard_patient" element={<Dashboard_Patient />} />
                 {/*<Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />*/}
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
-                <Route path="/patient" element={<Admin_PatientTable />} />
+                <Route path="/patient" element={<PatientTable />} />
             </Routes>
         );
     }

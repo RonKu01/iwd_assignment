@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, {Component, useState} from "react";
 import Navbar from "../navbar/Navbar_Admin";
 import {Button, Card, Modal, Table} from "react-bootstrap";
 import {patItems} from "./patItems";
-import "./patient.scss";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min';
@@ -11,16 +10,16 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
-const { SearchBar } = Search;
-const pagination = paginationFactory({
-    sizePerPageList: [ {
-        text: '5', value: 5
-    }, {
-        text: '10', value: 10
-    }],
-});
+function PatientTable() {
 
-function Admin_PatientTable() {
+    const { SearchBar } = Search;
+    const pagination = paginationFactory({
+        sizePerPageList: [ {
+            text: '5', value: 5
+        }, {
+            text: '10', value: 10
+        }],
+    });
 
     const [showAddModal, setShowAddModal] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
@@ -100,12 +99,16 @@ function Admin_PatientTable() {
             toggleTrueFalseEdit()
         }
     }
+    const pat_card = {
+        width: "100%",
+        padding: "2rem"
+    };
 
     return (
         <div className="body-dashboard">
             <Navbar />
             <Card >
-                <Card.Body className="pat_card">
+                <Card.Body style={pat_card}>
                     <h1 class="h1 mb-3">Patient Table </h1>
                     <button class="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Student</button>
                     <ToolkitProvider bootstrap4={true} keyField="patient_ID" data={ patItems } columns={ columns } search>
@@ -116,7 +119,7 @@ function Admin_PatientTable() {
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
                                     <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
-                                        { ...props.baseProps }
+                                                    { ...props.baseProps }
                                     />
                                 </div>
                             )
@@ -131,6 +134,6 @@ function Admin_PatientTable() {
     );
 }
 
-export default Admin_PatientTable;
+export default PatientTable;
 
 
