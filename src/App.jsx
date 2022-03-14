@@ -12,6 +12,13 @@ import About from "./components/about";
 import Psychiatrist from "./components/specialism/Psychiatrist";
 import Dashboard_Doctor from './components/dashboard/Dashboard_Doctor';
 import Chat from "./components/chat/Chat";
+import Urologist from "./components/specialism/Urologist";
+import Dermatologist from './components/specialism/Dermatologist';
+import Fertality from './components/specialism/Fertality';
+import Gastro from './components/specialism/Gastro';
+import Infectious from './components/specialism/Infectious';
+import Orthopedic from './components/specialism/Orthopedic';
+import Otolaryn from './components/specialism/Otolaryn';
 
 class App extends Component {
     render() {
@@ -27,6 +34,13 @@ class App extends Component {
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/patient" element={<PatientTable />} />
                 <Route path="/chat" element={<Chat />} />
+                <Route path="/urologist" element={<Urologist/>} />
+                <Route path="/dermatologist" element={<Dermatologist/>} />
+                <Route path="/fertality" element={<Fertality/>} />
+                <Route path="/gastro" element={<Gastro/>} />
+                <Route path="/infectious" element={<Infectious/>} />
+                <Route path="/orthopedeic" element={<Orthopedic/>} />
+                <Route path="/otolaryn" element={<Otolaryn/>} />
             </Routes>
         );
     }
