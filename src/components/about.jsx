@@ -2,7 +2,16 @@ import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import "../components/main/Main.scss";
 import {Card, Col, Row} from "react-bootstrap";
-import image1 from "../assets/login_page.jpg";
+import image2 from "../assets/psychiatrist.jpg";
+import image3 from "../assets/Urologist.jpg";
+import image4 from "../assets/Dermatologist.jpg";
+import image5 from "../assets/gastro.jpg";
+import image6 from "../assets/Infectious.jpg";
+import image7 from "../assets/gynaecologist.jpg"
+import image8 from "../assets/Otolaryngologist (ENT).jpg";
+import image9 from "../assets/ferality.jpg";
+import image10 from "../assets/orthopedic.jpg";
+
 
 function About() {
     return (
@@ -11,7 +20,7 @@ function About() {
             <Row xl={3} className="g-1">
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1} height="180" />
+                        <Card.Img variant="top" src={image2} height="180" />
                         <Card.Body>
                             <Card.Title>Psychiatrist</Card.Title>
                             <Card.Text>
@@ -24,7 +33,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image3}  height="180" />
                         <Card.Body>
                             <Card.Title>Urologist</Card.Title>
                             <Card.Text>
@@ -37,7 +46,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image4}  height="180" />
                         <Card.Body>
                             <Card.Title>Dermatologist</Card.Title>
                             <Card.Text>
@@ -49,7 +58,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image5}  height="180" />
                         <Card.Body>
                             <Card.Title>Gastroenterologist</Card.Title>
                             <Card.Text>
@@ -61,7 +70,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image6}  height="180" />
                         <Card.Body>
                             <Card.Title>Infectious diseases</Card.Title>
                             <Card.Text>
@@ -74,7 +83,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image7}  height="180" />
                         <Card.Body>
                             <Card.Title>Gynecologist</Card.Title>
                             <Card.Text>
@@ -87,7 +96,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image8}  height="180" />
                         <Card.Body>
                             <Card.Title>ENT Specialist</Card.Title>
                             <Card.Text>
@@ -99,7 +108,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image9}  height="180" />
                         <Card.Body>
                             <Card.Title>Fertility Specialist</Card.Title>
                             <Card.Text>
@@ -111,7 +120,7 @@ function About() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" src={image10}  height="180" />
                         <Card.Body>
                             <Card.Title>Orthopedics</Card.Title>
                             <Card.Text>
