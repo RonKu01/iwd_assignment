@@ -2,7 +2,9 @@ import React from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import "./dashboard.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
-import image1 from "../../assets/login_page.jpg";
+
+import image1 from "../assets/login_page.jpg";
+
 
 function Dashboard_Patient() {
     return (
