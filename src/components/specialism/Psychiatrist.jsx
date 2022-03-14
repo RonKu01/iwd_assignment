@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import "../dashboard/dashboard.scss";
 import { Carousel} from "react-bootstrap";
-import image1 from "../assets/doctors_background.jpg";
+
+
 
 function Psychiatrist() {
     return (
@@ -15,7 +16,7 @@ function Psychiatrist() {
   <Carousel.Item>
     <img
       className="d-block w-100"
-    src= {image1}
+      src="holder.js/800x400?text=Third slide&bg=20232a"
       alt="First slide"
     />
     <Carousel.Caption>
