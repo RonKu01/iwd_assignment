@@ -3,9 +3,6 @@ import Navbar from "../navbar/Navbar_Patient";
 import "./dashboard.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
 
-import image1 from "../assets/login_page.jpg";
-
-
 function Dashboard_Patient() {
     return (
         <div className="body-dashboard">
@@ -13,8 +10,8 @@ function Dashboard_Patient() {
             <Row xl={3} className="g-1">
                 <Col lg={true}>
                     <Card className="card-new">
-                        <a className="link-nostyle" href="/psychiatrist">
-                        <Card.Img variant="top" src={image1} height="180" />
+                        <a className="link-nostyle">
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Psychiatrist</Card.Title>
                             <Card.Text>
@@ -28,7 +25,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" height="180" />
                         <Card.Body>
                             <Card.Title>Urologist</Card.Title>
                             <Card.Text>
@@ -41,7 +38,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Dermatologist</Card.Title>
                             <Card.Text>
@@ -53,7 +50,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Gastroenterologist</Card.Title>
                             <Card.Text>
@@ -65,7 +62,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Infectious diseases</Card.Title>
                             <Card.Text>
@@ -78,7 +75,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" height="180" />
                         <Card.Body>
                             <Card.Title>Gynecologist</Card.Title>
                             <Card.Text>
@@ -91,7 +88,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" height="180" />
                         <Card.Body>
                             <Card.Title>ENT Specialist</Card.Title>
                             <Card.Text>
@@ -103,7 +100,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" height="180" />
                         <Card.Body>
                             <Card.Title>Fertility Specialist</Card.Title>
                             <Card.Text>
@@ -115,7 +112,7 @@ function Dashboard_Patient() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" src={image1}  height="180" />
+                        <Card.Img variant="top" height="180" />
                         <Card.Body>
                             <Card.Title>Orthopedics</Card.Title>
                             <Card.Text>

@@ -1,7 +1,7 @@
 export const patItems = [
     {
         patient_ID : '1',
-        username : 'ron',
+        username : 'This is the Username',
         password : '123',
         patient_name: 'Ku Ming Roong',
         patient_dob: '18/10/2001',

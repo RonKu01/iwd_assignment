@@ -19,6 +19,4 @@ export const MenuItems = [
         url: '/register',
         cName: 'nav-links'
     },
-
-
 ]

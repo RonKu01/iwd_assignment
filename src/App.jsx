@@ -7,10 +7,10 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard_Admin from "./components/dashboard/Dashboard_Admin";
 import PatientTable from "./components/admin/PatientTable";
-// import Dashboard_Patient from "./components/dashboard/Dashboard_Patient";
+import Dashboard_Patient from "./components/dashboard/Dashboard_Patient";
 import About from "./components/about";
 import Psychiatrist from "./components/specialism/Psychiatrist";
-// import Dashboard_Doctor from './components/dashboard/Dashboard_Doctor';
+import Dashboard_Doctor from './components/dashboard/Dashboard_Doctor';
 import Chat from "./components/chat/Chat";
 
 class App extends Component {
@@ -22,9 +22,8 @@ class App extends Component {
                 <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/dashboard_admin" element={<Dashboard_Admin />} />
-                {/*<Route path="/dashboard_patient" element={<Dashboard_Patient />} />*/}
-                {/*<Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />*/}
-                {/*<Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />*/}
+                <Route path="/dashboard_patient" element={<Dashboard_Patient />} />
+                <Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/patient" element={<PatientTable />} />
                 <Route path="/chat" element={<Chat />} />

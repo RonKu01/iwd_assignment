@@ -20,22 +20,20 @@ function PatientTable() {
             text: '10', value: 10
         }],
     });
-
     const [showAddModal, setShowAddModal] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
     const handleCloseAdd = () => setShowAdd(false);
     const handleShowAdd = () => setShowAdd(true);
-
     const [editModalInfo, setEditModalInfo] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
-
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
 
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
     }
+
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }

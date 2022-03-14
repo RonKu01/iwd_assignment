@@ -12,7 +12,6 @@ import image8 from "../assets/Otolaryngologist (ENT).jpg";
 import image9 from "../assets/ferality.jpg";
 import image10 from "../assets/orthopedic.jpg";
 
-
 function About() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
