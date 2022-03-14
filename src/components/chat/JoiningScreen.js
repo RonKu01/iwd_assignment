@@ -24,7 +24,7 @@ import {
 
 import { red } from "@material-ui/core/colors";
 import { MeetingDetailsScreen } from "./MeetingDetailsScreen";
-import { createMeeting, getToken, validateMeeting } from "../api";
+import { createMeeting, getToken, validateMeeting } from "../../api";
 
 const useStyles = makeStyles((theme) => ({
     video: {

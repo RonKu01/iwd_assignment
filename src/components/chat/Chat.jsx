@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import {MeetingProvider, useConnection, useMeeting, useParticipant, usePubSub,} from "@videosdk.live/react-sdk";
-import {getToken} from "./api";
+import {getToken} from "../../api";
 
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import {JoiningScreen} from "./components/JoiningScreen";
+import {JoiningScreen} from "./JoiningScreen";
 
 const primary = "#3E84F6";
 const width = 400;

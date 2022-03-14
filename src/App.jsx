@@ -11,7 +11,7 @@ import PatientTable from "./components/admin/PatientTable";
 import About from "./components/about";
 import Psychiatrist from "./components/specialism/Psychiatrist";
 // import Dashboard_Doctor from './components/dashboard/Dashboard_Doctor';
-import Chat from "./Chat";
+import Chat from "./components/chat/Chat";
 
 class App extends Component {
     render() {
