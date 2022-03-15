@@ -1,8 +1,18 @@
 import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
 import Navbar from "./navbar/Navbar";
+import Axios from "axios";
 
 function Register() {
+    const [usernameReg, setUsernameReg] = useState("");
+    const [passwordReg, setPasswordReg] = useState("");
+
+
+    const register =()=> {
+        Axios.post("http://localhost3005/register", {username: usernameReg, password: passwordReg,
+        }).then((response)=> {console.log(response);
+        });
+    };
 
         const [date, setDate] = useState(new Date());
         const [showPass, setShowPass] = useState(true);
@@ -28,17 +38,17 @@ function Register() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formUsername" >
                         <Form.Label>Preferred Username</Form.Label>
-                        <Form.Control type="text" placeholder="Enter your preferred Username" />
+                        <Form.Control type="text" placeholder="Enter your preferred Username" onChange={(e) =>{setUsernameReg(e.target.value);}}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formPassword" >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type={showPass ? "password" : "text"} placeholder="Password" />
+                        <Form.Control type={showPass ? "password" : "text"} placeholder="Password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formCheckbox" >
                         <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
                     <div className="d-grid gap-2">
-                        <Button variant="primary" href="/dashboard_admin">Register</Button>
+                        <Button variant="primary" href="/dashboard_admin" onClick={register}>Register</Button>
                         <Button variant="outline-primary" className="mb-3" type="submit" href="/login">Login Here</Button>
                     </div>
                 </Form>
