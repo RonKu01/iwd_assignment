@@ -14,14 +14,14 @@ function Dermatologist() {
         <Card style={{ width: '100rem', height: '20rem'}}>
 <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 <Card.Body>
-<Card.Title>Dr Ting Joe Hang</Card.Title>
+<Card.Title>Dr Nur Ashikin Ahmad</Card.Title>
 <Card.Text>
-  <h6><b>Specialisation:</b> Psychiatry</h6>
-  <h6><b>Years of experience:</b> 27 years</h6>
-  <h6><b>Qualifications:</b> MBBS (Manipal), M Psych Med (UM)</h6>
-  <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
-  Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
-  Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 19 years</h6>
+  <h6><b>Qualifications:</b> MD (UPM), MRCP (UK) Advance Master Dermatology (UKM)</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
 </Card.Text>
 </Card.Body>
 
@@ -34,58 +34,14 @@ function Dermatologist() {
       <Card style={{ width: '100rem', height: '20rem'}}>
 <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 <Card.Body>
-<Card.Title>Dr Tee Bee Chin</Card.Title>
+<Card.Title>Puan Sri Datuk Dr Suraiya Hani Hussain</Card.Title>
 <Card.Text>
-  <h6><b>Specialisation:</b> Psychiatry</h6>
-  <h6><b>Years of experience:</b>  21 Years</h6>
-  <h6><b>Qualifications:</b> MD (UKM), Mmed. Psych (UKM),
-   Subspeciality & Fellowship in Child & Adolescent Psychiatry (Singapore).</h6>
-  <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
-  Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
-  Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
-</Card.Text>
-</Card.Body>
-
-<Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
-</Card.Body>
-      </Card>
-
-
-      <Card style={{ width: '100rem', height: '20rem'}}>
-<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-<Card.Body>
-<Card.Title>Dr Lim Wai Jenn</Card.Title>
-<Card.Text>
-  <h6><b>Specialisation:</b> Psychiatry</h6>
-  <h6><b>Years of experience:</b>  14 Years </h6>
-  <h6><b>Qualifications:</b> MD (Jefferson, USA), ABPN Psychiatry (USA), ABPN Child & Adolescent Psychiatry (USA),
-   Fellowship in Intensive Structural Family Therapy (USA)</h6>
-  <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
-  Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
-  Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
-</Card.Text>
-</Card.Body>
-
-<Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
-</Card.Body>
-      </Card>
-
-
-      <Card style={{ width: '100rem', height: '20rem'}}>
-<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-<Card.Body>
-<Card.Title>Dr Khoo Yee Laim</Card.Title>
-<Card.Text>
-  <h6><b>Specialisation:</b> Psychiatry</h6>
-  <h6><b>Years of experience:</b>  24 Years </h6>
-  <h6><b>Qualifications:</b> MD (USM), MPM (UM), MASTER OF PSYCHOLOGY, MEDICINE (UM)</h6>
-  <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
-  Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
-  Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 45 years</h6>
+  <h6><b>Qualifications:</b> MBBS (UM), MRCP (UK), FRCP (UK), DIP (DERMATOLOGY) (UK)</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
 </Card.Text>
 </Card.Body>
 
@@ -98,14 +54,115 @@ function Dermatologist() {
       <Card style={{ width: '100rem', height: '20rem'}}>
 <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 <Card.Body>
-<Card.Title>Dr Aw Tui lar (T.I. Wong)</Card.Title>
+<Card.Title>Dr Tan Leng Leng</Card.Title>
 <Card.Text>
-  <h6><b>Specialisation:</b> Psychiatry</h6>
-  <h6><b>Years of experience:</b>  37 Years </h6>
-  <h6><b>Qualifications:</b> MBChB (UK) , MRCPsych (UK)</h6>
-  <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
-  Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
-  Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 23 years</h6>
+  <h6><b>Qualifications:</b> MBBS (UM) , MRCP (UK) , FRCP (Edinburgh) , AM (Mal) , Advanced Master of Dermatology (UKM)</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
+</Card.Text>
+</Card.Body>
+
+<Card.Body>
+<Card.Link href="#">Book Appointment</Card.Link>
+<Card.Link href="#">Another Link</Card.Link>
+</Card.Body>
+      </Card>
+
+      <Card style={{ width: '100rem', height: '20rem'}}>
+<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+<Card.Body>
+<Card.Title>Dr Lee Yin Yin</Card.Title>
+<Card.Text>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 25 years</h6>
+  <h6><b>Qualifications:</b> Master of Medicine , University of Malaya, 2005, Advanced Masters in Dermatology, University Kebangsaan Malaysia, 2009</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
+</Card.Text>
+</Card.Body>
+
+<Card.Body>
+<Card.Link href="#">Book Appointment</Card.Link>
+<Card.Link href="#">Another Link</Card.Link>
+</Card.Body>
+      </Card>
+
+      <Card style={{ width: '100rem', height: '20rem'}}>
+<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+<Card.Body>
+<Card.Title>Dr Gangaram Hemandas</Card.Title>
+<Card.Text>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 45 years</h6>
+  <h6><b>Qualifications:</b> MBBS (Malaya) , MRCP (UK) , MRCP (Ireland) , FRCP (London) , M. Med (UKM) , Dip in Dermatology (London) , Dip Ven (London) , FAAD (USA) , FAMM ,</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
+</Card.Text>
+</Card.Body>
+
+<Card.Body>
+<Card.Link href="#">Book Appointment</Card.Link>
+<Card.Link href="#">Another Link</Card.Link>
+</Card.Body>
+      </Card>
+
+      <Card style={{ width: '100rem', height: '20rem'}}>
+<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+<Card.Body>
+<Card.Title>Dr Bong Jan Ling</Card.Title>
+<Card.Text>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 30 years</h6>
+  <h6><b>Qualifications:</b>MB ChB (Dundee), MMed Sci (Nottingham), FRCP (UK), CCST (UK)</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
+</Card.Text>
+</Card.Body>
+
+<Card.Body>
+<Card.Link href="#">Book Appointment</Card.Link>
+<Card.Link href="#">Another Link</Card.Link>
+</Card.Body>
+      </Card>
+
+      <Card style={{ width: '100rem', height: '20rem'}}>
+<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+<Card.Body>
+<Card.Title>Dato Dr Noor Zalmy Azizan</Card.Title>
+<Card.Text>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 29 years</h6>
+  <h6><b>Qualifications:</b> MB Bch (NUI) , MRCP (UK) , AdvDerm (UKM)</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
+</Card.Text>
+</Card.Body>
+
+<Card.Body>
+<Card.Link href="#">Book Appointment</Card.Link>
+<Card.Link href="#">Another Link</Card.Link>
+</Card.Body>
+      </Card>
+
+      <Card style={{ width: '100rem', height: '20rem'}}>
+<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+<Card.Body>
+<Card.Title>Dr Irene Lee Chew Kek</Card.Title>
+<Card.Text>
+  <h6><b>Specialisation:</b> Dermatologist </h6>
+  <h6><b>Years of experience:</b> 23 years</h6>
+  <h6><b>Qualifications:</b> MBBS (UM), MRCP (UK), AM (M'sia), Advanced M Dermatology (UKM), Diploma in Aesthetic Medicine AAAM (US),
+   Fellowship in Dermatologic Laser Surgery (Thailand)</h6>
+  <h6><b>Condition Consulted:</b>Impetigo, Dowling-Degos Disease, Palmoplantar Keratoderma, Erysipelas, Sweaty Palms, Nail Disorders, Psoriasis,
+   Dull Skin, Mycosis Fungoides, Sarcoidosis, Piebaldism, Leprosy, Onchocerciasis, Seborrhea, Latex Allergy, Cutis Laxa, Fabry Disease, Varicose Veins, 
+   Disseminated Superficial Actinic Porokeratosis, Broken Nails and Scarred Skin</h6>
 </Card.Text>
 </Card.Body>
 
