@@ -42,7 +42,7 @@ app.post("/patRegister", (req, res)=>{
     const fullName = req.body.fullName
     const dob = req.body.dob
     const address = req.body.address
-
+//hello world
     const username = req.body.username
     const password = req.body.password
     const role = "Patient"
