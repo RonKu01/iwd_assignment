@@ -115,5 +115,7 @@ function Dermatologist() {
 </Card.Body>
       </Card>
 </div>
+  );
+}
 
-export default Dermatologist;
+ export default Dermatologist;
