@@ -33,7 +33,7 @@ app.post("/login", ( req, res) =>{
                 res.send({err:err});
             }
 
-            if (result){
+            if (result.length > 0){
                 res.send(result)
             }else{
                 res.send({message: "Incorrect Username or Password !"});
