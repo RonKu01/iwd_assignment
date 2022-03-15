@@ -17,21 +17,6 @@ app.get('/', (req,res)=>{
     res.send("hello world");
 })
 
-app.post("/patRegister", (req, res)=>{
-    const username = req.body.username
-    const password = req.body.password
-    const role = "Patient"
-
-    db.query("INSERT INTO login (username, password, role) VALUES (?, ?, ?)",
-        [username, password, role], (err, result)=> {
-        if(err){
-            res.send({message: "System: Failed to insert !"})
-        }else {
-            res.send({message: "System: Patient Registered! Please Login"})
-        }
-    });
-});
-
 app.post("/login", ( req, res) =>{
     const username = req.body.username
     const password = req.body.password
@@ -52,6 +37,23 @@ app.post("/login", ( req, res) =>{
         }
     );
 });
+
+app.post("/patRegister", (req, res)=>{
+    const username = req.body.username
+    const password = req.body.password
+    const role = "Patient"
+
+    db.query("INSERT INTO login (username, password, role) VALUES (?, ?, ?)",
+        [username, password, role], (err, result)=> {
+        if(err){
+            res.send({message: "System: Failed to insert !"})
+        }else {
+            res.send({message: "System: Patient Registered! Please Login"})
+        }
+    });
+});
+
+
 
 app.listen(3005 , () => {
     console.log('running on port 3005')

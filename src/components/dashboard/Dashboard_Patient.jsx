@@ -3,8 +3,6 @@ import Navbar from "../navbar/Navbar_Patient";
 import "./dashboard.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
 
-
-
 function Dashboard_Patient() {
     return (
         <div className="body-dashboard">
