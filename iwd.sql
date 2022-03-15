@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2022 at 06:59 AM
+-- Generation Time: Mar 15, 2022 at 01:16 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -89,15 +89,21 @@ CREATE TABLE `feedback` (
 CREATE TABLE `login` (
   `loginID` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`loginID`, `username`, `password`) VALUES
-(1, 'test', 'test');
+INSERT INTO `login` (`loginID`, `username`, `password`, `role`) VALUES
+(21, 'test', '123', 'Patient'),
+(22, 'ron', 'ron', 'Patient'),
+(23, 'fai', 'fai', 'Patient'),
+(24, 'test', 'test', 'Patient'),
+(25, 'test', 'test', 'Patient'),
+(26, 'fai', 'fai', 'Patient');
 
 -- --------------------------------------------------------
 
@@ -204,7 +210,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `loginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `loginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `patient`
