@@ -7,7 +7,7 @@ function Dashboard_Patient() {
     return (
         <div className="body-dashboard">
             <Navbar />
-            <Row xl={3} className="g-1">
+            <Row xl={3} lg={3}  className="g-1">
                 <Col lg={true}>
                     <Card className="card-new">
                         <a className="link-nostyle">

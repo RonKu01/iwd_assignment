@@ -16,7 +16,7 @@ function About() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
-            <Row xl={3} className="g-1">
+            <Row xl={3} lg={3} className="g-1">
                 <Col lg={true}>
                     <Card className="card-new">
                         <Card.Img variant="top" src={image2} height="180" />
