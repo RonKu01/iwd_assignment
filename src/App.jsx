@@ -19,6 +19,7 @@ import Gastro from './components/specialism/Gastro';
 import Infectious from './components/specialism/Infectious';
 import Orthopedic from './components/specialism/Orthopedic';
 import Otolaryn from './components/specialism/Otolaryn';
+import Patient_Profile from './components/patient/Patient_Profile';
 
 class App extends Component {
     render() {
@@ -41,6 +42,8 @@ class App extends Component {
                 <Route path="/infectious" element={<Infectious/>} />
                 <Route path="/orthopedeic" element={<Orthopedic/>} />
                 <Route path="/otolaryn" element={<Otolaryn/>} />
+                <Route path="/patient_profile" element={<Patient_Profile/>} />
+
             </Routes>
         );
     }
