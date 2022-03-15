@@ -39,6 +39,10 @@ app.post("/login", ( req, res) =>{
 });
 
 app.post("/patRegister", (req, res)=>{
+    const fullName = req.body.fullName
+    const dob = req.body.dob
+    const address = req.body.address
+
     const username = req.body.username
     const password = req.body.password
     const role = "Patient"
@@ -51,6 +55,21 @@ app.post("/patRegister", (req, res)=>{
             res.send({message: "System: Patient Registered! Please Login"})
         }
     });
+
+    db.query("SELECT * FROM `login` order by `loginID` DESC limit 1",
+        (err, result) => {
+
+            console.log (result.data[0].username)
+
+            if (result.length > 0){
+                res.send(result);
+            }else{
+                res.send({message: "Incorrect Username or Password !"})
+            }
+        }
+    );
+
+
 });
 
 

@@ -4,12 +4,18 @@ import Navbar from "./navbar/Navbar";
 import Axios from "axios";
 
 function Register() {
+    const [fullNameReg, setFullNameReg] = useState("");
+    const [dobReg, setDobReg] = useState("");
+    const [addressReg, setAddressReg] = useState("");
+
+
     const [usernameReg, setUsernameReg] = useState("");
     const [passwordReg, setPasswordReg] = useState("");
 
+
     const register =()=> {
         Axios.post("http://localhost:3005/patRegister",
-            {username: usernameReg, password: passwordReg
+            {username: usernameReg, password: passwordReg, fullName: fullNameReg, dob: dobReg, address: addressReg,
         }).then((response)=> {
             console.log(response.data.message);
             alert(response.data.message);
@@ -29,15 +35,15 @@ function Register() {
             <Form>
                 <Form.Group className="mb-3" controlId="formFullName" >
                     <Form.Label>Full Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your full name" />
+                    <Form.Control type="text" placeholder="Enter your full name" onChange={(e) =>{setFullNameReg(e.target.value);}}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="forumDOB" >
                     <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control type="date" placeholder="Date of Birth" value={date} onChange={(e) => setDate(e.target.value)}  />
+                    <Form.Control type="date" placeholder="Date of Birth" value={date} onChange={(e) =>{setDobReg(e.target.value);}} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formAddress" >
                     <Form.Label>Address</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Enter your Address" />
+                    <Form.Control as="textarea" rows={3} placeholder="Enter your Address" onChange={(e) =>{setAddressReg(e.target.value);}}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formUsername" >
                     <Form.Label>Preferred Username</Form.Label>
