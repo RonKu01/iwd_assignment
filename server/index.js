@@ -47,29 +47,22 @@ app.post("/patRegister", (req, res)=>{
     const password = req.body.password
     const role = "Patient"
 
+    db.query("SELECT * FROM `login` order by `loginID` DESC limit 1",
+       function (err, result) {
+            const data = Object.values(JSON.parse(JSON.stringify(result)));
+            let loginID = data[0].loginID + 1;
+        }
+    );
+
     db.query("INSERT INTO login (username, password, role) VALUES (?, ?, ?)",
         [username, password, role], (err, result)=> {
+
         if(err){
             res.send({message: "System: Failed to insert !"})
         }else {
             res.send({message: "System: Patient Registered! Please Login"})
         }
     });
-
-    db.query("SELECT * FROM `login` order by `loginID` DESC limit 1",
-        (err, result) => {
-
-            console.log (result.data[0].username)
-
-            if (result.length > 0){
-                res.send(result);
-            }else{
-                res.send({message: "Incorrect Username or Password !"})
-            }
-        }
-    );
-
-
 });
 
 
