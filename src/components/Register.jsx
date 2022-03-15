@@ -5,7 +5,7 @@ import Axios from "axios";
 
 function Register() {
     const [fullNameReg, setFullNameReg] = useState("");
-    const [dobReg, setDobReg] = useState("");
+    const [dobReg, setDobReg] = useState(new Date());
     const [addressReg, setAddressReg] = useState("");
 
 
@@ -23,7 +23,6 @@ function Register() {
         });
     };
 
-    const [date, setDate] = useState(new Date());
     const [showPass, setShowPass] = useState(true);
 
     return (
@@ -39,7 +38,7 @@ function Register() {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="forumDOB" >
                     <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control type="date" placeholder="Date of Birth" value={date} onChange={(e) =>{setDobReg(e.target.value);}} />
+                    <Form.Control type="date" placeholder="Date of Birth" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formAddress" >
                     <Form.Label>Address</Form.Label>

@@ -17,6 +17,18 @@ app.get('/', (req,res)=>{
     res.send("hello world");
 })
 
+app.get('/getPatData', (req,res)=>{
+    res.send("hello world");
+
+    db.query("SELECT * FROM `patient` order by `loginID` ASC",
+        function (err, result) {
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+})
+
+
 app.post("/login", ( req, res) =>{
     const username = req.body.username
     const password = req.body.password
@@ -42,26 +54,35 @@ app.post("/patRegister", (req, res)=>{
     const fullName = req.body.fullName
     const dob = req.body.dob
     const address = req.body.address
-//hello world
+
     const username = req.body.username
     const password = req.body.password
     const role = "Patient"
+    let loginID = 0;
 
     db.query("SELECT * FROM `login` order by `loginID` DESC limit 1",
-       function (err, result) {
+        function (err, result) {
             const data = Object.values(JSON.parse(JSON.stringify(result)));
-            let loginID = data[0].loginID + 1;
+            loginID = data[0].loginID + 1;
         }
     );
 
     db.query("INSERT INTO login (username, password, role) VALUES (?, ?, ?)",
         [username, password, role], (err, result)=> {
 
-        if(err){
-            res.send({message: "System: Failed to insert !"})
-        }else {
-            res.send({message: "System: Patient Registered! Please Login"})
-        }
+            if(err){
+                res.send({message: "System: Failed to insert !"})
+            }else {
+                db.query("INSERT INTO patient (loginID, patName, patDob, patAddress) VALUES (?, ?, ?, ?)",
+                    [loginID, fullName, dob, address], (err, result) => {
+
+                        if (err) {
+                            res.send({message: "System: Failed to insert !"})
+                        } else {
+                            res.send({message: "System: Patient Registered! Please Login"})
+                        }
+                    });
+            }
     });
 });
 

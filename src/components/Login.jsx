@@ -15,9 +15,11 @@ function Login() {
                 console.log(response.data.message);
             } else {
                 if(response.data[0].role === "Patient"){
-                    window.location.href = "/dashboard_Patient";
+                    window.location.href = "/dashboard_patient";
                 } else if (response.data[0].role === "Doctor"){
-                    window.location.href = "/dashboard_Doctor";
+                    window.location.href = "/dashboard_doctor";
+                }else{
+                    window.location.href = "/dashboard_admin";
                 }
             }
     });
