@@ -13,13 +13,22 @@ const db = mysql.createConnection({
     database: "iwd",
 });
 
-app.post("/register", (req, res)=>{
+app.get('/', (req,res)=>{
+    res.send("hello world");
+})
+
+app.post("/patRegister", (req, res)=>{
     const username = req.body.username
     const password = req.body.password
+    const role = "Patient"
 
-    db.query("INSERT INTO login (username, password) VALUES (?, ?)",
-        [username, password], (err, result)=> {
-        console.log(err);
+    db.query("INSERT INTO login (username, password, role) VALUES (?, ?, ?)",
+        [username, password, role], (err, result)=> {
+        if(err){
+            res.send({message: "System: Failed to insert !"})
+        }else {
+            res.send({message: "System: Patient Registered! Please Login"})
+        }
     });
 });
 
@@ -28,20 +37,21 @@ app.post("/login", ( req, res) =>{
     const password = req.body.password
 
     db.query("SELECT * FROM login WHERE username = ? AND password = ?",
-        [username, password], (err, result)=> {
+        [username, password],
+        (err, result) => {
+
             if (err){
-                res.send({err:err});
+                res.send({err: err})
             }
 
             if (result.length > 0){
-                res.send(result)
+                res.send(result);
             }else{
-                res.send({message: "Incorrect Username or Password !"});
+                res.send({message: "Incorrect Username or Password !"})
             }
         }
     );
 });
-
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
@@ -52,7 +62,4 @@ app.listen(3005 , () => {
     });
 })
 
-app.get('/', (req,res)=>{
-    res.send("hello world");
-})
 

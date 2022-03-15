@@ -7,17 +7,19 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const[loginStatus, setLoginStatus] = useState("");
-
     const login =()=> {
         Axios.post("http://localhost:3005/login", {username: username, password: password,
         }).then((response)=>{
 
-        if (response.data.message) {
-            setLoginStatus(response.data.message)
-        }else{
-            setLoginStatus(response.data[0].username);
-        }
+            if (response.data.message){
+                console.log(response.data.message);
+            } else {
+                if(response.data[0].role === "Patient"){
+                    window.location.href = "/dashboard_Patient";
+                } else if (response.data[0].role === "Doctor"){
+                    window.location.href = "/dashboard_Doctor";
+                }
+            }
     });
     };
 
@@ -44,7 +46,7 @@ function Login() {
                         <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Admin">Admin</Button>
                         <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Patient">Patient</Button>
                         <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Doctor">Doctor</Button>
-                        <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Admin" onClick={login}>Login</Button>
+                        <Button variant="primary" className="mb-3" type="submit" onClick={login}>Login</Button>
                         <Button variant="outline-primary" href="/register">Register Here</Button>
                     </div>
                 </Form>
