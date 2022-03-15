@@ -115,6 +115,110 @@ function Psychiatrist() {
     <Card.Link href="#">Another Link</Card.Link>
   </Card.Body>
           </Card>
+
+          <Card style={{ width: '100rem', height: '20rem'}}>
+  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Card.Body>
+    <Card.Title>Dr Tee Bee Chin</Card.Title>
+    <Card.Text>
+      <h6><b>Specialisation:</b> Psychiatry</h6>
+      <h6><b>Years of experience:</b>  21 Years </h6>
+      <h6><b>Qualifications:</b> MD (UKM), Mmed. Psych (UKM), Subspeciality & Fellowship in Child & Adolescent Psychiatry (Singapore).</h6>
+      <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
+      Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
+      Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+    </Card.Text>
+  </Card.Body>
+
+  <Card.Body>
+    <Card.Link href="#">Book Appointment</Card.Link>
+    <Card.Link href="#">Another Link</Card.Link>
+  </Card.Body>
+          </Card>
+
+          
+          <Card style={{ width: '100rem', height: '20rem'}}>
+  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Card.Body>
+    <Card.Title>Dr Chan Yee Fai</Card.Title>
+    <Card.Text>
+      <h6><b>Specialisation:</b> Psychiatry</h6>
+      <h6><b>Years of experience:</b>  24 Years </h6>
+      <h6><b>Qualifications:</b> MD (UKM), Mmed. Psych (UKM), Subspeciality & Fellowship in Child & Adolescent Psychiatry (Singapore).</h6>
+      <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
+      Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
+      Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+    </Card.Text>
+  </Card.Body>
+
+  <Card.Body>
+    <Card.Link href="#">Book Appointment</Card.Link>
+    <Card.Link href="#">Another Link</Card.Link>
+  </Card.Body>
+          </Card>
+
+          
+          <Card style={{ width: '100rem', height: '20rem'}}>
+  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Card.Body>
+    <Card.Title>Dr Phang Cheng Kar</Card.Title>
+    <Card.Text>
+      <h6><b>Specialisation:</b> Psychiatry</h6>
+      <h6><b>Years of experience:</b>  24 Years </h6>
+      <h6><b>Qualifications:</b> BSc (UPM), MD (UPM), MMedPsych (UKM)</h6>
+      <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
+      Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
+      Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+    </Card.Text>
+  </Card.Body>
+
+  <Card.Body>
+    <Card.Link href="#">Book Appointment</Card.Link>
+    <Card.Link href="#">Another Link</Card.Link>
+  </Card.Body>
+          </Card>
+
+          
+          <Card style={{ width: '100rem', height: '20rem'}}>
+  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Card.Body>
+    <Card.Title>Dr Ang Jin Kiat</Card.Title>
+    <Card.Text>
+      <h6><b>Specialisation:</b> Psychiatry</h6>
+      <h6><b>Years of experience:</b>  21 Years </h6>
+      <h6><b>Qualifications:</b>BSc (UPM), MD (UPM), M.Med.Psych (UKM)</h6>
+      <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
+      Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
+      Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+    </Card.Text>
+  </Card.Body>
+
+  <Card.Body>
+    <Card.Link href="#">Book Appointment</Card.Link>
+    <Card.Link href="#">Another Link</Card.Link>
+  </Card.Body>
+          </Card>
+
+          
+          <Card style={{ width: '100rem', height: '20rem'}}>
+  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Card.Body>
+    <Card.Title>Dr Tee Bee Chin</Card.Title>
+    <Card.Text>
+      <h6><b>Specialisation:</b> Psychiatry</h6>
+      <h6><b>Years of experience:</b>  21 Years </h6>
+      <h6><b>Qualifications:</b> MD (UKM), Mmed. Psych (UKM), Subspeciality & Fellowship in Child & Adolescent Psychiatry (Singapore).</h6>
+      <h6><b>Condition Consulted:</b> Mania, Sleep Disorders, Antisocial Behavior, Bipolar Disorder, Hypersomnia, Hyperactivity Disorder, Bad Dreams, Trichotillomania, 
+      Masturbation Addiction, Eating Disorders, Double Personality, Suicidal Behavior, Selective Mutism, Stress, Oppositional Defiant Disorder, Drug Abuse, School Refusal,
+      Drug Overdose, Psychological Problems, Post Traumatic Stress Disorder (PTSD) and Pervasive Developmental Disorders (PDD)</h6>
+    </Card.Text>
+  </Card.Body>
+
+  <Card.Body>
+    <Card.Link href="#">Book Appointment</Card.Link>
+    <Card.Link href="#">Another Link</Card.Link>
+  </Card.Body>
+          </Card>
     </div>
     );
 }
