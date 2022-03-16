@@ -88,8 +88,6 @@ app.put("/updatePat",(req, res)=>{
     const address = req.body.address
     const password = req.body.password
 
-    // console.log("id:" + id + "address: " + address + "password: " + password)
-
     db.query("UPDATE patient SET patAddress = ? WHERE loginID = ?",[address, id], (err, result)=>{
 
         if (err)
@@ -107,19 +105,6 @@ app.put("/updatePat",(req, res)=>{
         }
     })
 })
-
-app.delete("/deletePat", (req, res)=>{
-    const id = req.params.id;
-
-    db.query("DELETE FROM patient WHERE loginID = ?", [id], (err, result)=>{
-        if (err) {
-            console.log(err);
-        }else{
-            res.send(result);
-        }
-    })
-})
-
 
 app.listen(3005 , () => {
     console.log('running on port 3005')

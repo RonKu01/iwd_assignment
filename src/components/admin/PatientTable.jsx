@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Admin";
-import {Button, Card, Form, Modal} from "react-bootstrap";
+import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min';
@@ -31,17 +31,22 @@ function PatientTable() {
             text: '10', value: 10
         }],
     });
+
     const [showAddModal, setShowAddModal] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
     const handleCloseAdd = () => setShowAdd(false);
     const handleShowAdd = () => setShowAdd(true);
+
     const [editModalInfo, setEditModalInfo] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
 
-    const register =()=> {
+    const [showAlert, setShowAlert] = useState(false);
+    const [showPass, setShowPass] = useState(true);
+
+    const register = () => {
 
         let patFullName = document.getElementById('addFullName').value;
         let patDOB = document.getElementById('addDOB').value;
@@ -49,52 +54,26 @@ function PatientTable() {
         let patUsername = document.getElementById('addUsername').value;
         let patPassword = document.getElementById('addPassword').value;
 
-        // console.log("New Patient :" + patFullName);
-        // console.log("New Patient DOB:" + patDOB);
-        // console.log("New Patient Address:" + patAddress);
-        // console.log("New Patient Username:" + patUsername);
-        // console.log("New Patient Password:" + patPassword);
-
         Axios.post("http://localhost:3005/patRegister",
             {username: patUsername, password: patPassword, fullName: patFullName, dob: dobReg, address: patAddress,
             }).then((response)=> {
-            console.log(response.data.message);
-            alert(response.data.message);
-            window.location.href = "/patient";
+            setShowAlert(true);
+            setTimeout(() => { window.location.href = "/patient"; }, 2000);
         });
         handleCloseAdd();
     };
-
-    const [showPass, setShowPass] = useState(true);
-
-
     const update =() =>{
         let loginId = document.getElementById('updateLoginID').value;
         let patAddress = document.getElementById('updateAddress').value;
         let patPassword = document.getElementById('updatePassword').value;
 
-        // console.log("id: " + patId + "address: " + patAddress + "password: " + patPassword);
-
         Axios.put("http://localhost:3005/updatePat", {address: patAddress, password: patPassword, id: loginId})
             .then((response)=> {
-            console.log(response.data.message);
-            alert(response.data.message);
-            window.location.href = "/patient";
+            setShowAlert(true);
+            setTimeout(() => { window.location.href = "/patient"; }, 2000);
         });
         handleCloseEdit();
     };
-
-    const deletePat = ()=>{
-        let loginId = document.getElementById('updateLoginID').value;
-
-        Axios.put("http://localhost:3005/deletePat",{id: loginId})
-            .then((response)=>{
-            console.log(response.data.message);
-            alert(response.data.message);
-            window.location.href = "/patient";
-        });
-    };
-
 
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
@@ -163,15 +142,25 @@ function PatientTable() {
                             <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updatePassword" defaultValue={editModalInfo.password}/>
                         </Form.Group>
                     </Form>
-
-
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-                    <Button variant="danger" onClick={deletePat}>Delete</Button>
                     <Button variant="primary" onClick={update}>Save Changes</Button>
                 </Modal.Footer>
             </Modal>
+        )
+    }
+
+    const AlertModalContent = () =>{
+        return(
+            <Alert show={showAlert} variant="success">
+                <Alert.Heading>Success. Updating Table... Please Wait!</Alert.Heading>
+                <div className="d-flex justify-content-end">
+                    <Button  onClick={() => setShowAlert(false)} variant="outline-success">
+                        Close me y'all!
+                    </Button>
+                </div>
+            </Alert>
         )
     }
 
@@ -208,8 +197,11 @@ function PatientTable() {
     return (
         <div className="body-dashboard">
             <Navbar />
+
             <Card >
                 <Card.Body style={pat_card}>
+                    {showAlert ? <AlertModalContent /> : null}
+
                     <h1 className="h1 mb-3">Patient Table </h1>
                     <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button>
                     <ToolkitProvider bootstrap4={true} keyField="patID" data={ patItems } columns={ columns } search>
