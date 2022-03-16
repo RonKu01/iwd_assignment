@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Admin";
-import {Button, Card, Modal} from "react-bootstrap";
+import {Button, Card, Form, Modal} from "react-bootstrap";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min';
@@ -8,6 +8,7 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
+import Axios from "axios";
 
 function PatientTable() {
 
@@ -19,6 +20,12 @@ function PatientTable() {
         }
         fetchPostList()
     }, [setPatItems])
+
+    const [fullNameReg, setFullNameReg] = useState('');
+    const [dobReg, setDobReg] = useState(new Date());
+    const [addressReg, setAddressReg] = useState('');
+    const [usernameReg, setUsernameReg] = useState('');
+    const [passwordReg, setPasswordReg] = useState('');
 
     const {SearchBar} = Search;
     const pagination = paginationFactory({
@@ -38,6 +45,26 @@ function PatientTable() {
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
 
+    const register =()=> {
+
+        let patFullName = document.getElementById('addFullName').value;
+        let patDOB = document.getElementById('addDOB').value;
+
+        console.log("New Patient :" + patFullName);
+        console.log("New Patient DOB:" + patDOB);
+
+        // Axios.post("http://localhost:3005/patRegister",
+        //     {username: usernameReg, password: passwordReg, fullName: patFullName, dob: dobReg, address: addressReg,
+        //     }).then((response)=> {
+        //     console.log(response.data.message);
+        //     alert(response.data.message);
+        //     window.location.href = "/patient";
+        // });
+        handleCloseAdd();
+    };
+
+    const [showPass, setShowPass] = useState(true);
+
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
     }
@@ -47,18 +74,45 @@ function PatientTable() {
 
     const AddModalContent = () => {
         return (
-            <Modal show={showAdd} onHide={handleCloseAdd}>
+                <Modal show={showAdd} onHide={handleCloseAdd}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add Student</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>test</Modal.Body>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="addDOB" >
+                            <Form.Label>Date of Birth</Form.Label>
+                            <Form.Control type="date" placeholder="Date of Birth" id="addDOB" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formFullName" >
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter your full name" id="addFullName"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formAddress" >
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" onChange={(e) =>{setAddressReg(e.target.value);}}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formUsername" >
+                            <Form.Label>Preferred Username</Form.Label>
+                            <Form.Control type="text" placeholder="Enter your preferred Username" onChange={(e) =>{setUsernameReg(e.target.value);}}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formPassword" >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formCheckbox" >
+                            <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-                    <Button variant="primary" onClick={handleCloseEdit}>Add</Button>
+                    <Button variant="secondary" onClick={handleCloseAdd}>Close</Button>
+                    <Button variant="primary" onClick={register}>Add</Button>
                 </Modal.Footer>
             </Modal>
         )
     }
+
     const EditModalContent = () => {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
