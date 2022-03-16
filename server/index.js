@@ -18,8 +18,6 @@ app.get('/', (req,res)=>{
 })
 
 app.get('/getPatData', (req,res)=>{
-    res.send("hello world");
-
     db.query("SELECT * FROM `patient` order by `loginID` ASC",
         function (err, result) {
             let data = Object.values(JSON.parse(JSON.stringify(result)));
@@ -27,7 +25,6 @@ app.get('/getPatData', (req,res)=>{
         }
     );
 })
-
 
 app.post("/login", ( req, res) =>{
     const username = req.body.username
@@ -85,8 +82,6 @@ app.post("/patRegister", (req, res)=>{
             }
     });
 });
-
-
 
 app.listen(3005 , () => {
     console.log('running on port 3005')

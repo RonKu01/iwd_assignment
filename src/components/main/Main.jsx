@@ -10,7 +10,7 @@ class Main extends Component{
                 <Navbar />
                 <main>
                     <Card className="card">
-                        <Card.Body class="card-body">
+                        <Card.Body className="card-body">
                             <Card.Text className="title-text">
                                 Welcome to <br/>MedCare
                             </Card.Text>
