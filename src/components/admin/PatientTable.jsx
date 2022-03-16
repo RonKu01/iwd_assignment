@@ -154,12 +154,8 @@ function PatientTable() {
     const AlertModalContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
-                <Alert.Heading>Success. Updating Table... Please Wait!</Alert.Heading>
-                <div className="d-flex justify-content-end">
-                    <Button  onClick={() => setShowAlert(false)} variant="outline-success">
-                        Close me y'all!
-                    </Button>
-                </div>
+                <Alert.Heading>Success! </Alert.Heading>
+                <p>Updating Table... Please Wait!</p>
             </Alert>
         )
     }
