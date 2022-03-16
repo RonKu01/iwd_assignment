@@ -21,11 +21,7 @@ function PatientTable() {
         fetchPostList()
     }, [setPatItems])
 
-    const [fullNameReg, setFullNameReg] = useState('');
     const [dobReg, setDobReg] = useState(new Date());
-    const [addressReg, setAddressReg] = useState('');
-    const [usernameReg, setUsernameReg] = useState('');
-    const [passwordReg, setPasswordReg] = useState('');
 
     const {SearchBar} = Search;
     const pagination = paginationFactory({
@@ -49,21 +45,56 @@ function PatientTable() {
 
         let patFullName = document.getElementById('addFullName').value;
         let patDOB = document.getElementById('addDOB').value;
+        let patAddress = document.getElementById('addAddress').value;
+        let patUsername = document.getElementById('addUsername').value;
+        let patPassword = document.getElementById('addPassword').value;
 
-        console.log("New Patient :" + patFullName);
-        console.log("New Patient DOB:" + patDOB);
+        // console.log("New Patient :" + patFullName);
+        // console.log("New Patient DOB:" + patDOB);
+        // console.log("New Patient Address:" + patAddress);
+        // console.log("New Patient Username:" + patUsername);
+        // console.log("New Patient Password:" + patPassword);
 
-        // Axios.post("http://localhost:3005/patRegister",
-        //     {username: usernameReg, password: passwordReg, fullName: patFullName, dob: dobReg, address: addressReg,
-        //     }).then((response)=> {
-        //     console.log(response.data.message);
-        //     alert(response.data.message);
-        //     window.location.href = "/patient";
-        // });
+        Axios.post("http://localhost:3005/patRegister",
+            {username: patUsername, password: patPassword, fullName: patFullName, dob: dobReg, address: patAddress,
+            }).then((response)=> {
+            console.log(response.data.message);
+            alert(response.data.message);
+            window.location.href = "/patient";
+        });
         handleCloseAdd();
     };
 
     const [showPass, setShowPass] = useState(true);
+
+
+    const update =() =>{
+        let loginId = document.getElementById('updateLoginID').value;
+        let patAddress = document.getElementById('updateAddress').value;
+        let patPassword = document.getElementById('updatePassword').value;
+
+        // console.log("id: " + patId + "address: " + patAddress + "password: " + patPassword);
+
+        Axios.put("http://localhost:3005/updatePat", {address: patAddress, password: patPassword, id: loginId})
+            .then((response)=> {
+            console.log(response.data.message);
+            alert(response.data.message);
+            window.location.href = "/patient";
+        });
+        handleCloseEdit();
+    };
+
+    const deletePat = ()=>{
+        let loginId = document.getElementById('updateLoginID').value;
+
+        Axios.put("http://localhost:3005/deletePat",{id: loginId})
+            .then((response)=>{
+            console.log(response.data.message);
+            alert(response.data.message);
+            window.location.href = "/patient";
+        });
+    };
+
 
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
@@ -76,7 +107,7 @@ function PatientTable() {
         return (
                 <Modal show={showAdd} onHide={handleCloseAdd}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Student</Modal.Title>
+                    <Modal.Title>Add Patient</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -90,18 +121,15 @@ function PatientTable() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formAddress" >
                             <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" onChange={(e) =>{setAddressReg(e.target.value);}}/>
+                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="addAddress"/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formUsername" >
                             <Form.Label>Preferred Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your preferred Username" onChange={(e) =>{setUsernameReg(e.target.value);}}/>
+                            <Form.Control type="text" placeholder="Enter your preferred Username" id="addUsername"/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formPassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formCheckbox" >
-                            <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="addPassword"/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -117,13 +145,31 @@ function PatientTable() {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{editModalInfo.username}</Modal.Title>
+                    <Modal.Title>Update Patient</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>PatID : {editModalInfo.patID}</Modal.Body>
+                <Modal.Body>
+                    <Form>
+                        <Form.Control type ="hidden" id="updateLoginID" defaultValue={editModalInfo.loginID} />
+                        <Form.Group className="mb-3" controlId="formFullName" >
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter your full name" id="updateFullName" defaultValue={editModalInfo.patName} readOnly/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formAddress" >
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="updateAddress" defaultValue={editModalInfo.patAddress}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formPassword" >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updatePassword" defaultValue={editModalInfo.password}/>
+                        </Form.Group>
+                    </Form>
+
+
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-                    <Button variant="danger" onClick={handleCloseEdit}>Delete</Button>
-                    <Button variant="primary" onClick={handleCloseEdit}>Save Changes</Button>
+                    <Button variant="danger" onClick={deletePat}>Delete</Button>
+                    <Button variant="primary" onClick={update}>Save Changes</Button>
                 </Modal.Footer>
             </Modal>
         )
@@ -165,7 +211,7 @@ function PatientTable() {
             <Card >
                 <Card.Body style={pat_card}>
                     <h1 className="h1 mb-3">Patient Table </h1>
-                    <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Student</button>
+                    <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button>
                     <ToolkitProvider bootstrap4={true} keyField="patID" data={ patItems } columns={ columns } search>
                         {
                             props => (

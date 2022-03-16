@@ -18,7 +18,7 @@ app.get('/', (req,res)=>{
 })
 
 app.get('/getPatData', (req,res)=>{
-    db.query("SELECT * FROM `patient` order by `loginID` ASC",
+    db.query("SELECT * FROM `login` INNER JOIN `patient` ON login.loginID = patient.loginID ORDER BY login.loginID ASC",
         function (err, result) {
             let data = Object.values(JSON.parse(JSON.stringify(result)));
             res.send(data);
@@ -82,6 +82,44 @@ app.post("/patRegister", (req, res)=>{
             }
     });
 });
+
+app.put("/updatePat",(req, res)=>{
+    const id = req.body.id
+    const address = req.body.address
+    const password = req.body.password
+
+    // console.log("id:" + id + "address: " + address + "password: " + password)
+
+    db.query("UPDATE patient SET patAddress = ? WHERE loginID = ?",[address, id], (err, result)=>{
+
+        if (err)
+        {
+            res.send({message: "System: Failed to update !"});
+        }else {
+                db.query("UPDATE login SET password = ? WHERE loginID = ?", [password, id], (err, result) => {
+
+                if (err) {
+                    res.send({message: "System: Failed to update !"});
+                } else {
+                    res.send({message: "System: Update Successfully"});
+                }
+            })
+        }
+    })
+})
+
+app.delete("/deletePat", (req, res)=>{
+    const id = req.params.id;
+
+    db.query("DELETE FROM patient WHERE loginID = ?", [id], (err, result)=>{
+        if (err) {
+            console.log(err);
+        }else{
+            res.send(result);
+        }
+    })
+})
+
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
