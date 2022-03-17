@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2022 at 01:16 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Mar 17, 2022 at 06:56 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,9 +64,20 @@ CREATE TABLE `doctor` (
   `loginID` int(11) NOT NULL,
   `specialisationID` int(11) NOT NULL,
   `doctorName` varchar(255) NOT NULL,
-  `doctorDob` date NOT NULL,
+  `year` int(11) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `doctor`
+--
+
+INSERT INTO `doctor` (`doctorID`, `loginID`, `specialisationID`, `doctorName`, `year`, `status`) VALUES
+(1, 33, 0, 'asd', 123, ''),
+(2, 34, 0, 'doctor1', 123, ''),
+(3, 35, 0, 'doctor2', 789, ''),
+(4, 36, 0, 'doctor3', 1234, ''),
+(5, 37, 0, 'doctor4', 567, '');
 
 -- --------------------------------------------------------
 
@@ -103,7 +114,20 @@ INSERT INTO `login` (`loginID`, `username`, `password`, `role`) VALUES
 (23, 'fai', 'fai', 'Patient'),
 (24, 'test', 'test', 'Patient'),
 (25, 'test', 'test', 'Patient'),
-(26, 'fai', 'fai', 'Patient');
+(26, 'fai', 'fai', 'Patient'),
+(27, 'ali', 'ali', 'Patient'),
+(28, 'abu', 'abu', 'Patient'),
+(29, 'asdasd', '', 'Patient'),
+(30, 'jlwelrjwelrjl', 'test', 'Patient'),
+(31, 'tyler1', 'test', 'Patient'),
+(32, 'asd', 'asd', 'Patient'),
+(33, 'asd', 'asd', 'Doctor'),
+(34, 'doctor', 'doctor', 'Doctor'),
+(35, 'doctor2', 'doctor', 'Doctor'),
+(36, 'doctor3', 'doctor', 'Doctor'),
+(37, 'doctor4', 'doctor', 'Doctor'),
+(38, 'test1', 'test', 'Patient'),
+(39, 'admin', 'admin', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -121,6 +145,19 @@ CREATE TABLE `patient` (
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`patID`, `loginID`, `patName`, `patDob`, `patAddress`, `patHistory`, `status`) VALUES
+(1, 27, 'ali', '2022-03-17', 'test test', '', ''),
+(2, 28, 'abu', '2022-03-17', 'test test test', '', ''),
+(3, 29, 'asdasd', '2022-03-25', '', '', ''),
+(4, 30, 'klqwjejqwklej', '2022-03-25', 'tetst', '', ''),
+(5, 31, 'tyler1', '2022-03-24', 'tyler1', '', ''),
+(6, 32, 'asd', '2022-03-11', 'asd', '', ''),
+(7, 38, 'test1', '2022-03-18', 'test1', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -131,6 +168,21 @@ CREATE TABLE `specialisation` (
   `specialisationID` int(11) NOT NULL,
   `specialisationName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `specialisation`
+--
+
+INSERT INTO `specialisation` (`specialisationID`, `specialisationName`) VALUES
+(1, 'Psychiatrist'),
+(2, 'Urologist'),
+(3, 'Dermatologist'),
+(4, 'Gastroenterologist'),
+(5, 'Infectious diseases'),
+(6, 'Gynecologist'),
+(7, 'ENT Specialist'),
+(8, 'Fertility Specialist'),
+(9, 'Orthopedics');
 
 --
 -- Indexes for dumped tables
@@ -198,7 +250,7 @@ ALTER TABLE `consultation`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `doctorID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doctorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -210,19 +262,19 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `loginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `loginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `patID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `specialisation`
 --
 ALTER TABLE `specialisation`
-  MODIFY `specialisationID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `specialisationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

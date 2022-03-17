@@ -10,14 +10,14 @@ $assetsPath: "../../assets";
 }
 
 .card{
-  margin: 5% auto 2%;
+  margin: 5% auto 5%;
   height: auto;
   width: 50%;
   box-shadow: 0 6px 10px 0 lightblue;
   opacity: 1;
 
   @media screen and (max-width: 1024px) {
-    margin: 25% auto auto;
+    margin: 10% auto 10%;
     width: 80%;
   }
 

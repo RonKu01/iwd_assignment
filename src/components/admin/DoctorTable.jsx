@@ -9,10 +9,6 @@ import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.c
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
-import "./dropdown.css";
-import Dropdown from "./Dropdown";
-
-
 
 function DoctorTable() {
 
@@ -24,6 +20,15 @@ function DoctorTable() {
         }
         fetchPostList()
     }, [setDocItems])
+
+    const [specialismItems, setSpecialismItems] = useState([])
+    useEffect(() =>{
+        const fetchSpecialismList = async () => {
+            const {data} = await axios('http://localhost:3005/getSpecialism')
+            setSpecialismItems(data)
+        }
+        fetchSpecialismList()
+    }, [setSpecialismItems])
 
     const {SearchBar} = Search;
     const pagination = paginationFactory({
@@ -45,8 +50,6 @@ function DoctorTable() {
 
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
-    const [selected, setSelected] = useState("Select Specialisation");
-
 
     const registerDoc =()=> {
 
@@ -91,7 +94,6 @@ function DoctorTable() {
         handleCloseEdit();
     };
 
-
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
     }
@@ -109,8 +111,14 @@ function DoctorTable() {
                     <Form>
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
-                            <Dropdown selected={selected} setSelected={setSelected}/>
-                            {/*<Form.Control type="text" placeholder="Enter Specialisation" id="addDocSpec"/>*/}
+                            <Form.Select aria-label="Default select example" id="addDocSpec">
+                                <option>Open this select menu</option>
+                                {
+                                    specialismItems.map(specialism => (
+                                        <option key={specialism.specialisationID} value={specialism.specialisationID}>{specialism.specialisationName}</option>
+                                    ))
+                                }
+                            </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocName" >
                             <Form.Label>Full Name</Form.Label>
