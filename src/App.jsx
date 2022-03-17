@@ -11,6 +11,7 @@ import Dashboard_Patient from "./components/dashboard/Dashboard_Patient";
 import About from "./components/about";
 import Psychiatrist from "./components/specialism/Psychiatrist";
 import Dashboard_Doctor from './components/dashboard/Dashboard_Doctor';
+import DoctorTable from "./components/admin/DoctorTable";
 import Chat from "./components/chat/Chat";
 import Urologist from "./components/specialism/Urologist";
 import Dermatologist from './components/specialism/Dermatologist';
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/patient" element={<PatientTable />} />
+                <Route path="/doctor" element={<DoctorTable />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/urologist" element={<Urologist/>} />
                 <Route path="/dermatologist" element={<Dermatologist/>} />
