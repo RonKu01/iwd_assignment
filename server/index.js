@@ -43,7 +43,7 @@ app.get('/getPatData', (req,res)=>{
 
         function (err, result) {
             let data = Object.values(JSON.parse(JSON.stringify(result)));
-            res.send(result);
+            res.send(data);
         }
     );
 })
@@ -75,9 +75,9 @@ app.post("/patRegister", (req, res)=>{
                     [loginID, fullName, dob, address], (err, result) => {
 
                         if (err) {
-                            res.send({message: "System: Failed to insert !"})
+                            res.send({message: "Failed to register !"})
                         } else {
-                            res.send({message: "System: Patient Registered! Please Login"})
+                            res.send({message: "Successfully Registered! Please Login!"})
                         }
                     });
             }
@@ -88,8 +88,6 @@ app.put("/updatePat",(req, res)=>{
     const id = req.body.id
     const address = req.body.address
     const password = req.body.password
-
-    // console.log("id:" + id + "address: " + address + "password: " + password)
 
     db.query("UPDATE patient SET patAddress = ? WHERE loginID = ?",[address, id], (err, result)=>{
 
