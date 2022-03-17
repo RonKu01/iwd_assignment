@@ -9,7 +9,7 @@ function Fertality() {
       <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
       <Navbar />
 
-      <h1>List of Gynaecologist Doctors</h1>
+      <h1>List of Fertality Doctors</h1>
        
       <Card style={{ width: '100rem', height: '20rem'}}>
 <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
