@@ -161,7 +161,7 @@ function DoctorTable() {
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
                             <Form.Select aria-label="Default select example" id="updateDocSpec">
-                                <option>{editModalInfo.specialisationName} (Default)</option>
+                                <option value={editModalInfo.specialisationID}>{editModalInfo.specialisationName} (Default)</option>
                                 {
                                     specialismItems.map(specialism => (
                                         <option key={specialism.specialisationID} value={specialism.specialisationID}>{specialism.specialisationName}</option>
