@@ -17,15 +17,6 @@ app.get('/', (req,res)=>{
     res.send("hello world");
 })
 
-app.get('/getPatData', (req,res)=>{
-    db.query("SELECT * FROM `login` INNER JOIN `patient` ON login.loginID = patient.loginID ORDER BY login.loginID ASC",
-        function (err, result) {
-            let data = Object.values(JSON.parse(JSON.stringify(result)));
-            res.send(data);
-        }
-    );
-})
-
 app.post("/login", ( req, res) =>{
     const username = req.body.username
     const password = req.body.password
@@ -46,6 +37,16 @@ app.post("/login", ( req, res) =>{
         }
     );
 });
+
+app.get('/getPatData', (req,res)=>{
+    db.query("SELECT login.loginID, login.username, login.password, login.role, patient.patID, patient.patName, DATE_FORMAT(patient.patDob,'%y-%m-%d'), patient.patAddress, patient.patHistory, patient.status FROM `login` INNER JOIN `patient` ON login.loginID = patient.loginID ORDER BY login.loginID ASC",
+
+        function (err, result) {
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(result);
+        }
+    );
+})
 
 app.post("/patRegister", (req, res)=>{
     const fullName = req.body.fullName
@@ -190,7 +191,6 @@ app.get('/getSpecialism', (req,res)=>{
         }
     );
 })
-
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
