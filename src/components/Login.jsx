@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import Navbar from "./navbar/Navbar";
 import Axios from "axios";
 
@@ -7,12 +7,16 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const [showAlert, setShowAlert] = useState(false);
+    const [showPass, setShowPass] = useState(true);
+
     const login =()=> {
         Axios.post("http://localhost:3005/login", {username: username, password: password,
         }).then((response)=>{
 
             if (response.data.message){
-                console.log(response.data.message);
+                setShowAlert(true);
+
             } else {
                 if(response.data[0].role === "Patient"){
                     window.location.href = "/dashboard_patient";
@@ -25,11 +29,20 @@ function Login() {
     });
     };
 
-    const [showPass, setShowPass] = useState(true);
+    const AlertModalContent = () =>{
+        return(
+            <Alert show={showAlert} variant="danger">
+                <Alert.Heading>Error!</Alert.Heading>
+                <p>Incorrect Username and Password ! </p>
+            </Alert>
+        )
+    }
+
     return (
         <div className="body-container">
             <Navbar />
             <main className="main-container">
+                {showAlert ? <AlertModalContent /> : null}
                 <h1>Login</h1>
                 <div className="pt-1"/>
                 <Form>
@@ -45,9 +58,6 @@ function Login() {
                         <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
                     <div className="d-grid gap-2">
-                        {/*<Button variant="primary" className="mb-3" type="submit" href="/dashboard_Admin">Admin</Button>*/}
-                        {/*<Button variant="primary" className="mb-3" type="submit" href="/dashboard_Patient">Patient</Button>*/}
-                        {/*<Button variant="primary" className="mb-3" type="submit" href="/dashboard_Doctor">Doctor</Button>*/}
                         <Button variant="primary" className="mb-3" type="submit" onClick={login}>Login</Button>
                         <Button variant="outline-primary" href="/register">Register Here</Button>
                     </div>
