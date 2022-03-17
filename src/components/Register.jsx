@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import Navbar from "./navbar/Navbar";
 import Axios from "axios";
 
@@ -8,27 +8,36 @@ function Register() {
     const [dobReg, setDobReg] = useState(new Date());
     const [addressReg, setAddressReg] = useState("");
 
-
     const [usernameReg, setUsernameReg] = useState("");
     const [passwordReg, setPasswordReg] = useState("");
 
+    const [showAlert, setShowAlert] = useState(false);
+    const [showPass, setShowPass] = useState(true);
 
     const register =()=> {
         Axios.post("http://localhost:3005/patRegister",
             {username: usernameReg, password: passwordReg, fullName: fullNameReg, dob: dobReg, address: addressReg,
         }).then((response)=> {
-            console.log(response.data.message);
-            alert(response.data.message);
-            window.location.href = "/login";
+            setShowAlert(true);
+            setTimeout(() => { window.location.href = "/login"; }, 2000);
         });
     };
 
-    const [showPass, setShowPass] = useState(true);
+    const AlertModalContent = () =>{
+        return(
+            <Alert show={showAlert} variant="success">
+                <Alert.Heading>Success! </Alert.Heading>
+                <p>Redirect to Login Page...</p>
+            </Alert>
+        )
+    }
+
 
     return (
     <div className="body-container">
         <Navbar />
         <main className="main-container">
+            {showAlert ? <AlertModalContent /> : null}
             <h1>Registration</h1>
             <div className="pt-1"/>
             <Form>

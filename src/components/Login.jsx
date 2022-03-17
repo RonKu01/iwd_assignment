@@ -45,9 +45,9 @@ function Login() {
                         <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
                     <div className="d-grid gap-2">
-                        <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Admin">Admin</Button>
-                        <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Patient">Patient</Button>
-                        <Button variant="primary" className="mb-3" type="submit" href="/dashboard_Doctor">Doctor</Button>
+                        {/*<Button variant="primary" className="mb-3" type="submit" href="/dashboard_Admin">Admin</Button>*/}
+                        {/*<Button variant="primary" className="mb-3" type="submit" href="/dashboard_Patient">Patient</Button>*/}
+                        {/*<Button variant="primary" className="mb-3" type="submit" href="/dashboard_Doctor">Doctor</Button>*/}
                         <Button variant="primary" className="mb-3" type="submit" onClick={login}>Login</Button>
                         <Button variant="outline-primary" href="/register">Register Here</Button>
                     </div>

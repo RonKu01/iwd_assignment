@@ -108,8 +108,9 @@ app.put("/updatePat",(req, res)=>{
     })
 })
 
+//Doctor
 app.get('/getDocData', (req,res)=>{
-    db.query("SELECT * FROM `login` INNER JOIN `doctor` ON login.loginID = doctor.loginID ORDER BY login.loginID ASC",
+    db.query("SELECT * FROM `doctor` INNER JOIN `login` ON doctor.loginID = login.loginID INNER JOIN `specialisation` ON doctor.specialisationID = specialisation.specialisationID ORDER BY doctor.doctorID ASC",
         function (err, result) {
             let data = Object.values(JSON.parse(JSON.stringify(result)));
             res.send(data);
@@ -145,7 +146,7 @@ app.post("/docRegister", (req, res)=>{
                         if (err) {
                             res.send({message: "System: Failed to insert !"})
                         } else {
-                            res.send({message: "System: Doctor Registered! Please Login"})
+                               res.send({message: "System: Doctor Registered! Please Login"})
                         }
                     });
             }
@@ -160,23 +161,25 @@ app.put("/updateDoc",(req, res)=>{
 
     console.log("id :" + id + "docSpec :" + docSpec)
 
-    // db.query("UPDATE doctor SET specialisationID = ? , year = ? WHERE loginID = ?",
-    //     [docSpec, docYear, id], (err, result)=>{
-    //
-    //         if (err)
-    //         {
-    //             res.send({message: "System: Failed to update !"});
-    //         }else {
-    //             db.query("UPDATE login SET password = ? WHERE loginID = ?", [password, id], (err, result) => {
-    //
-    //                 if (err) {
-    //                     res.send({message: "System: Failed to update !"});
-    //                 } else {
-    //                     res.send({message: "System: Update Successfully"});
-    //                 }
-    //             })
-    //         }
-    //     })
+    db.query("UPDATE doctor SET specialisationID = ? , year = ? WHERE loginID = ?",
+        [docSpec, docYear, id], (err, result)=>{
+
+            if (err)
+            {
+                res.send({message: "System: Failed to update !"});
+            }else {
+
+
+                db.query("UPDATE login SET password = ? WHERE loginID = ?", [password, id], (err, result) => {
+
+                    if (err) {
+                        res.send({message: "System: Failed to update !"});
+                    } else {
+                        res.send({message: "System: Update Successfully"});
+                    }
+                })
+            }
+        })
 })
 
 app.get('/getSpecialism', (req,res)=>{

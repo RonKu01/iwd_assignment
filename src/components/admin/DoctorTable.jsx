@@ -161,7 +161,14 @@ function DoctorTable() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
-                            <Form.Control type="text" id="updateDocSpec" defaultValue={editModalInfo.specialisationID} />
+                            <Form.Select aria-label="Default select example" id="updateDocSpec">
+                                <option>{editModalInfo.specialisationName}</option>
+                                {
+                                    specialismItems.map(specialism => (
+                                        <option key={specialism.specialisationID} value={specialism.specialisationID}>{specialism.specialisationName}</option>
+                                    ))
+                                }
+                            </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocYear" >
                             <Form.Label>Year of Experience</Form.Label>
@@ -198,7 +205,7 @@ function DoctorTable() {
             text: 'Doctor ID',
         },
         {
-            dataField: 'specialisationID',
+            dataField: 'specialisationName',
             text: 'Specialisation',
         },
         {
