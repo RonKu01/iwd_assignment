@@ -17,6 +17,7 @@
     "faker": "^6.6.6",
     "fast-json-stable-stringify": "^2.1.0",
     "generate-source-map": "^0.0.5",
+    "moment": "^2.29.1",
     "node-sass": "^7.0.1",
     "react": "^16.0.2",
     "react-bootstrap": "^2.2.1",

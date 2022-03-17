@@ -9,6 +9,7 @@ import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.c
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
+import moment from "moment";
 
 function PatientTable() {
 
@@ -16,6 +17,9 @@ function PatientTable() {
     useEffect(() =>{
         const fetchPostList = async () => {
             const {data} = await axios('http://localhost:3005/getPatData')
+            for (let i=0; i < data.length; i ++){
+                data[i].patDob = moment(data[i].patDob).utc().format('DD MMM YYYY')
+            }
             setPatItems(data)
         }
         fetchPostList()
@@ -185,6 +189,7 @@ function PatientTable() {
             toggleTrueFalseEdit()
         }
     };
+
     const pat_card = {
         width: "100%",
         padding: "2rem"

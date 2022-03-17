@@ -80,7 +80,6 @@ function DoctorTable() {
         let docYear = document.getElementById('updateDocYear').value;
         let docPassword = document.getElementById('updateDocPassword').value;
 
-
         Axios.put("http://localhost:3005/updateDoc",
             {
                 specialisationID: docSpec,
@@ -162,7 +161,7 @@ function DoctorTable() {
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
                             <Form.Select aria-label="Default select example" id="updateDocSpec">
-                                <option>{editModalInfo.specialisationName}</option>
+                                <option>{editModalInfo.specialisationName} (Default)</option>
                                 {
                                     specialismItems.map(specialism => (
                                         <option key={specialism.specialisationID} value={specialism.specialisationID}>{specialism.specialisationName}</option>
