@@ -88,6 +88,8 @@ app.put("/updatePat",(req, res)=>{
     const address = req.body.address
     const password = req.body.password
 
+    // console.log("id:" + id + "address: " + address + "password: " + password)
+
     db.query("UPDATE patient SET patAddress = ? WHERE loginID = ?",[address, id], (err, result)=>{
 
         if (err)
@@ -105,6 +107,80 @@ app.put("/updatePat",(req, res)=>{
         }
     })
 })
+
+
+//Doctor Data
+app.get('/getDocData', (req,res)=>{
+    db.query("SELECT * FROM `login` INNER JOIN `doctor` ON login.loginID = doctor.loginID ORDER BY login.loginID ASC",
+        function (err, result) {
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+})
+
+app.post("/docRegister", (req, res)=>{
+    const docSpec = req.body.specialisationID
+    const docFullName = req.body.doctorName
+    const docYear = req.body.year
+    const username = req.body.username
+    const password = req.body.password
+    const role = "Doctor"
+    let loginID = 0;
+
+    db.query("SELECT * FROM `login` order by `loginID` DESC limit 1",
+        function (err, result) {
+            const data = Object.values(JSON.parse(JSON.stringify(result)));
+            loginID = data[0].loginID + 1;
+        }
+    );
+
+    db.query("INSERT INTO login (username, password, role) VALUES (?, ?, ?)",
+        [username, password, role], (err, result)=> {
+
+            if(err){
+                res.send({message: "System: Failed to insert !"})
+            }else {
+                db.query("INSERT INTO doctor (loginID, specialisationID, doctorName, year) VALUES (?, ?, ?, ?)",
+                    [loginID, docSpec, docFullName, docYear], (err, result) => {
+
+                        if (err) {
+                            res.send({message: "System: Failed to insert !"})
+                        } else {
+                            res.send({message: "System: Doctor Registered! Please Login"})
+                        }
+                    });
+            }
+        });
+});
+
+app.put("/updateDoc",(req, res)=>{
+    const id = req.body.id
+    const docSpec = req.body.specialisationID
+    const docYear = req.body.year
+    const password = req.body.password
+
+    db.query("UPDATE doctor SET specialisationID = ? , year = ? WHERE loginID = ?",
+        [docSpec, docYear, id], (err, result)=>{
+
+            if (err)
+            {
+                res.send({message: "System: Failed to update !"});
+            }else {
+                db.query("UPDATE login SET password = ? WHERE loginID = ?", [password, id], (err, result) => {
+
+                    if (err) {
+                        res.send({message: "System: Failed to update !"});
+                    } else {
+                        res.send({message: "System: Update Successfully"});
+                    }
+                })
+            }
+        })
+})
+
+
+
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
