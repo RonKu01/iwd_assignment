@@ -44,10 +44,9 @@ class App extends Component {
                 <Route path="/gastro" element={<Gastro/>} />
                 <Route path="/infectious" element={<Infectious/>} />
                 <Route path="/orthopedeic" element={<Orthopedic/>} />
-                <Route path="/otolaryn" element={<Otolaryn/>} />
+                <Route path="/otolaryn" element={<Otolaryn />} />
                 <Route path="/patient_profile" element={<Patient_Profile/>} />
                 <Route path="/medical_summary" element={<Medical_Summary/>} />
-
             </Routes>
         );
     }
