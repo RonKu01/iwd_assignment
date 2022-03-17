@@ -9,6 +9,10 @@ import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.c
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
+import "./dropdown.css";
+import Dropdown from "./Dropdown";
+
+
 
 function DoctorTable() {
 
@@ -41,6 +45,8 @@ function DoctorTable() {
 
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
+    const [selected, setSelected] = useState("Select Specialisation");
+
 
     const registerDoc =()=> {
 
@@ -103,7 +109,8 @@ function DoctorTable() {
                     <Form>
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Specialisation" id="addDocSpec"/>
+                            <Dropdown selected={selected} setSelected={setSelected}/>
+                            {/*<Form.Control type="text" placeholder="Enter Specialisation" id="addDocSpec"/>*/}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocName" >
                             <Form.Label>Full Name</Form.Label>

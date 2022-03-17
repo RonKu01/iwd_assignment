@@ -154,6 +154,18 @@ app.post("/docRegister", (req, res)=>{
         });
 });
 
+// if($row['supervisor_unique_id'] == 0 || $row['supervisor_unique_id'] == NULL){
+//     echo '<td>not_set</td>';
+// }else{
+//     $sql2 = "SELECT * FROM `lecturer` WHERE lecturer.unique_id = '{$row['supervisor_unique_id']}'";
+//
+//     $result2 = $conn ->query($sql2);
+//     if (!empty($result2) && $result2->num_rows > 0) {
+//         $row2  = mysqli_fetch_assoc($result2);
+//     }
+//     echo '<td>'.$row2['name'].'</td>';
+// }
+
 app.put("/updateDoc",(req, res)=>{
     const id = req.body.id
     const docSpec = req.body.specialisationID
