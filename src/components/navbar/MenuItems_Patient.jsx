@@ -1,7 +1,7 @@
 export const MenuItems = [
     {
         title: 'Profile',
-        url: '/pat_profile',
+        url: '/patient_profile',
         cName: 'nav-links'
     },
     {
@@ -11,7 +11,7 @@ export const MenuItems = [
     },
     {
         title: 'History',
-        url: '/pat_history',
+        url: '/medical_summary',
         cName: 'nav-links'
     },
 ]

@@ -607,7 +607,6 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
     );
 }
 
-
 function Chat() {
     const [token, setToken] = useState("");
     const [meetingId, setMeetingId] = useState("");

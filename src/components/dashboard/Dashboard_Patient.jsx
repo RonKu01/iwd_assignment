@@ -3,6 +3,7 @@ import Navbar from "../navbar/Navbar_Patient";
 import "./dashboard.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
 import {Link} from "react-router-dom"
+import Axios from "axios";
 
 function Dashboard_Patient() {
 
