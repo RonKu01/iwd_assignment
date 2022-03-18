@@ -14,9 +14,4 @@ export const MenuItems = [
         url: '/feedback',
         cName: 'nav-links'
     },
-    {
-        title: 'Logout',
-        url: '/',
-        cName: 'nav-links'
-    },
 ]

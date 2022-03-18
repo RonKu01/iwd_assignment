@@ -179,7 +179,6 @@ function DoctorTable() {
                         </Form.Group>
                     </Form>
 
-
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
@@ -204,12 +203,12 @@ function DoctorTable() {
             text: 'Doctor ID',
         },
         {
-            dataField: 'specialisationName',
-            text: 'Specialisation',
-        },
-        {
             dataField: 'doctorName',
             text: 'Full Name'
+        },
+        {
+            dataField: 'specialisationName',
+            text: 'Specialisation',
         },
         {
             dataField: 'year',

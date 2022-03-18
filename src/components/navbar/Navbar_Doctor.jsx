@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { MenuItems } from "./MenuItems_Admin";
 import './Navbar.scss';
+import Axios from "axios";
+
+const logout = () => {
+    Axios.get("http://localhost:3005/logout").then((response)=>{
+        window.location.href = "/";
+    });
+};
 
 class Navbar extends Component{
     state = { clicked: false}
@@ -26,6 +33,7 @@ class Navbar extends Component{
                             </li>
                         )
                     })}
+                    <li><a className="nav-links" href="" onClick={logout}>Logout</a></li>
                 </ul>
             </nav>
         )

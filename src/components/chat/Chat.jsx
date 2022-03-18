@@ -4,6 +4,7 @@ import {getToken} from "../../api";
 
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import {JoiningScreen} from "./JoiningScreen";
+import Axios from "axios";
 
 const primary = "#3E84F6";
 const width = 400;
@@ -606,6 +607,7 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
     );
 }
 
+
 function Chat() {
     const [token, setToken] = useState("");
     const [meetingId, setMeetingId] = useState("");
@@ -613,6 +615,19 @@ function Chat() {
     const [micOn, setMicOn] = useState(false);
     const [webcamOn, setWebcamOn] = useState(false);
     const [isMeetingStarted, setMeetingStarted] = useState(false);
+
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
 
     return isMeetingStarted ? (
         <MeetingProvider
