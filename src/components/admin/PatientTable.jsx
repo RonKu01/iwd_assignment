@@ -66,6 +66,7 @@ function PatientTable() {
         });
         handleCloseAdd();
     };
+
     const update =() =>{
         let loginId = document.getElementById('updateLoginID').value;
         let patAddress = document.getElementById('updateAddress').value;

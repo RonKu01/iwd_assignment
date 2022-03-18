@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import "./dashboard.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
 import {Link} from "react-router-dom"
 
 function Dashboard_Patient() {
+
+    //Check whether User Already or not. If not, redirect to login page.
+    const [loginID, setLoginID] = useState("");
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
+
     return (
         <div className="body-dashboard">
             <Navbar />

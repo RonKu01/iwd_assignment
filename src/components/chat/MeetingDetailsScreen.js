@@ -1,6 +1,7 @@
 import { Box, Button, Chip, InputAdornment, TextField } from "@material-ui/core";
 import { Keyboard } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import Axios from "axios";
 
 export function MeetingDetailsScreen({
                                          onClickJoin,
@@ -8,6 +9,19 @@ export function MeetingDetailsScreen({
                                      }){
     const [meetingId, setMeetingId] =useState("");
     const [meetingIdError, setMeetingIdError] = useState(false);
+
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
 
     return (
         <Box
