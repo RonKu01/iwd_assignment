@@ -2,15 +2,18 @@ import React from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import "./dashboard.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 function Dashboard_Patient() {
     return (
         <div className="body-dashboard">
             <Navbar />
+            <h1 style={{padding: '40px', color: 'blue'}}>List Of Specialist </h1>
+
             <Row xl={3} lg={3}  className="g-1">
                 <Col lg={true}>
                     <Card className="card-new">
-                        <a className="link-nostyle">
+                    <Link to={"/psychiatrist"}>
                         <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Psychiatrist</Card.Title>
@@ -20,12 +23,14 @@ function Dashboard_Patient() {
                                 cognitive and perceptual abnormalities.
                             </Card.Text>
                         </Card.Body>
-                        </a>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" height="180" />
+                        <Link to={"/urologist"}>
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Urologist</Card.Title>
                             <Card.Text>
@@ -34,10 +39,13 @@ function Dashboard_Patient() {
                                 urinary-tract system and the male reproductive organs.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
+                    <Link to={"/dermatologist"}>
                         <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Dermatologist</Card.Title>
@@ -46,11 +54,14 @@ function Dashboard_Patient() {
                                 involving the skin, hair, and nails. A dermatologist can identify and treat more than 3,000 conditions.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+                 
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top"  height="180" />
+                    <Link to={"/gastro"}>
+                        <Card.Img variant="top"   height="180" />
                         <Card.Body>
                             <Card.Title>Gastroenterologist</Card.Title>
                             <Card.Text>
@@ -58,10 +69,13 @@ function Dashboard_Patient() {
                                 trained to diagnose and treat problems in your gastrointestinal (GI) tract and liver.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
+                    <Link to={"/infectious"}>
                         <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Infectious diseases</Card.Title>
@@ -71,11 +85,14 @@ function Dashboard_Patient() {
                                 fungi and viruses, including COVID-19.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" height="180" />
+                    <Link to={"/fertality"}>
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Gynecologist</Card.Title>
                             <Card.Text>
@@ -84,11 +101,14 @@ function Dashboard_Patient() {
                                 for vaginal infections.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" height="180" />
+                    <Link to={"/otolaryn"}>
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>ENT Specialist</Card.Title>
                             <Card.Text>
@@ -96,11 +116,14 @@ function Dashboard_Patient() {
                                 is a doctor who specializes in problems and diseases of the ear, nose and throat.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Card.Img variant="top" height="180" />
+                    <Link to={"/fertality"}>
+                        <Card.Img variant="top"  height="180" />
                         <Card.Body>
                             <Card.Title>Fertility Specialist</Card.Title>
                             <Card.Text>
@@ -108,10 +131,13 @@ function Dashboard_Patient() {
                                 are specialist that you consult with right medical expert for your fertility issues.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
+
                 <Col lg={true}>
                     <Card className="card-new">
+                    <Link to={"/orthopedeic"}>
                         <Card.Img variant="top" height="180" />
                         <Card.Body>
                             <Card.Title>Orthopedics</Card.Title>
@@ -120,6 +146,7 @@ function Dashboard_Patient() {
                                 musculoskeletal system - the bones, joints, ligaments, tendons, and muscles.
                             </Card.Text>
                         </Card.Body>
+                        </Link>
                     </Card>
                 </Col>
             </Row>

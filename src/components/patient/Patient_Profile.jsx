@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import "../dashboard/dashboard.scss";
 import {Card, CardGroup, Button} from "react-bootstrap";
-import image1 from "../../assets/login_page.jpg";
+import {Link} from "react-router-dom";
 
 
 
@@ -38,7 +38,7 @@ function Patient_Profile() {
     </Card.Body>
     <Card.Footer>
 
-    <Button style={{width: '500px'}} href="#">View Appointment</Button>
+    <Button style={{width: '500px'}}> <Link to={"/book_appointment"} activeStyle={{color:"white"}}>View Appointment</Link></Button>
 
     </Card.Footer>
   </Card>

@@ -3,13 +3,13 @@ import Navbar from "../navbar/Navbar_Patient";
 import "../dashboard/dashboard.scss";
 import {Card, Col, Row} from "react-bootstrap";
 import image1 from "../../assets/login_page.jpg";
-
+import {Link} from "react-router-dom";
 function Infectious() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
         <Navbar />
 
-        <h1>List of Infectious Doctors</h1>
+        <h1 style={{padding: '40px', color: 'blue'}}>List of Infectious Illness Doctors</h1>
          
         <Card style={{ width: '100rem', height: '20rem'}}>
 <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
@@ -27,8 +27,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -48,8 +49,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -68,8 +70,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -89,8 +92,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -110,8 +114,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -131,8 +136,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -153,8 +159,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 
@@ -175,8 +182,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
       
@@ -196,8 +204,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
       
@@ -217,8 +226,9 @@ function Infectious() {
 </Card.Body>
 
 <Card.Body>
-<Card.Link href="#">Book Appointment</Card.Link>
-<Card.Link href="#">Another Link</Card.Link>
+    
+    <Card.Link ><Link to={"/book_appointment"} activeStyle={{color:"white"}}>Book Appointment</Link></Card.Link>
+  
 </Card.Body>
       </Card>
 </div>

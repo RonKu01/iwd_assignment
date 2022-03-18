@@ -20,9 +20,9 @@ import Gastro from './components/specialism/Gastro';
 import Infectious from './components/specialism/Infectious';
 import Orthopedic from './components/specialism/Orthopedic';
 import Otolaryn from './components/specialism/Otolaryn';
-import Patient_Profile from './components/patient/medical_summary';
+import Patient_Profile from './components/patient/Patient_Profile';
 import Medical_Summary from './components/patient/medical_summary';
-
+import Book_Appointment from './components/patient/book_appointment';
 class App extends Component {
     render() {
         return (
@@ -47,6 +47,7 @@ class App extends Component {
                 <Route path="/otolaryn" element={<Otolaryn />} />
                 <Route path="/patient_profile" element={<Patient_Profile/>} />
                 <Route path="/medical_summary" element={<Medical_Summary/>} />
+                <Route path="/book_appointment" element={<Book_Appointment/>} />
             </Routes>
         );
     }
