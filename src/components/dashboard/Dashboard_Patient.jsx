@@ -24,7 +24,7 @@ function Dashboard_Patient() {
 return (
     <div className="body-dashboard">
         <Navbar />
-
+<h1>hello world</h1>
         <CardGroup>
             <Card className="card-new">
                 <Link to={"/book_appointment"}>
