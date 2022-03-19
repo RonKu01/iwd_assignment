@@ -17,9 +17,10 @@ import Chat from "./components/chat/Chat";
 import Psychiatrist from "./components/specialism/Psychiatrist";
 import Urologist from "./components/specialism/Urologist";
 import Dermatologist from './components/specialism/Dermatologist';
-import Gastroenterologists from './components/specialism/Gastroenterologists';
+import Gastroenterologists from "./components/specialism/Gastroenterologists";
+
 import Infectious from './components/specialism/Infectious';
-import Gynecologist from "./components/specialism/Gynaecologist";
+import Gynecologist from "./components/specialism/Gynecologist";
 import Otolaryn from './components/specialism/Otolaryn';
 import Fertality from './components/specialism/Fertality';
 import Orthopedic from './components/specialism/Orthopedic';
@@ -51,12 +52,12 @@ class App extends Component {
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/urologist" element={<Urologist/>} />
                 <Route path="/dermatologist" element={<Dermatologist/>} />
-                <Route path="/Gastroenterologists" element={<Gastroenterologists />} />
+                <Route path="/gastroenterologists" element={<Gastroenterologists />} />
                 <Route path="/infectious" element={<Infectious/>} />
                 <Route path="/Gynecologist" element={<Gynecologist/>} />
                 <Route path="/otolaryn" element={<Otolaryn />} />
                 <Route path="/fertality" element={<Fertality/>} />
-                <Route path="/orthopedeic" element={<Orthopedic/>} />
+                <Route path="/Orthopedic" element={<Orthopedic/>} />
 
 
 

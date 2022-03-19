@@ -5,7 +5,7 @@ import {Card, Col, Row} from "react-bootstrap";
 import Axios from "axios";
 
 function Orthopedic() {
-    let specialisationID = 1;
+    let specialisationID = 9;
     const [doctorList, setDoctorList] = useState([])
     useEffect(() =>{
         const fetchDoctorBySpecialism = async () => {
