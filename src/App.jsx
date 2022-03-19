@@ -25,6 +25,7 @@ import Medical_Summary from './components/patient/medical_summary';
 import Book_Appointment from './components/patient/book_appointment';
 import Doc_Profile from "./components/doctor/Doc_Profile";
 import Consultation_Summary from './components/consultation/Consultation_Summary'
+import Specialist_List from './components/specialism/Specialist_List';
 
 class App extends Component {
     render() {
@@ -52,6 +53,7 @@ class App extends Component {
                 <Route path="/patient_profile" element={<Patient_Profile/>} />
                 <Route path="/medical_summary" element={<Medical_Summary/>} />
                 <Route path="/book_appointment" element={<Book_Appointment/>} />
+                <Route path="/speciality_list" element={<Specialist_List/>} />
             </Routes>
         );
     }
