@@ -168,7 +168,7 @@ function PatientTable() {
     const columns = [
         {
             dataField: 'patID',
-            text: 'patID',
+            text: 'ID',
         },
         {
             dataField: 'patName',

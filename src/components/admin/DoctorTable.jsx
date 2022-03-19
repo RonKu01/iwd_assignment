@@ -230,7 +230,7 @@ function DoctorTable() {
             text: 'ID',
             headerStyle: {
                 whiteSpace:'nowrap',
-                width: '10%',
+                width: '5%',
             }
         },
         {
@@ -238,7 +238,7 @@ function DoctorTable() {
             text: 'Name',
             headerStyle: {
                 whiteSpace:'nowrap',
-                width: '10%',
+                width: '15%',
             }
         },
         {
