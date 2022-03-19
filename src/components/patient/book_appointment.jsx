@@ -1,36 +1,80 @@
 import React from "react";
 import Navbar from "../navbar/Navbar_Patient";
-import {Form, Col, Row} from "react-bootstrap";
+import {Form, Col, Row, Button} from "react-bootstrap";
+import Calendar from 'react-calendar';
 
 function Book_Appointment() {
     return (
         <div className="body-dashboard">
              <Navbar /> 
 
-            
-            
             <main className="main">
                 <h1 style={{padding: '40px', color: 'blue'}}>Book Your Appointment </h1>
-                
-                <Form style={{padding: '10px 150px 10px 150px'}}>
-  <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-    <Form.Label column sm="2">
-      Email
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control plaintext readOnly defaultValue="email@example.com" />
-    </Col>
-  </Form.Group>
+                 
+                <Form style={{padding: '10px 250px 10px 250px'}}>
+  <Row className="mb-3">
+  <Form.Group as={Col} controlId="formGridState">
+      <Form.Label>Choose the specialism</Form.Label>
+      <Form.Select defaultValue="Choose...">
+        <option>Choose...</option>
+        <option>Dermatologist</option>
+        <option>Fertality</option>
+        <option>Gynaecologist</option>
+        <option>Infectious Illness</option>
+        <option>Urologist</option>
+        <option>Psychiatrist</option>
+        <option>Gastroenterologists</option>
+        <option>Orthopedic</option>
+        <option>Otolaryngologist</option>
+      </Form.Select>
+    </Form.Group>
 
-  <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-    <Form.Label column sm="2">
-      Password
-    </Form.Label>
-    <Col sm="10">
-      <Form.Control type="password" placeholder="Password" />
-    </Col>
+    <Form.Group as={Col} controlId="formGridLastName">
+      <Form.Label>Doctors Name</Form.Label>
+      <Form.Control type="LastName" placeholder="Enter the Doctors name." />
+    </Form.Group>
+  </Row>
+
+  <Row className="mb-3">
+    <Form.Group as={Col} controlId="formGridDiagnosis">
+      <Form.Label>Describe your problem </Form.Label>
+      <Form.Control type="FirstName" placeholder="Medical problem" style={{width: '1300px', height: '100px'}}/>
+    </Form.Group>
+
+  </Row>
+     
+  <Form.Group as={Col} controlId="formGridBirthDate">
+      <Form.Label>Please Select a Date</Form.Label>
+      <Form.Control type="BirthDate" placeholder="DD/MM/YYYY" style={{width: '300px', height: '35px'}} />
   </Form.Group>
-</Form>
+ 
+  <Row className="mb-3">
+  <Form.Group as={Col} controlId="formGridState">
+      <Form.Label>Please Select Estimated Time</Form.Label>
+      <Form.Select defaultValue="Choose..." style={{width: '300px', height: '35px'}} >
+        <option>Choose...</option>
+        <option>9am-10am</option>
+        <option>10am-11am</option>
+        <option>11am-12pm</option>
+        <option>12pm-1pm</option>
+        <option>1pm-2pm</option>
+        <option>2pm-3pm</option>
+        <option>3pm-4pm</option>
+        <option>4pm-5pm</option>
+        <option>5pm-6pm</option>
+        <option>6pm-7pm</option>
+        <option>7pm-8pm</option>
+        <option>8pm-9pm</option>
+      </Form.Select>
+    </Form.Group>
+  </Row>
+
+       <>
+   <Button type="submit">Submit</Button>{' '}
+       </>
+
+        </Form>
+  
             </main>
         </div>
     );
