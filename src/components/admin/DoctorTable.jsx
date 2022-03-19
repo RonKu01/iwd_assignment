@@ -302,7 +302,7 @@ function DoctorTable() {
                                     <h6>Input at below input field</h6>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
-                                    <BootstrapTable bootstrap4={true} wrapperClasses="table-responsive" rowEvents={rowEvents} pagination={pagination}
+                                    <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />
                                 </div>
