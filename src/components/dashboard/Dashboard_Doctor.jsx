@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Doctor";
 import "./dashboard.scss";
-import MTable from "../dashboard/MTable";
+import AppointmentTable from "../dashboard/AppointmentTable";
 import Axios from "axios";
 
 function Dashboard_Doctor() {
@@ -28,7 +28,7 @@ function Dashboard_Doctor() {
             <main className="main">
                 <h1>Dr Lim : LoginID = {loginID}</h1>
                 <p>Urologist</p>
-            < MTable />  
+            < AppointmentTable />  
             </main>
         </div>
     );
