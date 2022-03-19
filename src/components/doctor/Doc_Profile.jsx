@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Doctor";
 import "../dashboard/dashboard.scss";
-import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
+import {Alert, Button,Form} from "react-bootstrap";
 import axios from "axios";
 import Axios from "axios";
 
@@ -30,7 +30,6 @@ function Doc_Profile() {
             getDoctorDetails()
     }, [setDoctorDetails]);
 
-
    let doctorName, password, specialisationID, specialisationName, year, qualifications, conditionConsulted;
 
     doctorDetails.map((item, index) =>{
@@ -55,7 +54,7 @@ function Doc_Profile() {
     }, [setSpecialismItems])
 
     const [showAlert, setShowAlert] = useState(false);
-    // const [showPass, setShowPass] = useState(true);
+    const [showPass, setShowPass] = useState(true);
 
     const AlertContent = () =>{
         return(
@@ -119,18 +118,18 @@ function Doc_Profile() {
                             <Form.Label>Year of Experience</Form.Label>
                             <Form.Control type="text" id="updateDocYear" defaultValue={year} />
                         </Form.Group>
-                        {/*<Form.Group className="mb-3" controlId="formDocYear" >*/}
-                        {/*    <Form.Label>Qualifications</Form.Label>*/}
-                        {/*    <Form.Control type="text" id="updateDocQualification" defaultValue={doctorDetails.qualifications} />*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formDocYear" >*/}
-                        {/*    <Form.Label>Condition Consulted</Form.Label>*/}
-                        {/*    <Form.Control type="text" id="updateDocCondition" defaultValue={doctorDetails.conditionConsulted} />*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formPassword" >*/}
-                        {/*    <Form.Label>Password</Form.Label>*/}
-                        {/*    <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updateDocPassword" defaultValue={doctorDetails.password} />*/}
-                        {/*</Form.Group>*/}
+                        <Form.Group className="mb-3" controlId="formDocQualification" >
+                            <Form.Label>Qualifications</Form.Label>
+                            <Form.Control as="textarea" rows={3} id="updateDocQualification" defaultValue={qualifications} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocCondition" >
+                            <Form.Label>Condition Consulted</Form.Label>
+                            <Form.Control as="textarea" rows={5} id="updateDocCondition" defaultValue={conditionConsulted} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formPassword" >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updateDocPassword" defaultValue={password} />
+                        </Form.Group>
                         {/*<Form.Group className="mb-3" controlId="formCheckbox" >*/}
                         {/*    <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />*/}
                         {/*</Form.Group>*/}

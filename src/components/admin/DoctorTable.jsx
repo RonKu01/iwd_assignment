@@ -194,11 +194,11 @@ function DoctorTable() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocYear" >
                             <Form.Label>Qualifications</Form.Label>
-                            <Form.Control type="text" id="updateDocQualification" defaultValue={editModalInfo.qualifications} />
+                            <Form.Control as="textarea" rows={3} id="updateDocQualification" defaultValue={editModalInfo.qualifications} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocYear" >
                             <Form.Label>Condition Consulted</Form.Label>
-                            <Form.Control type="text" id="updateDocCondition" defaultValue={editModalInfo.conditionConsulted} />
+                            <Form.Control as="textarea" rows={7} id="updateDocCondition" defaultValue={editModalInfo.conditionConsulted} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formPassword" >
                             <Form.Label>Password</Form.Label>

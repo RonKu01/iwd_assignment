@@ -299,6 +299,20 @@ app.get("/getPersonDoctorData", ( req, res) =>{
     );
 });
 
+app.get("/getPersonPatData", ( req, res) =>{
+    db.query("SELECT * FROM login INNER JOIN patient ON login.loginId = patient.loginId WHERE patient.loginId = ?",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
 app.listen(3005 , () => {
     console.log('running on port 3005')
 
