@@ -40,6 +40,7 @@ class App extends Component {
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/patient" element={<PatientTable />} />
                 <Route path="/doctor" element={<DoctorTable />} />
+                <Route path="/Doc_Profile" element={<Doc_Profile />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/urologist" element={<Urologist/>} />
                 <Route path="/dermatologist" element={<Dermatologist/>} />
