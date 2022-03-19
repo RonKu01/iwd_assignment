@@ -285,22 +285,16 @@ app.get('/getSpecialism', (req,res)=>{
     );
 })
 
-app.post("/getPersonDoctorData", ( req, res) =>{
-    sess = req.session;
-    sess_loginId = req.session.loginId;
-
-    const loginId = req.body.loginId
-
-    db.query("SELECT * FROM login INNER JOIN doctor ON login.loginId = doctor.loginId WHERE doctor.loginId = ?",
-        [loginId],
-        (err, result) => {
+app.get("/getPersonDoctorData", ( req, res) =>{
+    db.query("SELECT * FROM login INNER JOIN doctor ON login.loginId = doctor.loginId INNER JOIN specialisation ON doctor.specialisationID = specialisation.specialisationID WHERE doctor.loginId = ?",
+        [sess_loginId],
+        function (err, result) {
             if (err) {
                 res.send({err: err})
             }
 
-            if (result.length > 0) {
-                res.send(result);
-            }
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
         }
     );
 });
