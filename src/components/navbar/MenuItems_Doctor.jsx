@@ -5,6 +5,11 @@ export const MenuItems = [
         cName: 'nav-links'
     },
     {
+        title: 'Profile',
+        url: '/doc_profile',
+        cName: 'nav-links'
+    },
+    {
         title: 'Patient',
         url: '',
         cName: 'nav-links'

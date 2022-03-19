@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MenuItems } from "./MenuItems_Admin";
+import { MenuItems } from "./MenuItems_Doctor";
 import './Navbar.scss';
 import Axios from "axios";
 
