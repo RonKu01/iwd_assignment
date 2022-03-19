@@ -83,7 +83,7 @@ function Patient_Profile() {
                         <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={loginID} />
                         <Form.Group className="mb-3" controlId="formFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" id="updateFullName" defaultValue={patName} readonly />
+                            <Form.Control type="text" id="updateFullName" defaultValue={patName} readOnly />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formAddress" >
                             <Form.Label>Address</Form.Label>
@@ -103,7 +103,6 @@ function Patient_Profile() {
                 </div>
             </main>
         </div>
-
     );
 }
 
