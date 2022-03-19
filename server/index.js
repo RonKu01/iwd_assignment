@@ -231,6 +231,7 @@ app.post("/docRegister", (req, res)=>{
 
 app.put("/updateDoc",(req, res)=>{
     const id = req.body.id
+    const docName = req.body.doctorName
     const docSpec = req.body.specialisationID
     const docYear = req.body.year
     const password = req.body.password
@@ -243,8 +244,8 @@ app.put("/updateDoc",(req, res)=>{
             console.log(err);
         }
 
-        db.query("UPDATE doctor SET specialisationID = ? , year = ?, qualifications = ?, conditionConsulted = ? WHERE loginID = ?",
-            [docSpec, docYear, qualifications, condition,  id], (err, result)=>{
+        db.query("UPDATE doctor SET doctorName = ? , specialisationID = ? , year = ?, qualifications = ?, conditionConsulted = ? WHERE loginID = ?",
+            [docName, docSpec, docYear, qualifications, condition,  id], (err, result)=>{
 
                 if (err)
                 {
@@ -260,7 +261,6 @@ app.put("/updateDoc",(req, res)=>{
                 }
             })
     });
-
 })
 
 app.get('/getSpecialism', (req,res)=>{

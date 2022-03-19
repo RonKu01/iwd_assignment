@@ -81,6 +81,7 @@ function DoctorTable() {
 
     const updateDoc =() =>{
         let loginId = document.getElementById('updateDocLoginID').value;
+        let docName = document.getElementById('updateFullName').value;
         let docSpec = document.getElementById('updateDocSpec').value;
         let docYear = document.getElementById('updateDocYear').value;
         let docQualification = document.getElementById('updateDocQualification').value;
@@ -90,6 +91,7 @@ function DoctorTable() {
         Axios.put("http://localhost:3005/updateDoc",
             {
                 specialisationID: docSpec,
+                doctorName : docName,
                 year: docYear,
                 qualifications : docQualification,
                 conditionConsulted : docCondition,
@@ -173,7 +175,7 @@ function DoctorTable() {
                         <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={editModalInfo.loginID} />
                         <Form.Group className="mb-3" controlId="formFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" id="updateFullName" defaultValue={editModalInfo.doctorName} readOnly/>
+                            <Form.Control type="text" id="updateFullName" defaultValue={editModalInfo.doctorName} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
