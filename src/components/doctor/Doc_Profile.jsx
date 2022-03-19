@@ -27,10 +27,18 @@ function Doc_Profile() {
     const [docYear, setDocYear] = useState("");
     const [docPassword, setDocPassword] = useState("");
 
-    // const [editModalInfo, setEditModalInfo] = useState([]);
+    const [specialismItems, setSpecialismItems] = useState([])
+    useEffect(() =>{
+        const fetchSpecialismList = async () => {
+            const {data} = await axios('http://localhost:3005/getSpecialism')
+            setSpecialismItems(data)
+        }
+        fetchSpecialismList()
+    }, [setSpecialismItems])
 
+    const [editModalInfo, setEditModalInfo] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
-    // const [showPass, setShowPass] = useState(true);
+    const [showPass, setShowPass] = useState(true);
 
     // Axios.post("http://localhost:3005/getPersonDoctorData", {
     //     loginId: loginID,
@@ -46,17 +54,30 @@ function Doc_Profile() {
             </Alert>
         )
     }
-    // const doc_profile =()=> {
-    //     Axios.post("http://localhost:3005/",
-    //         {doctorName: docFullName,
-    //             specialisationID: docSpecialisation,
-    //             year: docYear,
-    //             password: docPassword,
-    //         }).then((response)=> {
-    //         setShowAlert(true);
-    //         setTimeout(() => { window.location.href = "/doc_profile"; }, 2000);
-    //     });
-    // };
+
+    const updateDoc =() =>{
+        let loginId = document.getElementById('updateDocLoginID').value;
+        let docName = document.getElementById('updateFullName').value;
+        let docSpec = document.getElementById('updateDocSpec').value;
+        let docYear = document.getElementById('updateDocYear').value;
+        let docQualification = document.getElementById('updateDocQualification').value;
+        let docCondition = document.getElementById('updateDocCondition').value;
+        let docPassword = document.getElementById('updateDocPassword').value;
+
+        Axios.put("http://localhost:3005/updateDoc",
+            {
+                specialisationID: docSpec,
+                doctorName : docName,
+                year: docYear,
+                qualifications : docQualification,
+                conditionConsulted : docCondition,
+                password: docPassword,
+                id: loginId})
+            .then((response)=> {
+                setShowAlert(true);
+                setTimeout(() => { window.location.href = "/doc_profile"; }, 2000);
+            });
+    };
 
     return (
         <div className="">
@@ -66,34 +87,41 @@ function Doc_Profile() {
                 <h1>Doctor Profile</h1>
                 <div className="pt-1">
                     <Form>
-                        {/*<Form.Group className="mb-3" controlId="formFullName" >*/}
-                        {/*    <Form.Label>Full Name</Form.Label>*/}
-                        {/*    <Form.Control type="text" placeholder="Enter your full name" onChange={(e) =>{setFullNameReg(e.target.value);}}/>*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formFullName" >*/}
-                        {/*    <Form.Label>Specialisation</Form.Label>*/}
-                        {/*    <Form.Control type="text" placeholder="Enter your full name" onChange={(e) =>{setFullNameReg(e.target.value);}}/>*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formFullName" >*/}
-                        {/*    <Form.Label>Year of Experience</Form.Label>*/}
-                        {/*    <Form.Control type="text" placeholder="Enter your full name" onChange={(e) =>{setFullNameReg(e.target.value);}}/>*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formFullName" >*/}
-                        {/*    <Form.Label>Username</Form.Label>*/}
-                        {/*    <Form.Control type="text" placeholder="Enter your full name" onChange={(e) =>{setFullNameReg(e.target.value);}}/>*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formPassword" >*/}
-                        {/*    <Form.Label>Password</Form.Label>*/}
-                        {/*    <Form.Control type={showPass ? "password" : "text"} placeholder="Password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>*/}
-                        {/*</Form.Group>*/}
-                        {/*<Form.Group className="mb-3" controlId="formCheckbox" >*/}
-                        {/*    <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />*/}
-                        {/*</Form.Group>*/}
-                        {/*<div className="d-grid gap-2">*/}
-                        {/*<div className="d-grid gap-2">*/}
-                        {/*    <Button variant="primary" onClick={}>Update</Button>*/}
-                        {/*</div>*/}
-
+                        <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={editModalInfo.loginID} />
+                        <Form.Group className="mb-3" controlId="formFullName" >
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control type="text" id="updateFullName" defaultValue={editModalInfo.doctorName} readonly />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocSpec" >
+                            <Form.Label>Specialisation</Form.Label>
+                            <Form.Select aria-label="Default select example" id="updateDocSpec">
+                                <option value={editModalInfo.specialisationID}>{editModalInfo.specialisationName} (Default)</option>
+                                {
+                                    specialismItems.map(specialism => (
+                                        <option key={specialism.specialisationID} value={specialism.specialisationID}>{specialism.specialisationName}</option>
+                                    ))
+                                }
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Year of Experience</Form.Label>
+                            <Form.Control type="text" id="updateDocYear" defaultValue={editModalInfo.year} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Qualifications</Form.Label>
+                            <Form.Control type="text" id="updateDocQualification" defaultValue={editModalInfo.qualifications} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Condition Consulted</Form.Label>
+                            <Form.Control type="text" id="updateDocCondition" defaultValue={editModalInfo.conditionConsulted} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formPassword" >
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updateDocPassword" defaultValue={editModalInfo.password} />
+                        </Form.Group>
+                        <div>
+                            <Button variant="primary" onClick={updateDoc}>Save Changes</Button>
+                        </div>
                     </Form>
                 </div>
             </main>

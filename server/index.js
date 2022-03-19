@@ -285,6 +285,26 @@ app.get('/getSpecialism', (req,res)=>{
     );
 })
 
+app.post("/getPersonDoctorData", ( req, res) =>{
+    sess = req.session;
+    sess_loginId = req.session.loginId;
+
+    const loginId = req.body.loginId
+
+    db.query("SELECT * FROM login INNER JOIN doctor ON login.loginId = doctor.loginId WHERE doctor.loginId = ?",
+        [loginId],
+        (err, result) => {
+            if (err) {
+                res.send({err: err})
+            }
+
+            if (result.length > 0) {
+                res.send(result);
+            }
+        }
+    );
+});
+
 app.listen(3005 , () => {
     console.log('running on port 3005')
 
