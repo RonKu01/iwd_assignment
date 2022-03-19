@@ -17,7 +17,6 @@ function Specialist_List() {
     }, [setSpecialismItems])
 
 
-
     return (
         <div className="body-dashboard">
             <Navbar />

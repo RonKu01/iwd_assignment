@@ -4,9 +4,9 @@ import "../dashboard/dashboard.scss";
 import {Card, Col, Row} from "react-bootstrap";
 import Axios from "axios";
 
-function Infectious() {
+function Gastroenterologists() {
 
-    let specialisationID = 5;
+    let specialisationID = 4;
     const [doctorList, setDoctorList] = useState([])
     useEffect(() =>{
         const fetchDoctorBySpecialism = async () => {
@@ -23,7 +23,7 @@ function Infectious() {
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
 
-            <h1 className= "specialList-h1-style">List of Infectious Illness Doctors</h1>
+            <h1 className= "specialList-h1-style">List of Gastroenterologists Doctors</h1>
 
             {doctorList.map((item, index) =>{
                 return(
@@ -49,7 +49,7 @@ function Infectious() {
             })}
         </div>
 
-);
+    );
 }
 
-export default Infectious;
+export default Gastroenterologists;

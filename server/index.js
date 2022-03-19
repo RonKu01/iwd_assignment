@@ -299,6 +299,23 @@ app.get("/getPersonDoctorData", ( req, res) =>{
     );
 });
 
+app.post("/getDoctorBySpecialism", ( req, res) =>{
+
+    const specialisationID = req.body.specialisationID
+
+    db.query("SELECT * FROM doctor INNER JOIN specialisation ON doctor.specialisationID = specialisation.specialisationID WHERE doctor.specialisationID = ?",
+        [specialisationID],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
 app.listen(3005 , () => {
     console.log('running on port 3005')
 
