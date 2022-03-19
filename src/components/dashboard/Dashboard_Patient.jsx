@@ -24,48 +24,50 @@ function Dashboard_Patient() {
 return (
     <div className="body-dashboard">
         <Navbar />
+        <div className="centerDiv">
+            <Row xl={3} lg={3} className="g-1">
+                <Col lg={true}>
+                    <Card className="card-new ">
+                        <Link className="link-nostyle" to={"/specialist_list"}>
+                            <Card.Img variant="top" height="180" />
+                            <Card.Body>
+                                <Card.Title>Book Appointment</Card.Title>
+                                <Card.Text>
+                                    Click here to book your appointment!
+                                </Card.Text>
+                            </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+                <Col lg={true}>
+                    <Card className="card-new">
+                        <Link className="link-nostyle" to={"/"}>
+                            <Card.Img variant="top"  height="180" />
+                            <Card.Body>
+                                <Card.Title>View Appointment</Card.Title>
+                                <Card.Text>
+                                    Click here to view your appointment!
+                                </Card.Text>
+                            </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+                <Col lg={true}>
+                    <Card className="card-new">
+                        <Link className="link-nostyle" to={"/medical_summary"}>
+                            <Card.Img variant="top"  height="180" />
+                            <Card.Body>
+                                <Card.Title>View Medical History</Card.Title>
+                                <Card.Text>
+                                    Click here to view your medical history!
+                                </Card.Text>
+                            </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+            </Row>
+        </div>
 
-        <Row xl={3} lg={3} className="g-1">
-                <Col lg={true}>
-                    <Card className="card-new">
-                    <Link to={"/specialist_list"}>
-                        <Card.Img variant="top" height="180" />
-                        <Card.Body>
-                            <Card.Title>Book Appointment</Card.Title>
-                            <Card.Text>
-                                Click here to book your appointment!
-                            </Card.Text>
-                        </Card.Body>
-                        </Link>
-                    </Card>
-                </Col>
-                <Col lg={true}>
-                    <Card className="card-new">
-                    <Link to={"/"}>
-                        <Card.Img variant="top"  height="180" />
-                        <Card.Body>
-                            <Card.Title>View Appointment</Card.Title>
-                            <Card.Text>
-                            Click here to view your appointment!
-                            </Card.Text>
-                        </Card.Body>
-                        </Link>
-                    </Card>
-                </Col>
-                <Col lg={true}>
-                    <Card className="card-new">
-                    <Link to={"/medical_summary"}>
-                        <Card.Img variant="top"  height="180" />
-                        <Card.Body>
-                            <Card.Title>View Medical History</Card.Title>
-                            <Card.Text>
-                               Click here to view your medical history!
-                            </Card.Text>
-                        </Card.Body>
-                        </Link>
-                    </Card>
-                </Col>
-                </Row>
     </div>
 );
 }

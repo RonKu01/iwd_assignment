@@ -6,7 +6,23 @@ $assetsPath: "../../assets";
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300vh;
+  height: 100%;
+}
+
+.centerDiv{
+  margin-top: 10%;
+  margin-bottom: 15%;
+}
+
+.fixed-card-new{
+  margin: 5% auto 5%;
+  height: auto;
+  width: 70%;
+  box-shadow: 0 6px 10px 0 lightblue;
+
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+  }
 }
 
 .card-new{
@@ -17,6 +33,16 @@ $assetsPath: "../../assets";
 
   @media screen and (max-width: 1024px) {
     width: 80%;
+  }
+}
+
+.card-new:hover {
+  transform: scale(1.15);
+  box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
+
+  @media screen and (max-width: 1024px) {
+    transform: scale(1.05);
+    box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
   }
 }
 
@@ -41,54 +67,12 @@ a.link-nostyle:visited {
   cursor: auto;
 }
 
-.react-bootstrap-table table {
-  table-layout: auto;
+.specialList-h1-style{
+  margin: 5% 5% 1%;
+  color: blue;
 
-  @media
-  only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px)  {
-
-    /* Force table to not be like tables anymore */
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
-
-    /* Hide table headers (but not display: none;, for accessibility) */
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    tr { border: 3px solid #ccc; }
-
-    td {
-      /* Behave  like a "row" */
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
-    }
-
-    td:before {
-      /* Now like a table header */
-      position: absolute;
-      /* Top/left values mimic padding */
-      top: 10px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-    }
-
-    /*
-    Label the data
-    */
-    td:nth-of-type(1):before { content: "Doctor ID"; }
-    td:nth-of-type(2):before { content: "Full Name"; }
-    td:nth-of-type(3):before { content: "Specialisation"; }
-    td:nth-of-type(4):before { content: "Ex.Year"; }
-    td:nth-of-type(5):before { content: "Qualifications"; }
-    td:nth-of-type(6):before { content: "Condition Consult"; }
+  @media screen and (max-width: 1024px) {
+    margin: 5% 10% 1%;
   }
 }
+

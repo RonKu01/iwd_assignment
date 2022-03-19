@@ -289,7 +289,7 @@ function DoctorTable() {
     return (
         <div className="body-dashboard">
             <Navbar />
-            <Card className="card-new" >
+            <Card className="fixed-card-new" >
                 <Card.Body style={doc_card}>
                     {showAlert ? <AlertModalContent /> : null}
 
