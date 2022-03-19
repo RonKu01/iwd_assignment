@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import {Form, Col, Row, Button} from "react-bootstrap";
 import Calendar from 'react-calendar';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function Book_Appointment() {
+  const [startDate, setStartDate] = useState(new Date());
+
     return (
         <div className="body-dashboard">
              <Navbar /> 
@@ -43,7 +48,9 @@ function Book_Appointment() {
 
                   <Form.Group as={Col} controlId="formGridBirthDate">
                       <Form.Label>Please Select a Date</Form.Label>
-                      <Form.Control type="BirthDate" placeholder="DD/MM/YYYY" style={{width: '300px', height: '35px'}} />
+                      {/* <Form.Control type="BirthDate" placeholder="DD/MM/YYYY" style={{width: '300px', height: '35px'}} /> */}
+                      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+
                   </Form.Group>
 
                   <Row className="mb-3">
