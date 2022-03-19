@@ -11,7 +11,7 @@ import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
 
-function PatientTable() {
+function AppointmentTable() {
 
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{
@@ -87,43 +87,43 @@ function PatientTable() {
         setShowEditModal(handleShowEdit);
     }
 
-    const AddModalContent = () => {
-        return (
-                <Modal show={showAdd} onHide={handleCloseAdd}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Patient</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="addDOB" >
-                            <Form.Label>Date of Birth</Form.Label>
-                            <Form.Control type="date" placeholder="Date of Birth" id="addDOB" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formFullName" >
-                            <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your full name" id="addFullName"/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAddress" >
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="addAddress"/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formUsername" >
-                            <Form.Label>Preferred Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your preferred Username" id="addUsername"/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="addPassword"/>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseAdd}>Close</Button>
-                    <Button variant="primary" onClick={register}>Add</Button>
-                </Modal.Footer>
-            </Modal>
-        )
-    }
+    // const AddModalContent = () => {
+    //     return (
+    //             <Modal show={showAdd} onHide={handleCloseAdd}>
+    //             <Modal.Header closeButton>
+    //                 <Modal.Title>Add Patient</Modal.Title>
+    //             </Modal.Header>
+    //             <Modal.Body>
+    //                 <Form>
+    //                     <Form.Group className="mb-3" controlId="addDOB" >
+    //                         <Form.Label>Date of Birth</Form.Label>
+    //                         <Form.Control type="date" placeholder="Date of Birth" id="addDOB" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
+    //                     </Form.Group>
+    //                     <Form.Group className="mb-3" controlId="formFullName" >
+    //                         <Form.Label>Full Name</Form.Label>
+    //                         <Form.Control type="text" placeholder="Enter your full name" id="addFullName"/>
+    //                     </Form.Group>
+    //                     <Form.Group className="mb-3" controlId="formAddress" >
+    //                         <Form.Label>Address</Form.Label>
+    //                         <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="addAddress"/>
+    //                     </Form.Group>
+    //                     <Form.Group className="mb-3" controlId="formUsername" >
+    //                         <Form.Label>Preferred Username</Form.Label>
+    //                         <Form.Control type="text" placeholder="Enter your preferred Username" id="addUsername"/>
+    //                     </Form.Group>
+    //                     <Form.Group className="mb-3" controlId="formPassword" >
+    //                         <Form.Label>Password</Form.Label>
+    //                         <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="addPassword"/>
+    //                     </Form.Group>
+    //                 </Form>
+    //             </Modal.Body>
+    //             <Modal.Footer>
+    //                 <Button variant="secondary" onClick={handleCloseAdd}>Close</Button>
+    //                 <Button variant="primary" onClick={register}>Add</Button>
+    //             </Modal.Footer>
+    //         </Modal>
+    //     )
+    // }
 
     const EditModalContent = () => {
         return (
@@ -167,21 +167,29 @@ function PatientTable() {
 
     const columns = [
         {
-            dataField: 'patID',
-            text: 'patID',
-        },
-        {
             dataField: 'patName',
-            text: 'Full Name',
+            text: 'Name',
         },
         {
-            dataField: 'patDob',
-            text: 'Date of Birth'
+            dataField: 'location',
+            text: 'Location'
         },
         {
-            dataField: 'patAddress',
-            text: 'Address'
+            dataField: 'date',
+            text: 'Date'
         },
+          {
+            dataField: 'time',
+            text: 'Time'
+        },
+        {
+          dataField: 'status',
+          text: 'Status'
+      },
+      {
+        dataField: 'action',
+        text: 'Action'
+    },
     ];
 
     const rowEvents = {
@@ -198,19 +206,16 @@ function PatientTable() {
 
     return (
         <div className="body-dashboard">
-            <Navbar />
-
-            <Card className="card-new">
+            <Card >
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
 
-                    <h1 className="h1 mb-3">Patient Table </h1>
-                    <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button>
+                    <h1 className="h1 mb-3">Appointment Table </h1>
+                    {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
                     <ToolkitProvider bootstrap4={true} keyField="patID" data={ patItems } columns={ columns } search>
                         {
                             props => (
                                 <div>
-                                    <h6>Input at below input field</h6>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
                                     <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
@@ -224,11 +229,11 @@ function PatientTable() {
             </Card>
 
             {showEdit ? <EditModalContent /> : null}
-            {showAdd ? <AddModalContent /> : null}
+            {/* {showAdd ? <AddModalContent /> : null} */}
         </div>
     );
 }
 
-export default PatientTable;
+export default AppointmentTable;
 
 

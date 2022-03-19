@@ -192,6 +192,8 @@ app.post("/docRegister", (req, res)=>{
     const docYear = req.body.year
     const username = req.body.username
     const password = req.body.password
+    const qualifications = req.body.qualifications
+    const condition = req.body.conditionConsulted
     const role = "Doctor"
     let loginID = 0;
 
@@ -213,8 +215,8 @@ app.post("/docRegister", (req, res)=>{
                 if(err){
                     res.send({message: "System: Failed to insert !"})
                 }else {
-                    db.query("INSERT INTO doctor (loginID, specialisationID, doctorName, year) VALUES (?, ?, ?, ?)",
-                        [loginID, docSpec, docFullName, docYear], (err, result) => {
+                    db.query("INSERT INTO doctor (loginID, specialisationID, doctorName, year, qualifications, conditionConsulted) VALUES (?, ?, ?, ?, ?, ?)",
+                        [loginID, docSpec, docFullName, docYear, qualifications, condition], (err, result) => {
 
                             if (err) {
                                 res.send({message: "System: Failed to insert !"})
@@ -232,6 +234,8 @@ app.put("/updateDoc",(req, res)=>{
     const docSpec = req.body.specialisationID
     const docYear = req.body.year
     const password = req.body.password
+    const qualifications = req.body.qualifications
+    const condition = req.body.conditionConsulted
 
     bcrypt.hash(password, saltRounds, (err, hash) => {
 
@@ -239,16 +243,14 @@ app.put("/updateDoc",(req, res)=>{
             console.log(err);
         }
 
-        db.query("UPDATE doctor SET specialisationID = ? , year = ? WHERE loginID = ?",
-            [docSpec, docYear, id], (err, result)=>{
+        db.query("UPDATE doctor SET specialisationID = ? , year = ?, qualifications = ?, conditionConsulted = ? WHERE loginID = ?",
+            [docSpec, docYear, qualifications, condition,  id], (err, result)=>{
 
                 if (err)
                 {
                     res.send({message: "System: Failed to update !"});
                 }else {
-
                     db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
-
                         if (err) {
                             res.send({message: "System: Failed to update !"});
                         } else {

@@ -24,6 +24,8 @@ import Patient_Profile from './components/patient/Patient_Profile';
 import Medical_Summary from './components/patient/medical_summary';
 import Book_Appointment from './components/patient/book_appointment';
 import Doc_Profile from "./components/doctor/Doc_Profile";
+import Consultation_Summary from './components/consultation/Consultation_Summary'
+
 class App extends Component {
     render() {
         return (
@@ -35,7 +37,6 @@ class App extends Component {
                 <Route path="/dashboard_admin" element={<Dashboard_Admin />} />
                 <Route path="/dashboard_patient" element={<Dashboard_Patient />} />
                 <Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />
-                <Route path="/Doc_Profile" element={<Doc_Profile />} />
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/patient" element={<PatientTable />} />
                 <Route path="/doctor" element={<DoctorTable />} />
