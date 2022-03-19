@@ -10,7 +10,7 @@ function Specialist_List() {
             <Navbar />
             <h1 style={{padding: '40px', color: 'blue'}}>Choose Your Specialist</h1>
 
-            {/* <Row xl={3} lg={3}  className="g-1">
+            <Row xl={3} lg={3}  className="g-1">
                 <Col lg={true}>
                     <Card className="card-new">
                     <Link to={"/psychiatrist"}>
@@ -149,7 +149,7 @@ function Specialist_List() {
                         </Link>
                     </Card>
                 </Col>
-            </Row> */}
+            </Row>
         </div>
     );
 }
