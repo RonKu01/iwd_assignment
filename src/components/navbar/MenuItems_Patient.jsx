@@ -6,7 +6,7 @@ export const MenuItems = [
     },
     {
         title: 'Consultation',
-        url: '/dashboard_patient',
+        url: '/book_appointment',
         cName: 'nav-links'
     },
     {
