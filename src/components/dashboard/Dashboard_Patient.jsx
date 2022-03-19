@@ -24,44 +24,48 @@ function Dashboard_Patient() {
 return (
     <div className="body-dashboard">
         <Navbar />
-<h1>hello world</h1>
-        <CardGroup>
-            <Card className="card-new">
-                <Link to={"/book_appointment"}>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                        <Card.Title>Book Appointment</Card.Title>
-                        <Card.Text>
-                            Click here to book your appointment!
-                        </Card.Text>
-                        {/* <Button variant="primary">Go somewhere</Button> */}
-                    </Card.Body>
-                </Link>
-            </Card>
 
-            <Card className="card-new">
-                <Link to={"/"}>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                        <Card.Title>View Appointment</Card.Title>
-                        <Card.Text>
+        <Row xl={3} lg={3} className="g-1">
+                <Col lg={true}>
+                    <Card className="card-new">
+                    <Link to={"/specialist_list"}>
+                        <Card.Img variant="top" height="180" />
+                        <Card.Body>
+                            <Card.Title>Book Appointment</Card.Title>
+                            <Card.Text>
+                                Click here to book your appointment!
+                            </Card.Text>
+                        </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+                <Col lg={true}>
+                    <Card className="card-new">
+                    <Link to={"/"}>
+                        <Card.Img variant="top"  height="180" />
+                        <Card.Body>
+                            <Card.Title>View Appointment</Card.Title>
+                            <Card.Text>
                             Click here to view your appointment!
-                        </Card.Text>
-                    </Card.Body>
-                </Link>
-            </Card>
-            <Card className="card-new">
-                <Link to={"/medical_summary"}>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                        <Card.Title>View History</Card.Title>
-                        <Card.Text>
-                            Click here to view your history!
-                        </Card.Text>
-                    </Card.Body>
-                </Link>
-            </Card>
-        </CardGroup>
+                            </Card.Text>
+                        </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+                <Col lg={true}>
+                    <Card className="card-new">
+                    <Link to={"/medical_summary"}>
+                        <Card.Img variant="top"  height="180" />
+                        <Card.Body>
+                            <Card.Title>View Medical History</Card.Title>
+                            <Card.Text>
+                               Click here to view your medical history!
+                            </Card.Text>
+                        </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+                </Row>
     </div>
 );
 }
