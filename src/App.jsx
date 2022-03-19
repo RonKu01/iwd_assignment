@@ -53,7 +53,7 @@ class App extends Component {
                 <Route path="/patient_profile" element={<Patient_Profile/>} />
                 <Route path="/medical_summary" element={<Medical_Summary/>} />
                 <Route path="/book_appointment" element={<Book_Appointment/>} />
-                <Route path="/speciality_list" element={<Specialist_List/>} />
+                <Route path="/specialist_list" element={<Specialist_List/>} />
             </Routes>
         );
     }
