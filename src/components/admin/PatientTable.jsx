@@ -200,7 +200,7 @@ function PatientTable() {
         <div className="body-dashboard">
             <Navbar />
 
-            <Card >
+            <Card className="card-new">
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
 

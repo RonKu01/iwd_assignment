@@ -60,6 +60,9 @@ function DoctorTable() {
         let docUsername = document.getElementById('addDocUsername').value;
         let docPassword = document.getElementById('addDocPassword').value;
 
+        let docQualification = document.getElementById('addDocQualification').value;
+        let docCondition = document.getElementById('addDocCondition').value;
+
         Axios.post("http://localhost:3005/docRegister",
             {
                 username: docUsername,
@@ -67,6 +70,8 @@ function DoctorTable() {
                 specialisationID: docSpec,
                 doctorName: docFullName,
                 year: docYear,
+                qualifications: docQualification,
+                conditionConsulted: docCondition,
             }).then((response)=> {
             setShowAlert(true);
             setTimeout(() => { window.location.href = "/doctor"; }, 2000);
@@ -78,12 +83,16 @@ function DoctorTable() {
         let loginId = document.getElementById('updateDocLoginID').value;
         let docSpec = document.getElementById('updateDocSpec').value;
         let docYear = document.getElementById('updateDocYear').value;
+        let docQualification = document.getElementById('updateDocQualification').value;
+        let docCondition = document.getElementById('updateDocCondition').value;
         let docPassword = document.getElementById('updateDocPassword').value;
 
         Axios.put("http://localhost:3005/updateDoc",
             {
                 specialisationID: docSpec,
                 year: docYear,
+                qualifications : docQualification,
+                conditionConsulted : docCondition,
                 password: docPassword,
                 id: loginId})
             .then((response)=> {
@@ -126,6 +135,14 @@ function DoctorTable() {
                         <Form.Group className="mb-3" controlId="formDocYear" >
                             <Form.Label>Year of Experience</Form.Label>
                             <Form.Control type="text" placeholder="Enter Year of Experience" id="addDocYear"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Qualifications</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Qualifications" id="addDocQualification"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Condition Consulted</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Year of Experience" id="addDocCondition"/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formUsername" >
                             <Form.Label>Preferred Username</Form.Label>
@@ -173,6 +190,14 @@ function DoctorTable() {
                             <Form.Label>Year of Experience</Form.Label>
                             <Form.Control type="text" id="updateDocYear" defaultValue={editModalInfo.year} />
                         </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Qualifications</Form.Label>
+                            <Form.Control type="text" id="updateDocQualification" defaultValue={editModalInfo.qualifications} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDocYear" >
+                            <Form.Label>Condition Consulted</Form.Label>
+                            <Form.Control type="text" id="updateDocCondition" defaultValue={editModalInfo.conditionConsulted} />
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="formPassword" >
                             <Form.Label>Password</Form.Label>
                             <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updateDocPassword" defaultValue={editModalInfo.password} />
@@ -200,19 +225,51 @@ function DoctorTable() {
     const columns = [
         {
             dataField: 'doctorID',
-            text: 'Doctor ID',
+            text: 'ID',
+            headerStyle: {
+                whiteSpace:'nowrap',
+                width: '10%',
+            }
         },
         {
             dataField: 'doctorName',
-            text: 'Full Name'
+            text: 'Name',
+            headerStyle: {
+                whiteSpace:'nowrap',
+                width: '10%',
+            }
         },
         {
             dataField: 'specialisationName',
             text: 'Specialisation',
+            headerStyle: {
+                whiteSpace:'nowrap',
+                width: '20%',
+            }
         },
         {
             dataField: 'year',
-            text: 'Year of Experience'
+            text: 'Ex.Year',
+            headerStyle: {
+                whiteSpace:'nowrap',
+                width: '10%',
+            }
+        },
+        {
+            dataField: 'qualifications',
+            text: 'Qualifications',
+            headerStyle: {
+                whiteSpace:'nowrap',
+                width: '20%',
+            }
+        },
+        {
+            dataField: 'conditionConsulted',
+            text: 'Condition Consulted',
+            headerStyle: {
+                whiteSpace:'nowrap',
+                width: '30%',
+            }
         },
     ];
 
@@ -230,7 +287,7 @@ function DoctorTable() {
     return (
         <div className="body-dashboard">
             <Navbar />
-            <Card >
+            <Card className="card-new" >
                 <Card.Body style={doc_card}>
                     {showAlert ? <AlertModalContent /> : null}
 
@@ -243,7 +300,7 @@ function DoctorTable() {
                                     <h6>Input at below input field</h6>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
-                                    <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
+                                    <BootstrapTable bootstrap4={true} wrapperClasses="table-responsive" rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />
                                 </div>

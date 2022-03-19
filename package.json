@@ -62,6 +62,7 @@
     "babel-loader": "^8.2.3",
     "postcss": "^8.4.7",
     "postcss-loader": "^6.2.1",
+    "react-calendar": "^3.7.0",
     "react-router-dom": "^6.2.1",
     "source-map-loader": "^3.0.1",
     "tailwindcss": "^3.0.23"
