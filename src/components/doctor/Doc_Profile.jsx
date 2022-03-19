@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Doctor";
 import "../dashboard/dashboard.scss";
 import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
@@ -6,14 +6,39 @@ import axios from "axios";
 import Axios from "axios";
 
 function Doc_Profile() {
+
+    //Check whether User Already or not. If not, redirect to login page.
+    // const [loginID, setLoginID] = useState("");
+
+    // Axios.defaults.withCredentials = true;
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3005/login").then((response) => {
+    //         if (response.data.loggedIn === true) {
+    //             setLoginID(response.data.loginID);
+    //         } else {
+    //             window.location.href = "/";
+    //         }
+    //     });
+    // }, []);
+
+
     const [docFullName, setDocFullName] = useState("");
     const [docSpecialisation, setDocSpecialisation] = useState("");
     const [docYear, setDocYear] = useState("");
     const [docPassword, setDocPassword] = useState("");
 
-    const [showAlert, setShowAlert] = useState(false);
+    // const [editModalInfo, setEditModalInfo] = useState([]);
 
-    const AlertModalContent = () =>{
+    const [showAlert, setShowAlert] = useState(false);
+    // const [showPass, setShowPass] = useState(true);
+
+    // Axios.post("http://localhost:3005/getPersonDoctorData", {
+    //     loginId: loginID,
+    // }).then((response)=>{
+    //     setEditModalInfo(response.data);
+    // });
+
+    const AlertContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
                 <Alert.Heading>Success! </Alert.Heading>
@@ -34,10 +59,10 @@ function Doc_Profile() {
     // };
 
     return (
-        <div className="body-container">
+        <div className="">
             <Navbar />
             <main className="main-container">
-                {showAlert ? <AlertModalContent /> : null}
+                {showAlert ? <AlertContent /> : null}
                 <h1>Doctor Profile</h1>
                 <div className="pt-1">
                     <Form>
