@@ -154,26 +154,31 @@ app.put("/updatePat",(req, res)=>{
     const address = req.body.address
     const password = req.body.password
 
-    bcrypt.hash(password, saltRounds, (err, hash) => {
-
+    db.query("UPDATE patient SET patAddress = ? WHERE loginID = ?",[address, id], (err, result)=> {
         if (err) {
-            console.log(err);
+            res.send({message: "System: Failed to update !"});
+        } else {
+            res.send({message: "System: Update Successfully"});
         }
-        db.query("UPDATE patient SET patAddress = ? WHERE loginID = ?",[address, id], (err, result)=>{
-            if (err)
-            {
-                res.send({message: "System: Failed to update !"});
-            }else {
-                db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
-                    if (err) {
-                        res.send({message: "System: Failed to update!"});
-                    } else {
-                        res.send({message: "System: Update Successfully"});
-                    }
-                })
+    })
+
+    db.query("SELECT * FROM login WHERE loginID = ?", [id],
+        (err, result) => {
+
+            if (password !== result[0].password){
+                bcrypt.hash(password, saltRounds, (err, hash) => {
+                    db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
+                        if (err) {
+                            res.send({message: "System: Failed to update!"});
+                        } else {
+                            res.send({message: "System: Update Successfully"});
+                        }
+                    })
+
+                });
             }
-        })
-    });
+        }
+    );
 })
 
 //Doctor
@@ -238,19 +243,26 @@ app.put("/updateDoc",(req, res)=>{
     const qualifications = req.body.qualifications
     const condition = req.body.conditionConsulted
 
-    bcrypt.hash(password, saltRounds, (err, hash) => {
-
-        if (err) {
-            console.log(err);
+    db.query("UPDATE doctor SET doctorName = ? , specialisationID = ? , year = ?, qualifications = ?, conditionConsulted = ? WHERE loginID = ?",
+        [docName, docSpec, docYear, qualifications, condition,  id], (err, result)=>{
+            if (err){
+                res.send({message: "System: Failed to update !"});
+            } else {
+                res.send({message: "System: Update Successfully"});
+            }
         }
+    )
 
-        db.query("UPDATE doctor SET doctorName = ? , specialisationID = ? , year = ?, qualifications = ?, conditionConsulted = ? WHERE loginID = ?",
-            [docName, docSpec, docYear, qualifications, condition,  id], (err, result)=>{
+    db.query("SELECT * FROM login WHERE loginID = ?", [id],
+        (err, result) => {
 
-                if (err)
-                {
-                    res.send({message: "System: Failed to update !"});
-                }else {
+            if (password !== result[0].password){
+                bcrypt.hash(password, saltRounds, (err, hash) => {
+
+                    if (err) {
+                        res.send({err: err})
+                    }
+
                     db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
                         if (err) {
                             res.send({message: "System: Failed to update !"});
@@ -258,9 +270,10 @@ app.put("/updateDoc",(req, res)=>{
                             res.send({message: "System: Update Successfully"});
                         }
                     })
-                }
-            })
-    });
+                })
+            }
+        }
+    );
 })
 
 app.get('/getSpecialism', (req,res)=>{
