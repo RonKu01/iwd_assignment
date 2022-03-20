@@ -4,6 +4,8 @@ import "../dashboard/dashboard.scss";
 import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
 import Axios from "axios";
 import axios from "axios";
+import DatePicker from 'react-date-picker';
+
 
 function Psychiatrist() {
 
@@ -141,10 +143,10 @@ function Psychiatrist() {
                 <Form>
                     <Form.Group className="mb-3" controlId="formDate" >
                         <Form.Label>Prefered Date</Form.Label>
-                        <Form.Select aria-label="Default select example" id="addDate">
-                        {/* <DatePicker onChange={onChange} value={value} /> */}
+                        {/* <Form.Select aria-label="Default select example" id="addDate"> */}
+                        <DatePicker onChange={onChange} value={value} />
                           {/* <HelpBlock>Help</HelpBlock> */}
-                        </Form.Select>
+                        {/* </Form.Select> */}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formTime" >
                         <Form.Label>Prefered Time</Form.Label>
