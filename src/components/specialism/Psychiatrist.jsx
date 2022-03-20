@@ -5,7 +5,7 @@ import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
 import Axios from "axios";
 import axios from "axios";
 import DatePicker from 'react-date-picker';
-
+import TimePicker from 'react-time-picker';
 
 function Psychiatrist() {
 
@@ -120,7 +120,7 @@ function Psychiatrist() {
   }
 
   const AddModalContent = () => {
-    const [value, onChange] = useState(new Date());
+    const [value, onChange] = useState(new Date(), '10:00');
     return (
             <Modal show={showAdd} onHide={handleCloseAdd}>
             <Modal.Header closeButton>
@@ -150,12 +150,10 @@ function Psychiatrist() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formTime" >
                         <Form.Label>Prefered Time</Form.Label>
-                        <Form.Select aria-label="Default select example" id="addTime">
-                        <option>Open this select menu</option>
-                            {
-                              
-                            }
-                          </Form.Select>
+                        {/* <Form.Select aria-label="Default select example" id="addTime"> */}
+                        <TimePicker onChange={onChange} value={value} />
+
+                          {/* </Form.Select> */}
                     </Form.Group>
                     
                     <Form.Group className="mb-3" controlId="formPurpose" >
