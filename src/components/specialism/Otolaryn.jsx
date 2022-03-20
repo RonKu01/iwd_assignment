@@ -8,7 +8,7 @@ import TimePicker from 'react-time-picker';
 
 function Otolaryn() {
 
-    let specialisationID = 1;
+    let specialisationID = 7;
     const [doctorList, setDoctorList] = useState([])
     useEffect(() =>{
       const fetchDoctorBySpecialism = async () => {
@@ -130,7 +130,7 @@ const AlertModalContent = () =>{
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
 
-            <h1 className= "specialList-h1-style">List of Psychiatrist Doctors</h1>
+            <h1 className= "specialList-h1-style">List of Otolaryn Doctors</h1>
 
         {doctorList.map((item, index) =>{
             return(

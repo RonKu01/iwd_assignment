@@ -34,7 +34,6 @@ function Psychiatrist() {
       // let docSpec = document.getElementById('addDocSpec').value;
       // let docFullName = document.getElementById('addDocFullName').value;
 
-
       let patName = document.getElementById('addPatName').value;
       let prefMode = document.getElementById('addMode').value;
       let prefDate = document.getElementById('addDate').value;
@@ -77,9 +76,6 @@ function Psychiatrist() {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    {/*<Form.Control type ="text" id="docLoginId" defaultValue={addModalInfo.loginID} />*/}
-                    {/*<Form.Control type ="hidden" id="patLoginId" defaultValue={addModalInfo.loginID} />*/}
-
                     <Form.Group className="mb-3" controlId="formPatName" >
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Your Name" id="addPatName"/>
@@ -138,7 +134,6 @@ function Psychiatrist() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
-
             <h1 className= "specialList-h1-style">List of Psychiatrist Doctors</h1>
 
         {doctorList.map((item, index) =>{
