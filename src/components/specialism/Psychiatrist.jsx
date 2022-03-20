@@ -27,12 +27,14 @@ function Psychiatrist() {
     const handleShowAdd = () => setShowAdd(true);
 
     const [showAlert, setShowAlert] = useState(false);
+    const [doctorID, setDoctorID] = useState("")
 
     const registerAppointment =()=> {
 
       // let docSpec = document.getElementById('addDocSpec').value;
       // let docFullName = document.getElementById('addDocFullName').value;
-      
+
+
       let patName = document.getElementById('addPatName').value;
       let prefMode = document.getElementById('addMode').value;
       let prefDate = document.getElementById('addDate').value;
@@ -66,6 +68,7 @@ function Psychiatrist() {
   const AddModalContent = () => {
     const [valueDate, onChangeDate] = useState(new Date());
     const [value, onChange] = useState("");
+      console.log(doctorID);
 
     return (
         <Modal show={showAdd} onHide={handleCloseAdd}>
@@ -117,14 +120,20 @@ function Psychiatrist() {
     )
 }
 
-const AlertModalContent = () =>{
-    return(
-        <Alert show={showAlert} variant="success">
-            <Alert.Heading>Success! </Alert.Heading>
-            <p>Updating Table... Please Wait!</p>
-        </Alert>
-    )
-}
+    const AlertModalContent = () =>{
+        return(
+            <Alert show={showAlert} variant="success">
+                <Alert.Heading>Success! </Alert.Heading>
+                <p>Updating Table... Please Wait!</p>
+            </Alert>
+        )
+    }
+
+    const onClick = (e) =>{
+        const value1 = e.currentTarget.getAttribute("data-value1")
+        setDoctorID(value1);
+        toggleTrueFalseAdd();
+    }
 
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
@@ -149,7 +158,7 @@ const AlertModalContent = () =>{
 
                   <Card.Body>
                     <Card.Link>
-                      <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}>Book Appointment</button>
+                      <button className="btn btn-primary mb-3 float-end" onClick={onClick} data-value1={item.doctorID} >Book Appointment</button>
                     </Card.Link>
                   </Card.Body>
                 </Card>
