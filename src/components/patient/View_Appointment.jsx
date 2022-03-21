@@ -9,8 +9,9 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
+import Navbar from "../navbar/Navbar_Patient";
 
-function AppointmentTable() {
+function View_Appointment() {
 
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{
@@ -166,6 +167,7 @@ function AppointmentTable() {
 
     return (
         <div className="body-dashboard">
+             <Navbar />
             <Card className="fixed-card-new">
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
@@ -194,6 +196,6 @@ function AppointmentTable() {
     );
 }
 
-export default AppointmentTable;
+export default View_Appointment;
 
 

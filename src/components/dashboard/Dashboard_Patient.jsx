@@ -41,7 +41,7 @@ return (
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Link className="link-nostyle" to={"/"}>
+                        <Link className="link-nostyle" to={"/view_appointment"}>
                             <Card.Img variant="top"  height="180" />
                             <Card.Body>
                                 <Card.Title>View Appointment</Card.Title>
