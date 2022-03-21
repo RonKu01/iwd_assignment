@@ -43,13 +43,8 @@ function Orthopedic() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formPatName" >
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Your Name" id="addPatName"/>
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formMode" >
-                            <Form.Label>Prefered Mode</Form.Label>
+                         <Form.Group className="mb-3" controlId="formMode" >
+                            <Form.Label>Preferred Mode</Form.Label>
                             <Form.Select aria-label="Default select example" id="addMode">
                                 <option value="online">Online Consultation</option>
                                 <option value="visit">Visit Clinic</option>
@@ -57,12 +52,12 @@ function Orthopedic() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formDate" >
-                            <Form.Label>Prefered Date</Form.Label>
+                            <Form.Label>Preferred Date</Form.Label>
                             <DatePicker onChange={onChangeDate} value={valueDate} />
                             <Form.Control id="addDate" type="hidden" defaultValue={valueDate}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formTime" >
-                            <Form.Label>Prefered Time</Form.Label>
+                            <Form.Label>Preferred Time</Form.Label>
                             <TimePicker onChange={onChange} value={value} />
                             <Form.Control id="addTime" type="hidden" defaultValue={value}/>
                         </Form.Group>
@@ -88,7 +83,6 @@ function Orthopedic() {
     }
 
     const registerAppointment =()=> {
-        let patName = document.getElementById('addPatName').value;
         let prefMode = document.getElementById('addMode').value;
         let prefDate = document.getElementById('addDate').value;
         let prefTime = document.getElementById('addTime').value;
@@ -99,7 +93,6 @@ function Orthopedic() {
 
         Axios.post("http://localhost:3005/registerAppointment",
             {
-                patName: patName,
                 appointmentType: prefMode,
                 appointmentDate: prefDate,
                 appointmentTime: prefTime,

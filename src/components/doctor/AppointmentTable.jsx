@@ -63,8 +63,6 @@ function AppointmentTable() {
         handleCloseEdit();
     }
 
-
-
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }

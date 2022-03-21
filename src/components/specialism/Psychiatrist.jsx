@@ -44,11 +44,6 @@ function Psychiatrist() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formPatName" >
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Your Name" id="addPatName"/>
-                        </Form.Group>
-
                         <Form.Group className="mb-3" controlId="formMode" >
                             <Form.Label>Preferred Mode</Form.Label>
                             <Form.Select aria-label="Default select example" id="addMode">
@@ -89,7 +84,6 @@ function Psychiatrist() {
     }
 
     const registerAppointment =()=> {
-        let patName = document.getElementById('addPatName').value;
         let prefMode = document.getElementById('addMode').value;
         let prefDate = document.getElementById('addDate').value;
         let prefTime = document.getElementById('addTime').value;
@@ -100,7 +94,6 @@ function Psychiatrist() {
 
         Axios.post("http://localhost:3005/registerAppointment",
             {
-                patName: patName,
                 appointmentType: prefMode,
                 appointmentDate: prefDate,
                 appointmentTime: prefTime,
