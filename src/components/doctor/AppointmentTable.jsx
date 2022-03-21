@@ -15,16 +15,15 @@ function AppointmentTable() {
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{
         const fetchPostList = async () => {
-            const {data} = await axios('http://localhost:3005/getPatData')
+            const {data} = await axios('http://localhost:3005/getPatListByDoc')
             for (let i=0; i < data.length; i ++){
                 data[i].patDob = moment(data[i].patDob).utc().format('DD MMM YYYY')
+                data[i].appointmentDate = moment(data[i].appointmentDate).utc().format('DD MMM YYYY')
             }
             setPatItems(data)
         }
         fetchPostList()
     }, [setPatItems])
-
-    const [dobReg, setDobReg] = useState(new Date());
 
     const {SearchBar} = Search;
     const pagination = paginationFactory({
@@ -34,12 +33,6 @@ function AppointmentTable() {
             text: '10', value: 10
         }],
     });
-
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showAdd, setShowAdd] = useState(false);
-    const handleCloseAdd = () => setShowAdd(false);
-    const handleShowAdd = () => setShowAdd(true);
-
     const [editModalInfo, setEditModalInfo] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
@@ -47,71 +40,82 @@ function AppointmentTable() {
     const handleShowEdit = () => setShowEdit(true);
 
     const [showAlert, setShowAlert] = useState(false);
-    const [showPass, setShowPass] = useState(true);
 
-    const register = () => {
-
-        let patFullName = document.getElementById('addFullName').value;
-        let patDOB = document.getElementById('addDOB').value;
-        let patAddress = document.getElementById('addAddress').value;
-        let patUsername = document.getElementById('addUsername').value;
-        let patPassword = document.getElementById('addPassword').value;
-
-        Axios.post("http://localhost:3005/patRegister",
-            {username: patUsername, password: patPassword, fullName: patFullName, dob: dobReg, address: patAddress,
-            }).then((response)=> {
-            setShowAlert(true);
-            setTimeout(() => { window.location.href = "/patient"; }, 2000);
-        });
-        handleCloseAdd();
-    };
-
-    const update =() =>{
+    const closeBtn =() =>{
         let loginId = document.getElementById('updateLoginID').value;
-        let patAddress = document.getElementById('updateAddress').value;
-        let patPassword = document.getElementById('updatePassword').value;
+        let appointmentType = document.getElementById('appointmentType').value;
+        let appointmentTime = document.getElementById('appointmentTime').value;
+        let appointmentDate = document.getElementById('appointmentDate').value;
+        let status = document.getElementById('status').value;
 
-        Axios.put("http://localhost:3005/updatePat", {address: patAddress, password: patPassword, id: loginId})
-            .then((response)=> {
-            setShowAlert(true);
-            setTimeout(() => { window.location.href = "/patient"; }, 2000);
-        });
+        // Axios.put("http://localhost:3005/updateAppt", {
+        //     appointmentType: appointmentType,
+        //     appointmentTime: appointmentTime,
+        //     appointmentDate: appointmentDate,
+        //     status: status,
+        //     id: loginId})
+        //     .then((response)=> {
+        //     setShowAlert(true);
+        //     setTimeout(() => { window.location.href = "/appointment"; }, 2000);
+        // });
         handleCloseEdit();
     };
 
-    const toggleTrueFalseAdd = () => {
-        setShowAddModal(handleShowAdd);
+    const AcceptBtn =() =>{
+
+
+
+
+        handleCloseEdit();
     }
+
+    const RejectBtn =() =>{
+
+
+
+        handleCloseEdit();
+    }
+
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }
 
-    const EditModalContent = () => {
+    const PersonalAppointment = () => {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Update Patient</Modal.Title>
+                    <Modal.Title>Appointment</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Control type ="hidden" id="updateLoginID" defaultValue={editModalInfo.loginID} />
                         <Form.Group className="mb-3" controlId="formFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your full name" id="updateFullName" defaultValue={editModalInfo.patName} readOnly/>
+                            <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAddress" >
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="updateAddress" defaultValue={editModalInfo.patAddress}/>
+                        <Form.Group className="mb-3" controlId="formAppointmentType" >
+                            <Form.Label>Appointment Type</Form.Label>
+                            <Form.Control type="text" defaultValue={editModalInfo.appointmentType} readOnly/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updatePassword" defaultValue={editModalInfo.password}/>
+                        <Form.Group className="mb-3" controlId="formAppointmentDate" >
+                            <Form.Label>Date</Form.Label>
+                            <Form.Control type="text" defaultValue={editModalInfo.appointmentDate} readOnly/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formAppointmentTime" >
+                            <Form.Label>Time</Form.Label>
+                            <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formStatus" >
+                            <Form.Label>Status</Form.Label>
+                            <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-                    <Button variant="primary" onClick={update}>Save Changes</Button>
+                    <Button variant="primary" onClick={AcceptBtn}>Accepted</Button>
+                    <Button variant="danger" onClick={RejectBtn}>Rejected</Button>
+                    <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                    {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
                 </Modal.Footer>
             </Modal>
         )
@@ -121,7 +125,7 @@ function AppointmentTable() {
         return(
             <Alert show={showAlert} variant="success">
                 <Alert.Heading>Success! </Alert.Heading>
-                <p>Updating Table... Please Wait!</p>
+                <p>Updating Appointment... Please Wait!</p>
             </Alert>
         )
     }
@@ -129,28 +133,24 @@ function AppointmentTable() {
     const columns = [
         {
             dataField: 'patName',
-            text: 'Name',
+            text: 'Full Name',
         },
         {
-            dataField: 'location',
-            text: 'Location'
+            dataField: 'appointmentType',
+            text: 'Appointment Type'
         },
         {
-            dataField: 'date',
+            dataField: 'appointmentDate',
             text: 'Date'
         },
-          {
-            dataField: 'time',
+        {
+            dataField: 'appointmentTime',
             text: 'Time'
         },
         {
           dataField: 'status',
           text: 'Status'
-      },
-      {
-        dataField: 'action',
-        text: 'Action'
-    },
+        },
     ];
     const rowEvents = {
         onClick: (e, row) => {
@@ -170,7 +170,7 @@ function AppointmentTable() {
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
 
-                    <h1 className="h1 mb-3">Appointment Table </h1>
+                    <h1 className="h1 mb-3">Appointment Table</h1>
                     {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
                     <ToolkitProvider bootstrap4={true} keyField="patID" data={ patItems } columns={ columns } search>
                         {
@@ -188,8 +188,7 @@ function AppointmentTable() {
                 </Card.Body>
             </Card>
 
-            {showEdit ? <EditModalContent /> : null}
-            {/* {showAdd ? <AddModalContent /> : null} */}
+            {showEdit ? <PersonalAppointment /> : null}
         </div>
     );
 }

@@ -338,7 +338,7 @@ app.post("/registerAppointment", (req, res)=>{
     const appointmentTime = req.body.appointmentTime
     const purpose = req.body.purpose
     const doctorID = req.body.doctorID
-    const status = 'pending'
+    const status = "pending"
 
     db.query("INSERT INTO appointment (patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status], (err, result)=> {
@@ -350,6 +350,29 @@ app.post("/registerAppointment", (req, res)=>{
         }
     );
 })
+
+app.get("/getPatListByDoc", ( req, res) =>{
+
+    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ?",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
+
+
+
+
+
+
+
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
