@@ -42,29 +42,15 @@ function AppointmentTable() {
     const [showAlert, setShowAlert] = useState(false);
 
     const closeBtn =() =>{
-        let loginId = document.getElementById('updateLoginID').value;
-        let appointmentType = document.getElementById('appointmentType').value;
-        let appointmentTime = document.getElementById('appointmentTime').value;
-        let appointmentDate = document.getElementById('appointmentDate').value;
-        let status = document.getElementById('status').value;
-
-        // Axios.put("http://localhost:3005/updateAppt", {
-        //     appointmentType: appointmentType,
-        //     appointmentTime: appointmentTime,
-        //     appointmentDate: appointmentDate,
-        //     status: status,
-        //     id: loginId})
-        //     .then((response)=> {
-        //     setShowAlert(true);
-        //     setTimeout(() => { window.location.href = "/appointment"; }, 2000);
-        // });
         handleCloseEdit();
     };
 
     const AcceptBtn =() =>{
 
+        handleCloseEdit();
+    }
 
-
+    const DeclineBtn = () => {
 
         handleCloseEdit();
     }
@@ -105,6 +91,7 @@ function AppointmentTable() {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="primary" onClick={DeclineBtn}>Decline</Button>
                     <Button variant="secondary" onClick={closeBtn}>Close</Button>
                     <Button variant="primary" onClick={AcceptBtn}>Accept</Button>
                     {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
