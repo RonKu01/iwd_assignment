@@ -338,7 +338,7 @@ app.post("/registerAppointment", (req, res)=>{
     const appointmentTime = req.body.appointmentTime
     const purpose = req.body.purpose
     const doctorID = req.body.doctorID
-    const status = "pending"
+    const status = "Pending"
 
     db.query("INSERT INTO appointment (patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status], (err, result)=> {
@@ -365,14 +365,6 @@ app.get("/getPatListByDoc", ( req, res) =>{
         }
     );
 });
-
-
-
-
-
-
-
-
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
