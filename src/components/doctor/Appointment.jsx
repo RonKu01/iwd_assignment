@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Doctor";
-import "./dashboard.scss";
-import AppointmentTable from "../doctor/AppointmentTable";
+import "./../dashboard/dashboard.scss";
+import AppointmentTable from "./AppointmentTable";
 import Axios from "axios";
 
-function Dashboard_Doctor() {
+function Appointment() {
 
     //Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
@@ -19,18 +19,17 @@ function Dashboard_Doctor() {
         });
     }, []);
 
-
     return (
 
-        <div className="body-dashboard">
+        <div>
             <Navbar />
-            <main className="main">
-
+            <main className="body-dashboard">
+                < AppointmentTable />
             </main>
         </div>
     );
 }
 
-export default Dashboard_Doctor;
+export default Appointment;
 
 

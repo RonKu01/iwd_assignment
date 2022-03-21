@@ -87,44 +87,6 @@ function AppointmentTable() {
         setShowEditModal(handleShowEdit);
     }
 
-    // const AddModalContent = () => {
-    //     return (
-    //             <Modal show={showAdd} onHide={handleCloseAdd}>
-    //             <Modal.Header closeButton>
-    //                 <Modal.Title>Add Patient</Modal.Title>
-    //             </Modal.Header>
-    //             <Modal.Body>
-    //                 <Form>
-    //                     <Form.Group className="mb-3" controlId="addDOB" >
-    //                         <Form.Label>Date of Birth</Form.Label>
-    //                         <Form.Control type="date" placeholder="Date of Birth" id="addDOB" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
-    //                     </Form.Group>
-    //                     <Form.Group className="mb-3" controlId="formFullName" >
-    //                         <Form.Label>Full Name</Form.Label>
-    //                         <Form.Control type="text" placeholder="Enter your full name" id="addFullName"/>
-    //                     </Form.Group>
-    //                     <Form.Group className="mb-3" controlId="formAddress" >
-    //                         <Form.Label>Address</Form.Label>
-    //                         <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="addAddress"/>
-    //                     </Form.Group>
-    //                     <Form.Group className="mb-3" controlId="formUsername" >
-    //                         <Form.Label>Preferred Username</Form.Label>
-    //                         <Form.Control type="text" placeholder="Enter your preferred Username" id="addUsername"/>
-    //                     </Form.Group>
-    //                     <Form.Group className="mb-3" controlId="formPassword" >
-    //                         <Form.Label>Password</Form.Label>
-    //                         <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="addPassword"/>
-    //                     </Form.Group>
-    //                 </Form>
-    //             </Modal.Body>
-    //             <Modal.Footer>
-    //                 <Button variant="secondary" onClick={handleCloseAdd}>Close</Button>
-    //                 <Button variant="primary" onClick={register}>Add</Button>
-    //             </Modal.Footer>
-    //         </Modal>
-    //     )
-    // }
-
     const EditModalContent = () => {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -191,7 +153,6 @@ function AppointmentTable() {
         text: 'Action'
     },
     ];
-
     const rowEvents = {
         onClick: (e, row) => {
             setEditModalInfo(row)
@@ -206,7 +167,7 @@ function AppointmentTable() {
 
     return (
         <div className="body-dashboard">
-            <Card >
+            <Card className="fixed-card-new">
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
 
