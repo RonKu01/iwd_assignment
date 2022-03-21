@@ -69,13 +69,6 @@ function AppointmentTable() {
         handleCloseEdit();
     }
 
-    const RejectBtn =() =>{
-
-
-
-        handleCloseEdit();
-    }
-
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }
@@ -89,7 +82,7 @@ function AppointmentTable() {
                 <Modal.Body>
                     <Form>
                         <Form.Control type ="hidden" id="updateLoginID" defaultValue={editModalInfo.loginID} />
-                        <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Group className="mb-3" controlId="formPatName" >
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
                         </Form.Group>
@@ -112,9 +105,8 @@ function AppointmentTable() {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={AcceptBtn}>Accepted</Button>
-                    <Button variant="danger" onClick={RejectBtn}>Rejected</Button>
                     <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                    <Button variant="primary" onClick={AcceptBtn}>Accept</Button>
                     {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
                 </Modal.Footer>
             </Modal>
