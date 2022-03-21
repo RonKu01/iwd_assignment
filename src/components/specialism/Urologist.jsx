@@ -5,6 +5,7 @@ import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
 import Axios from "axios";
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
+import moment from "moment";
 
 function Urologist() {
     let specialisationID = 2;
@@ -32,7 +33,7 @@ function Urologist() {
   }
 
   const AddModalContent = () => {
-    const [valueDate, onChangeDate] = useState(new Date());
+    const [valueDate, onChangeDate] = useState("" );
     const [value, onChange] = useState("");
 
     return (
@@ -94,6 +95,8 @@ function Urologist() {
         let prefTime = document.getElementById('addTime').value;
         let purpose = document.getElementById('addPurpose').value;
         let docID = doctorID;
+
+        prefDate = moment(prefDate).utc().format('YYYY-MM-DD')
 
         Axios.post("http://localhost:3005/registerAppointment",
             {
