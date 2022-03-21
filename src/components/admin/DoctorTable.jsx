@@ -299,9 +299,9 @@ function DoctorTable() {
                         {
                             props => (
                                 <div>
-                                    <h6>Input at below input field</h6>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
+                                    <h6>*click on the row you wish to edit*</h6>
                                     <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />
