@@ -99,7 +99,7 @@ app.get("/logout", (req, res) => {
 })
 
 app.get('/getPatData', (req,res)=>{
-    db.query("SELECT login.loginID, login.username, login.password, login.role, patient.patID, patient.patName, patient.patDob, patient.patAddress, patient.patHistory, patient.status FROM `login` INNER JOIN `patient` ON login.loginID = patient.loginID ORDER BY login.loginID ASC",
+    db.query("SELECT * FROM `login` INNER JOIN `patient` ON login.loginID = patient.loginID ORDER BY login.loginID ASC",
 
         function (err, result) {
             let data = Object.values(JSON.parse(JSON.stringify(result)));
@@ -158,27 +158,29 @@ app.put("/updatePat",(req, res)=>{
         if (err) {
             res.send({message: "System: Failed to update !"});
         } else {
-            res.send({message: "System: Update Successfully"});
+            db.query("SELECT * FROM login WHERE loginID = ?", [id],
+                (err, result) => {
+
+                    if (password !== result[0].password){
+                        bcrypt.hash(password, saltRounds, (err, hash) => {
+                            db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
+                                if (err) {
+                                    res.send({message: "System: Failed to update!"});
+                                } else {
+                                    res.send({message: "System: Address & Password Update Successfully"});
+                                }
+                            })
+
+                        });
+                    } else {
+                        res.send({message: "System: Address Update Successfully"});
+                    }
+                }
+            );
         }
     })
 
-    db.query("SELECT * FROM login WHERE loginID = ?", [id],
-        (err, result) => {
 
-            if (password !== result[0].password){
-                bcrypt.hash(password, saltRounds, (err, hash) => {
-                    db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
-                        if (err) {
-                            res.send({message: "System: Failed to update!"});
-                        } else {
-                            res.send({message: "System: Update Successfully"});
-                        }
-                    })
-
-                });
-            }
-        }
-    );
 })
 
 //Doctor
@@ -248,32 +250,36 @@ app.put("/updateDoc",(req, res)=>{
             if (err){
                 res.send({message: "System: Failed to update !"});
             } else {
-                res.send({message: "System: Update Successfully"});
+                db.query("SELECT * FROM login WHERE loginID = ?", [id],
+                    (err, result) => {
+
+                        if (password !== result[0].password){
+                            bcrypt.hash(password, saltRounds, (err, hash) => {
+
+                                if (err) {
+                                    res.send({err: err})
+                                }
+                                db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id],
+                                    (err, result) => {
+                                    if (err) {
+                                        res.send({message: "System: Failed to update !"});
+                                    } else {
+                                        res.send({message: "System: Update Successfully"});
+                                    }
+                                })
+                            })
+                        } else {
+                            res.send({message: "System: Update Successfully"});
+                        }
+                    }
+                );
+
+
             }
         }
     )
 
-    db.query("SELECT * FROM login WHERE loginID = ?", [id],
-        (err, result) => {
 
-            if (password !== result[0].password){
-                bcrypt.hash(password, saltRounds, (err, hash) => {
-
-                    if (err) {
-                        res.send({err: err})
-                    }
-
-                    db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
-                        if (err) {
-                            res.send({message: "System: Failed to update !"});
-                        } else {
-                            res.send({message: "System: Update Successfully"});
-                        }
-                    })
-                })
-            }
-        }
-    );
 })
 
 app.get('/getSpecialism', (req,res)=>{
@@ -332,21 +338,32 @@ app.post("/getDoctorBySpecialism", ( req, res) =>{
 
 app.post("/registerAppointment", (req, res)=>{
 
-    const patID = sess_loginId
+    const loginID = sess_loginId
     const appointmentType = req.body.appointmentType
     const appointmentDate = req.body.appointmentDate
     const appointmentTime = req.body.appointmentTime
     const purpose = req.body.purpose
     const doctorID = req.body.doctorID
     const status = "Pending"
+    let patID = ""
 
-    db.query("INSERT INTO appointment (patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        [patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status], (err, result)=> {
+    db.query("SELECT * FROM patient WHERE patient.loginId = ?",
+        [loginID],
+        function (err, result) {
             if (err) {
-                res.send({message: "System Error: Failed to insert!"})
-            } else {
-                res.send({message: "Booking Successfully! Please check Appointment status at Homepage!"})
+                res.send({err: err})
             }
+             patID = result[0].patID
+
+            db.query("INSERT INTO appointment (patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                [patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status], (err, result)=> {
+                    if (err) {
+                        res.send({message: "System Error: Failed to insert!"})
+                    } else {
+                        res.send({message: "Booking Successfully! Please check Appointment status at Homepage!"})
+                    }
+                }
+            );
         }
     );
 })
@@ -365,6 +382,22 @@ app.get("/getPatListByDoc", ( req, res) =>{
         }
     );
 });
+
+app.put("/updateStatus",(req, res)=>{
+    const status = req.body.status
+    const appointmentID = req.body.appointmentID
+
+    db.query("UPDATE appointment SET status = ? WHERE appointmentID = ?",
+        [status, appointmentID], (err, result)=>{
+            if (err){
+                res.send({message: "System: Failed to update !"});
+            } else {
+                res.send({message: "System: Update Successfully"});
+            }
+        }
+    )
+})
+
 
 app.listen(3005 , () => {
     console.log('running on port 3005')

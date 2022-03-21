@@ -45,15 +45,25 @@ function AppointmentTable() {
         handleCloseEdit();
     };
 
-    const AcceptBtn =() =>{
+    const updateBtn =(e) =>{
+        const status = e.currentTarget.getAttribute("data-value1")
+        let appointmentID = document.getElementById('updateAppointmentID').value;
 
+        console.log("Status : " + status);
+        console.log("appointmentID : " + appointmentID);
+
+        Axios.put("http://localhost:3005/updateStatus",
+            {
+                status: status,
+                appointmentID: appointmentID})
+            .then((response)=> {
+                setShowAlert(true);
+                setTimeout(() => { window.location.href = "/appointment"; }, 2000);
+            });
         handleCloseEdit();
     }
 
-    const DeclineBtn = () => {
 
-        handleCloseEdit();
-    }
 
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
@@ -67,7 +77,7 @@ function AppointmentTable() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Control type ="hidden" id="updateLoginID" defaultValue={editModalInfo.loginID} />
+                        <Form.Control type ="hidden" id="updateAppointmentID" defaultValue={editModalInfo.appointmentID} />
                         <Form.Group className="mb-3" controlId="formPatName" >
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
@@ -91,9 +101,9 @@ function AppointmentTable() {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={DeclineBtn}>Decline</Button>
+                    <Button variant="primary" onClick={updateBtn} data-value1="Decline">Decline</Button>
                     <Button variant="secondary" onClick={closeBtn}>Close</Button>
-                    <Button variant="primary" onClick={AcceptBtn}>Accept</Button>
+                    <Button variant="primary" onClick={updateBtn} data-value1="Accept">Accept</Button>
                     {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
                 </Modal.Footer>
             </Modal>
