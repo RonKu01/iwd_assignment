@@ -7,7 +7,7 @@ import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
 
 function Urologist() {
-    let specialisationID = 1;
+    let specialisationID = 2;
     const [doctorList, setDoctorList] = useState([])
     useEffect(() =>{
       const fetchDoctorBySpecialism = async () => {
@@ -25,38 +25,7 @@ function Urologist() {
     const handleCloseAdd = () => setShowAdd(false);
     const handleShowAdd = () => setShowAdd(true);
 
-    const [showAlert, setShowAlert] = useState(false);
-
-    const registerAppointment =()=> {
-
-      // let docSpec = document.getElementById('addDocSpec').value;
-      // let docFullName = document.getElementById('addDocFullName').value;
-      
-      let patName = document.getElementById('addPatName').value;
-      let prefMode = document.getElementById('addMode').value;
-      let prefDate = document.getElementById('addDate').value;
-      let prefTime = document.getElementById('addTime').value;
-      let purpose = document.getElementById('addPurpose').value;
-
-       console.log("patName :" + patName);
-        console.log("prefMode :" + prefMode);
-        console.log("prefDate :" + prefDate);
-        console.log("prefTime :" + prefTime);
-        console.log("purpose :" + purpose);
-
-      // Axios.post("http://localhost:3005/docRegister",
-      //     {
-      //         patName: patName,
-      //         appointmentType: prefMode,
-      //         appointmentDate: prefDate,
-      //         appointmentTime: prefTime,
-      //         purpose: purpose,
-      //     }).then((response)=> {
-      //     setShowAlert(true);
-      //     setTimeout(() => { window.location.href = "/doctor"; }, 2000);
-      // });
-      handleCloseAdd();
-  };
+    const [doctorID, setDoctorID] = useState("")
 
     const toggleTrueFalseAdd = () => {
       setShowAddModal(handleShowAdd);
@@ -73,9 +42,6 @@ function Urologist() {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    {/*<Form.Control type ="text" id="docLoginId" defaultValue={addModalInfo.loginID} />*/}
-                    {/*<Form.Control type ="hidden" id="patLoginId" defaultValue={addModalInfo.loginID} />*/}
-
                     <Form.Group className="mb-3" controlId="formPatName" >
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Your Name" id="addPatName"/>
@@ -115,28 +81,45 @@ function Urologist() {
         </Modal>
     )
 }
+    const onClick = (e) =>{
+        const value1 = e.currentTarget.getAttribute("data-value1")
+        setDoctorID(value1);
+        toggleTrueFalseAdd();
+    }
 
-const AlertModalContent = () =>{
-    return(
-        <Alert show={showAlert} variant="success">
-            <Alert.Heading>Success! </Alert.Heading>
-            <p>Updating Table... Please Wait!</p>
-        </Alert>
-    )
-}
+    const registerAppointment =()=> {
+        let patName = document.getElementById('addPatName').value;
+        let prefMode = document.getElementById('addMode').value;
+        let prefDate = document.getElementById('addDate').value;
+        let prefTime = document.getElementById('addTime').value;
+        let purpose = document.getElementById('addPurpose').value;
+        let docID = doctorID;
+
+        Axios.post("http://localhost:3005/registerAppointment",
+            {
+                patName: patName,
+                appointmentType: prefMode,
+                appointmentDate: prefDate,
+                appointmentTime: prefTime,
+                purpose: purpose,
+                doctorID : docID,
+            }).then((response)=> {
+            alert(response.data.message);
+        });
+        handleCloseAdd();
+    };
+
 
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
-
-            <h1 className= "specialList-h1-style">List of Psychiatrist Doctors</h1>
+            <h1 className= "specialList-h1-style">List of Urologist Doctors</h1>
 
         {doctorList.map((item, index) =>{
             return(
-                <Card key={index} style={{ width: '100rem', height: '20rem'}}>
+                <Card key={index} style={{  width: '80%', height: 'auto'}}>
                   <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
                   <Card.Body>
-                  {showAlert ? <AlertModalContent /> : null}
                     <Card.Title>{item.doctorName}</Card.Title>
                     <Card.Text>
                       <h6><b>Specialisation: </b> {item.specialisationName}</h6>
@@ -148,7 +131,7 @@ const AlertModalContent = () =>{
 
                   <Card.Body>
                     <Card.Link>
-                      <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}>Book Appointment</button>
+                      <button className="btn btn-primary mb-3 float-end" onClick={onClick} data-value1={item.doctorID}>Book Appointment</button>
                     </Card.Link>
                   </Card.Body>
                 </Card>

@@ -330,6 +330,27 @@ app.post("/getDoctorBySpecialism", ( req, res) =>{
     );
 });
 
+app.post("/registerAppointment", (req, res)=>{
+
+    const patID = sess_loginId
+    const appointmentType = req.body.appointmentType
+    const appointmentDate = req.body.appointmentDate
+    const appointmentTime = req.body.appointmentTime
+    const purpose = req.body.purpose
+    const doctorID = req.body.doctorID
+    const status = 'pending'
+
+    db.query("INSERT INTO appointment (patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [patID, doctorID, appointmentType, appointmentTime, appointmentDate, purpose, status], (err, result)=> {
+            if (err) {
+                res.send({message: "System Error: Failed to insert!"})
+            } else {
+                res.send({message: "Booking Successfully! Please check Appointment status at Homepage!"})
+            }
+        }
+    );
+})
+
 app.listen(3005 , () => {
     console.log('running on port 3005')
 

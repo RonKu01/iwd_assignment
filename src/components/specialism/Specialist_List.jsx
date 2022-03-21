@@ -20,7 +20,7 @@ function Specialist_List() {
     return (
         <div className="body-dashboard">
             <Navbar />
-            <h1 className= "specialList-h1-style">Choose Your Specialist</h1>
+            <h1 className="specialList-h1-style" style={{marginLeft : '5%'}}>Choose Your Specialist</h1>
 
             <Row xl={3} lg={3}  className="g-1">
 
