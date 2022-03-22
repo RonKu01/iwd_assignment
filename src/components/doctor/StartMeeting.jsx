@@ -57,7 +57,7 @@ function StartMeeting() {
         setMeetingId(meetingId);
         setAppointmentId(appointmentId);
 
-        await Axios.put("http://localhost:3005/updateMeetingDetails", {
+        await Axios.put("http://localhost:3005/updateMeetingId", {
             token: token,
             meetingID : meetingId,
             appointmentID : appointmentId
