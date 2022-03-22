@@ -12,7 +12,6 @@ import About from "./components/about";
 
 import Dashboard_Doctor from './components/dashboard/Dashboard_Doctor';
 import DoctorTable from "./components/admin/DoctorTable";
-import Chat from "./components/chat/Chat";
 
 import Psychiatrist from "./components/specialism/Psychiatrist";
 import Urologist from "./components/specialism/Urologist";
@@ -33,6 +32,8 @@ import Consultation_Summary from './components/consultation/Consultation_Summary
 import Specialist_List from './components/specialism/Specialist_List';
 import Appointment from "./components/doctor/Appointment";
 import View_Appointment from "./components/patient/View_Appointment";
+import StartMeeting from "./components/doctor/StartMeeting";
+import JoinMeeting from "./components/doctor/joinMeeting";
 
 class App extends Component {
     render() {
@@ -49,7 +50,6 @@ class App extends Component {
                 <Route path="/patient" element={<PatientTable />} />
                 <Route path="/doctor" element={<DoctorTable />} />
                 <Route path="/Doc_Profile" element={<Doc_Profile />} />
-                <Route path="/chat" element={<Chat />} />
 
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/urologist" element={<Urologist/>} />
@@ -69,6 +69,8 @@ class App extends Component {
                 <Route path="/specialist_list" element={<Specialist_List/>} />
                 <Route path="/view_appointment" element={<View_Appointment/>} />
 
+                <Route path="/start_meeting" element={<StartMeeting />} />
+                    <Route path="/join_meeting" element={<JoinMeeting />} />
             </Routes>
         );
     }

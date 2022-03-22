@@ -1,17 +1,24 @@
-const express = require ("express");
-const mysql = require ("mysql");
-const cors = require("cors");
+import express from "express";
+import mysql from "mysql";
 
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
+import jwt from "jsonwebtoken";
+import cors from "cors";
+import request from "request";
 
-const bcrypt = require("bcrypt");
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+
+import bcrypt from "bcrypt";
+import fetch from "node-fetch";
 const saltRounds = 10;
 
 const app = express();
+const VIDEOSDK_API_ENDPOINT= "https://api.videosdk.live"
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
     cors({
         origin: ["http://localhost:3000"],
@@ -41,7 +48,7 @@ const db = mysql.createConnection({
     database: "sql6479845",
 });
 
-let sess, sess_loginId;
+let sess, sess_loginId, sess_appointmentId;
 
 app.get('/', (req,res)=>{
     res.send("hello world");
@@ -429,12 +436,77 @@ app.put("/updateStatus",(req, res)=>{
     )
 })
 
+app.get("/get-token", (req, res) => {
+    const API_KEY = "9c2d8fef-3ffd-494c-aa06-8f9d3c9ddb7a";
+    const SECRET_KEY = "d618b715e8cc4d194288f8f3b4f73a33c7dc5b3b541b898a0f4802bb4ba4f59f";
+    const options = { expiresIn: "10m", algorithm: "HS256" };
+    const payload = {
+        apikey: API_KEY,
+        permissions: ["allow_join", "allow_mod", "ask_join"], // Trigger permission.
+    };
+    const token = jwt.sign(payload, SECRET_KEY, options);
+    res.json({ token });
+});
+
+app.post("/create-meeting", (req, res) => {
+    const { token, region } = req.body;
+    const url = `https://api.videosdk.live/api/meetings`;
+    const options = {
+        method: "POST",
+        headers: { Authorization: token, "Content-Type": "application/json" },
+        body: JSON.stringify({ region }),
+    };
+
+    fetch(url, options)
+        .then((response) => response.json())
+        .then((result) => res.json(result)) // result will contain meetingId
+        .catch((error) => console.error("error", error));
+});
+
+app.put("/updateMeetingDetails",(req, res)=>{
+    const meetingID = req.body.meetingID
+    const token = req.body.token
+    const appointmentID = req.body.appointmentID
+
+    db.query("UPDATE appointment SET meetingID = ? , token = ?  WHERE appointmentID = ?",
+        [meetingID, token, appointmentID], (err, result)=>{
+            if (err){
+                res.send({message: "System: Failed to update !"});
+            } else {
+                sess_appointmentId = appointmentID;
+                res.send({message: "System: Update Successfully"});
+            }
+        }
+    )
+})
+
+app.get("/getMeetingDetails", (req, res) => {
+    res.send({ loginID: sess_loginId, appointmentId: sess_appointmentId });
+});
+
+app.post("/getMeetingDetails", ( req, res) =>{
+    const appointmentId = req.body.appointmentId
+
+    db.query("SELECT * FROM appointment WHERE appointmentID = ?",
+        [appointmentId],
+        (err, result) => {
+            if (err){
+                res.send({err: err})
+            }
+
+            if (result.length > 0){
+                res.send(result);
+            }else{
+                res.send({message: "Appointment doesn't exist!"})
+            }
+        }
+    );
+});
 
 app.listen(3005 , () => {
     console.log('running on port 3005')
 
     db.connect(function(err) {
         if (err) throw err;
-        console.log("Connected!");
     });
 })

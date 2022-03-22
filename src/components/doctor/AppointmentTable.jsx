@@ -9,6 +9,7 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
+import StartMeeting from "./StartMeeting";
 
 function AppointmentTable() {
 
@@ -24,6 +25,7 @@ function AppointmentTable() {
         }
         fetchPostList()
     }, [setPatItems])
+
 
     const {SearchBar} = Search;
     const pagination = paginationFactory({
@@ -49,9 +51,6 @@ function AppointmentTable() {
         const status = e.currentTarget.getAttribute("data-value1")
         let appointmentID = document.getElementById('updateAppointmentID').value;
 
-        console.log("Status : " + status);
-        console.log("appointmentID : " + appointmentID);
-
         Axios.put("http://localhost:3005/updateStatus",
             {
                 status: status,
@@ -63,49 +62,133 @@ function AppointmentTable() {
         handleCloseEdit();
     }
 
+    const [token, setToken] = useState(null);
+    const [meetingId, setMeetingId] = useState(null);
+
+    const API_BASE_URL = "https://api.zujonow.com";
+    const API_AUTH_URL = 'http://localhost:3005';
+
+    const getToken = async () => {
+        if(API_AUTH_URL){
+            const res = await fetch(`${API_AUTH_URL}/get-token`, {
+                method: "GET",
+            });
+            const { token } = await res.json();
+            return token;
+        }else{
+            console.error("Error: ", Error("Please add a token or Auth Server URL"));
+        }
+    };
+
+    const createMeeting = async ({ token }) => {
+        const url = `${API_BASE_URL}/api/meetings`;
+        const options = {
+            method: "POST",
+            headers: { Authorization: token, "Content-Type": "application/json" },
+        };
+
+        const { meetingId } = await fetch(url, options)
+            .then((response) => response.json())
+            .catch((error) => console.error("error", error));
+
+        return meetingId;
+    };
+
+    const startMeeting =(e) =>{
+        const status = e.currentTarget.getAttribute("data-value1")
+        let appointmentID = document.getElementById('updateAppointmentID').value;
+
+        Axios.put("http://localhost:3005/updateStatus",
+            {
+                status: status,
+                appointmentID: appointmentID})
+            .then(async (response) => {
+                const token = await getToken();
+                const meetingId = await createMeeting({token});
+
+                setToken(token);
+                setMeetingId(meetingId);
+
+                Axios.put("http://localhost:3005/updateMeetingDetails",
+                    {meetingID: meetingId, token: token, appointmentID: appointmentID})
+                    .then((response)=> {
+                        setShowAlert(true);
+                         setTimeout(() => { window.location.href = "/join_meeting"; }, 1200);
+                    });
+            });
+
+        handleCloseEdit();
+    }
+
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }
 
     const PersonalAppointment = () => {
-        return (
-            <Modal show={showEdit} onHide={handleCloseEdit}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Appointment</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Control type ="hidden" id="updateAppointmentID" defaultValue={editModalInfo.appointmentID} />
-                        <Form.Group className="mb-3" controlId="formPatName" >
-                            <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppointmentType" >
-                            <Form.Label>Appointment Type</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.appointmentType} readOnly/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppointmentDate" >
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.appointmentDate} readOnly/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppointmentTime" >
-                            <Form.Label>Time</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formStatus" >
-                            <Form.Label>Status</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={updateBtn} data-value1="Decline">Decline</Button>
-                    <Button variant="secondary" onClick={closeBtn}>Close</Button>
-                    <Button variant="primary" onClick={updateBtn} data-value1="Accept">Accept</Button>
-                    {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
-                </Modal.Footer>
-            </Modal>
-        )
+
+        if (editModalInfo.status === "Accept") {
+            return (
+                <Modal show={showEdit} onHide={handleCloseEdit}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Create Meeting</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Control type="hidden" id="updateAppointmentID"
+                                          defaultValue={editModalInfo.appointmentID}/>
+                            <Form.Group className="mb-3" controlId="formPatName">
+                                <Form.Label>Create Meeting</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                        <Button variant="primary" onClick={startMeeting} data-value1="Accept">Start Meeting</Button>
+                    </Modal.Footer>
+                </Modal>
+            )
+        } else {
+            return (
+                <Modal show={showEdit} onHide={handleCloseEdit}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Appointment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Control type="hidden" id="updateAppointmentID"
+                                          defaultValue={editModalInfo.appointmentID}/>
+                            <Form.Group className="mb-3" controlId="formPatName">
+                                <Form.Label>Full Name</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formAppointmentType">
+                                <Form.Label>Appointment Type</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.appointmentType} readOnly/>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formAppointmentDate">
+                                <Form.Label>Date</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.appointmentDate} readOnly/>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formAppointmentTime">
+                                <Form.Label>Time</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formStatus">
+                                <Form.Label>Status</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={updateBtn} data-value1="Decline">Decline</Button>
+                        <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                        <Button variant="primary" onClick={updateBtn} data-value1="Accept">Accept</Button>
+                        {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
+                    </Modal.Footer>
+                </Modal>
+            )
+        }
     }
 
     const AlertModalContent = () =>{
@@ -150,6 +233,7 @@ function AppointmentTable() {
         width: "100%",
         padding: "2rem"
     };
+
 
     return (
         <div className="body-dashboard">

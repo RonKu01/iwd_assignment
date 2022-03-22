@@ -21,7 +21,6 @@ function Dashboard_Doctor() {
         });
     }, []);
 
-
     return (
             <div className="body-dashboard">
         <Navbar />
