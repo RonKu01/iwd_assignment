@@ -189,37 +189,6 @@ app.put("/updatePat",(req, res)=>{
 
 })
 
-// app.put("/updateStatus",(req, res)=>{
-//     const id = req.body.id
-//     const status = req.body.status
-//
-//     db.query("UPDATE appointment SET status = ? WHERE loginID = ?",[status, id], (err, result)=> {
-//         if (err) {
-//             res.send({message: "System: Failed to update !"});
-//         } else {
-//             res.send({message: "System: Update Successfully"});
-//         }
-//     })
-//
-//     db.query("SELECT * FROM login WHERE loginID = ?", [id],
-//         (err, result) => {
-//
-//             if (password !== result[0].password){
-//                 bcrypt.hash(password, saltRounds, (err, hash) => {
-//                     db.query("UPDATE login SET password = ? WHERE loginID = ?", [hash, id], (err, result) => {
-//                         if (err) {
-//                             res.send({message: "System: Failed to update!"});
-//                         } else {
-//                             res.send({message: "System: Update Successfully"});
-//                         }
-//                     })
-//
-//                 });
-//             }
-//         }
-//     );
-// })
-
 //Doctor
 app.get('/getDocData', (req,res)=>{
     db.query("SELECT * FROM `doctor` INNER JOIN `login` ON doctor.loginID = login.loginID INNER JOIN `specialisation` ON doctor.specialisationID = specialisation.specialisationID ORDER BY doctor.doctorID ASC",
@@ -419,6 +388,37 @@ app.get("/getPatListByDoc", ( req, res) =>{
         }
     );
 });
+
+app.get("/getPatAppointment", ( req, res) =>{
+
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID  WHERE patient.loginId = ?",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
+app.get("/patient", ( req, res) =>{
+
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ?",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
 
 app.put("/updateStatus",(req, res)=>{
     const status = req.body.status

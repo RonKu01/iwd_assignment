@@ -76,7 +76,7 @@ function AppointmentTable() {
         setShowEditModal(handleShowEdit);
     }
 
-    const PersonalAppointment = () => {
+    const EditModalContent = () => {
 
         if (editModalInfo.status === "Accept") {
             return (
@@ -211,7 +211,7 @@ function AppointmentTable() {
                 </Card.Body>
             </Card>
 
-            {showEdit ? <PersonalAppointment /> : null}
+            {showEdit ? <EditModalContent /> : null}
         </div>
     );
 }
