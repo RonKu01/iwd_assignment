@@ -244,7 +244,7 @@ function StartMeeting() {
                 name: "Doctor",
             }}
             token={token}
-        >
+        > metingId: {meetingId}
             <MeetingConsumer>
                 {() => <MeetingGrid />}
             </MeetingConsumer>
