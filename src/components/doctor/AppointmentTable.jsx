@@ -62,60 +62,8 @@ function AppointmentTable() {
         handleCloseEdit();
     }
 
-    const [token, setToken] = useState(null);
-    const [meetingId, setMeetingId] = useState(null);
-
-    const API_BASE_URL = "https://api.zujonow.com";
-    const API_AUTH_URL = 'http://localhost:3005';
-
-    const getToken = async () => {
-        if(API_AUTH_URL){
-            const res = await fetch(`${API_AUTH_URL}/get-token`, {
-                method: "GET",
-            });
-            const { token } = await res.json();
-            return token;
-        }else{
-            console.error("Error: ", Error("Please add a token or Auth Server URL"));
-        }
-    };
-
-    const createMeeting = async ({ token }) => {
-        const url = `${API_BASE_URL}/api/meetings`;
-        const options = {
-            method: "POST",
-            headers: { Authorization: token, "Content-Type": "application/json" },
-        };
-
-        const { meetingId } = await fetch(url, options)
-            .then((response) => response.json())
-            .catch((error) => console.error("error", error));
-
-        return meetingId;
-    };
-
     const startMeeting =(e) =>{
-        const status = e.currentTarget.getAttribute("data-value1")
-        let appointmentID = document.getElementById('updateAppointmentID').value;
-
-        Axios.put("http://localhost:3005/updateStatus",
-            {
-                status: status,
-                appointmentID: appointmentID})
-            .then(async (response) => {
-                const token = await getToken();
-                const meetingId = await createMeeting({token});
-
-                setToken(token);
-                setMeetingId(meetingId);
-
-                Axios.put("http://localhost:3005/updateMeetingDetails",
-                    {meetingID: meetingId, token: token, appointmentID: appointmentID})
-                    .then((response)=> {
-                        setShowAlert(true);
-                         setTimeout(() => { window.location.href = "/join_meeting"; }, 1200);
-                    });
-            });
+        setTimeout(() => { window.location.href = "/start_meeting"; }, 300);
 
         handleCloseEdit();
     }

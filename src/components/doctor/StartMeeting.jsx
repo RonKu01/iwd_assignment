@@ -3,37 +3,65 @@ import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@vid
 import Axios from "axios";
 
 function StartMeeting() {
+    const [token, setToken] = useState(null);
+    const [meetingId, setMeetingId] = useState(null);
+    const [appointmentId, setAppointmentId] = useState(null);
 
-    const [docLoginID, setLoginID] = useState("");
-    Axios.defaults.withCredentials = true;
-    useEffect(() => {
-        Axios.get("http://localhost:3005/login").then((response) => {
-            if (response.data.loggedIn === true) {
-                setLoginID(response.data.loginID);
-            } else {
-                window.location.href = "/";
-            }
-        });
-    }, []);
+    const API_BASE_URL = "https://api.zujonow.com";
+    const API_AUTH_URL = 'http://localhost:3005';
 
-    const [appointmentId, setAppointmentId] = useState("");
-    useEffect(() => {
-        Axios.get("http://localhost:3005/getMeetingDetails").then((response) => {
-            setAppointmentId(response.data.appointmentId)
-        });
-    },[]);
+    const getAppointmentId = async () => {
+        if(API_AUTH_URL){
+            const res = await fetch(`${API_AUTH_URL}/getMeetingDetails`, {
+                method: "GET",
+            });
+            const { appointmentId } = await res.json();
+            return appointmentId;
+        }else{
+            console.error("Error: ", Error("Please add a token or Auth Server URL"));
+        }
+    };
 
-    const [token, setToken] = useState("");
-    const [meetingId, setMeetingId] = useState("");
+    const getToken = async () => {
+        if(API_AUTH_URL){
+            const res = await fetch(`${API_AUTH_URL}/get-token`, {
+                method: "GET",
+            });
+            const { token } = await res.json();
+            return token;
+        }else{
+            console.error("Error: ", Error("Please add a token or Auth Server URL"));
+        }
+    };
 
-    const getMeetingAndToken = () => {
-        Axios.post("http://localhost:3005/getMeetingDetails", {
-            docLoginID: docLoginID,
-            appointmentId: appointmentId,
-        }).then((response)=>{
-            setToken(response.data[0].token);
-            setMeetingId(response.data[0].meetingID);
-        });
+    const createMeeting = async ({ token }) => {
+        const url = `${API_BASE_URL}/api/meetings`;
+        const options = {
+            method: "POST",
+            headers: { Authorization: token, "Content-Type": "application/json" },
+        };
+
+        const { meetingId } = await fetch(url, options)
+            .then((response) => response.json())
+            .catch((error) => console.error("error", error));
+
+        return meetingId;
+    };
+
+    const getMeetingAndToken = async () => {
+        const token = await getToken();
+        const meetingId = await createMeeting({ token });
+        const appointmentId = await getAppointmentId();
+
+        setToken(token);
+        setMeetingId(meetingId);
+        setAppointmentId(appointmentId);
+
+        await Axios.put("http://localhost:3005/updateMeetingDetails", {
+            token: token,
+            meetingID : meetingId,
+            appointmentID : appointmentId
+        })
     };
 
     const chunk = (arr) => {
@@ -42,7 +70,7 @@ function StartMeeting() {
         return newArr;
     };
 
-    function MeetingGrid() {
+    function MeetingGrid(props) {
         const [joined, setJoined] = useState(false)
         const {
             join,
@@ -56,7 +84,6 @@ function StartMeeting() {
             setJoined(true)
             join()
         }
-
         return (
             <div>
                 {joined ?
@@ -178,6 +205,7 @@ function StartMeeting() {
             }
         }, [screenShareStream, screenShareOn]);
 
+
         return (
             <div key={props.participantId} >
                 <audio ref={micRef} autoPlay />
@@ -204,14 +232,13 @@ function StartMeeting() {
                 <span>Mic:{micOn ? "Yes": "No"}, Camera: {webcamOn ? "Yes" : "No"}, Screen Share: {screenShareOn ? "Yes" : "No"}</span>
             </div>
         );
-
     }
 
     useEffect(getMeetingAndToken, []);
     return token && meetingId ? (
         <MeetingProvider
             config={{
-                meetingId: meetingId,
+                meetingId,
                 micEnabled: true,
                 webcamEnabled: true,
                 name: "Doctor",

@@ -448,21 +448,6 @@ app.get("/get-token", (req, res) => {
     res.json({ token });
 });
 
-app.post("/create-meeting", (req, res) => {
-    const { token, region } = req.body;
-    const url = `https://api.videosdk.live/api/meetings`;
-    const options = {
-        method: "POST",
-        headers: { Authorization: token, "Content-Type": "application/json" },
-        body: JSON.stringify({ region }),
-    };
-
-    fetch(url, options)
-        .then((response) => response.json())
-        .then((result) => res.json(result)) // result will contain meetingId
-        .catch((error) => console.error("error", error));
-});
-
 app.put("/updateMeetingDetails",(req, res)=>{
     const meetingID = req.body.meetingID
     const token = req.body.token
@@ -481,7 +466,7 @@ app.put("/updateMeetingDetails",(req, res)=>{
 })
 
 app.get("/getMeetingDetails", (req, res) => {
-    res.send({ loginID: sess_loginId, appointmentId: sess_appointmentId });
+    res.send({ appointmentId: sess_appointmentId });
 });
 
 app.post("/getMeetingDetails", ( req, res) =>{

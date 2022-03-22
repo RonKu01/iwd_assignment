@@ -1,12 +1,26 @@
 import React, {useEffect, useRef, useState} from "react";
 import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
+import Axios from "axios";
 
 function JoinMeeting() {
     const [token, setToken] = useState(null);
     const [meetingId, setMeetingId] = useState(null);
+    const [appointmentId, setAppointmentId] = useState(null);
 
     const API_BASE_URL = "https://api.zujonow.com";
     const API_AUTH_URL = 'http://localhost:3005';
+
+    const getAppointmentId = async () => {
+        if(API_AUTH_URL){
+            const res = await fetch(`${API_AUTH_URL}/getMeetingDetails`, {
+                method: "GET",
+            });
+            const { appointmentId } = await res.json();
+            return appointmentId;
+        }else{
+            console.error("Error: ", Error("Please add a token or Auth Server URL"));
+        }
+    };
 
     const getToken = async () => {
         if(API_AUTH_URL){
@@ -37,10 +51,17 @@ function JoinMeeting() {
     const getMeetingAndToken = async () => {
         const token = await getToken();
         const meetingId = await createMeeting({ token });
+        const appointmentId = await getAppointmentId();
 
         setToken(token);
         setMeetingId(meetingId);
+        setAppointmentId(appointmentId);
 
+        await Axios.put("http://localhost:3005/updateMeetingDetails", {
+            token: token,
+            meetingID : meetingId,
+            appointmentID : appointmentId
+        })
     };
 
     const chunk = (arr) => {
