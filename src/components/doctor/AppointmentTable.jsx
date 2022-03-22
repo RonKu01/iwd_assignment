@@ -26,7 +26,6 @@ function AppointmentTable() {
         fetchPostList()
     }, [setPatItems])
 
-
     const {SearchBar} = Search;
     const pagination = paginationFactory({
         sizePerPageList: [{
@@ -62,9 +61,14 @@ function AppointmentTable() {
         handleCloseEdit();
     }
 
-    const startMeeting =(e) =>{
-        setTimeout(() => { window.location.href = "/start_meeting"; }, 300);
-
+    const startMeeting = () =>{
+        let appointmentID = document.getElementById('updateAppointmentID').value;
+        Axios.put("http://localhost:3005/updateMeetingDetails",
+            {
+                appointmentID: appointmentID})
+            .then((response)=> {
+                setShowAlert(true);
+                setTimeout(() => { window.location.href = "/start_meeting"; }, 300);   });
         handleCloseEdit();
     }
 

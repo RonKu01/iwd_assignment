@@ -7,7 +7,6 @@ function JoinMeeting() {
     const [meetingId, setMeetingId] = useState(null);
     const [appointmentId, setAppointmentId] = useState(null);
 
-    const API_BASE_URL = "https://api.zujonow.com";
     const API_AUTH_URL = 'http://localhost:3005';
 
     const getAppointmentId = async () => {
@@ -34,34 +33,12 @@ function JoinMeeting() {
         }
     };
 
-    const createMeeting = async ({ token }) => {
-        const url = `${API_BASE_URL}/api/meetings`;
-        const options = {
-            method: "POST",
-            headers: { Authorization: token, "Content-Type": "application/json" },
-        };
-
-        const { meetingId } = await fetch(url, options)
-            .then((response) => response.json())
-            .catch((error) => console.error("error", error));
-
-        return meetingId;
-    };
-
     const getMeetingAndToken = async () => {
         const token = await getToken();
-        const meetingId = await createMeeting({ token });
         const appointmentId = await getAppointmentId();
 
         setToken(token);
-        setMeetingId(meetingId);
         setAppointmentId(appointmentId);
-
-        await Axios.put("http://localhost:3005/updateMeetingDetails", {
-            token: token,
-            meetingID : meetingId,
-            appointmentID : appointmentId
-        })
     };
 
     const chunk = (arr) => {

@@ -3,14 +3,13 @@ import mysql from "mysql";
 
 import jwt from "jsonwebtoken";
 import cors from "cors";
-import request from "request";
 
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 
 import bcrypt from "bcrypt";
-import fetch from "node-fetch";
+
 const saltRounds = 10;
 
 const app = express();
@@ -449,16 +448,20 @@ app.get("/get-token", (req, res) => {
 });
 
 app.put("/updateMeetingDetails",(req, res)=>{
-    const meetingID = req.body.meetingID
-    const token = req.body.token
-    const appointmentID = req.body.appointmentID
+    sess_appointmentId = req.body.appointmentID;
+    res.send({message : "Success"});
+})
 
-    db.query("UPDATE appointment SET meetingID = ? , token = ?  WHERE appointmentID = ?",
-        [meetingID, token, appointmentID], (err, result)=>{
+app.put("/updateMeetingId",(req, res)=>{
+    const token = req.body.token
+    const meetingID = req.body.meetingID
+    sess_appointmentId = req.body.appointmentID;
+
+    db.query("UPDATE appointment SET meetingID = ?, token = ? WHERE appointmentID = ?",
+        [meetingID, token, sess_appointmentId], (err, result)=>{
             if (err){
                 res.send({message: "System: Failed to update !"});
             } else {
-                sess_appointmentId = appointmentID;
                 res.send({message: "System: Update Successfully"});
             }
         }
