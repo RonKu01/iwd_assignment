@@ -35,7 +35,6 @@ function View_Appointment() {
         }],
     });
 
-
     const [editModalInfo, setEditModalInfo] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
@@ -48,11 +47,14 @@ function View_Appointment() {
         handleCloseEdit();
     };
 
-
-    const updateBtn =(e) =>{
-        const status = e.currentTarget.getAttribute("data-value1")
+    const startMeeting = () =>{
         let appointmentID = document.getElementById('updateAppointmentID').value;
-
+        Axios.put("http://localhost:3005/updateMeetingDetails",
+            {
+                appointmentID: appointmentID})
+            .then((response)=> {
+                setShowAlert(true);
+                setTimeout(() => { window.location.href = "/start_meeting"; }, 300);   });
         handleCloseEdit();
     }
 
@@ -61,29 +63,29 @@ function View_Appointment() {
     }
 
     const EditModalContent = () => {
-        // if (editModalInfo.status === "Accept") {
-        //     return (
-        //         <Modal show={showEdit} onHide={handleCloseEdit}>
-        //             <Modal.Header closeButton>
-        //                 <Modal.Title>Create Meeting</Modal.Title>
-        //             </Modal.Header>
-        //             <Modal.Body>
-        //                 <Form>
-        //                     <Form.Control type="hidden" id="updateAppointmentID"
-        //                                   defaultValue={editModalInfo.appointmentID}/>
-        //                     <Form.Group className="mb-3" controlId="formPatName">
-        //                         <Form.Label>Create Meeting</Form.Label>
-        //                         <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
-        //                     </Form.Group>
-        //                 </Form>
-        //             </Modal.Body>
-        //             <Modal.Footer>
-        //                 <Button variant="secondary" onClick={closeBtn}>Close</Button>
-        //                 <Button variant="primary" onClick={startMeeting} data-value1="Accept">Start Meeting</Button>
-        //             </Modal.Footer>
-        //         </Modal>
-        //     )
-        // } else {
+        if (editModalInfo.status === "Accept") {
+            return (
+                <Modal show={showEdit} onHide={handleCloseEdit}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Create Meeting</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Control type="hidden" id="updateAppointmentID"
+                                          defaultValue={editModalInfo.appointmentID}/>
+                            <Form.Group className="mb-3" controlId="formPatName">
+                                <Form.Label>Join Meeting</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                        <Button variant="primary" onClick={startMeeting} data-value1="Accept">Start Meeting</Button>
+                    </Modal.Footer>
+                </Modal>
+            )
+        } else {
             return (
                 <Modal show={showEdit} onHide={handleCloseEdit}>
                     <Modal.Header closeButton>
@@ -122,7 +124,7 @@ function View_Appointment() {
                 </Modal>
             )
         }
-    // }
+    }
 
     const AlertModalContent = () =>{
         return(
