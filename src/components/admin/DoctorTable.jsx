@@ -173,9 +173,9 @@ function DoctorTable() {
                 <Modal.Body>
                     <Form>
                         <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={editModalInfo.loginID} />
-                        <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Group className="mb-3" controlId="updateFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" id="updateFullName" defaultValue={editModalInfo.doctorName} />
+                            <Form.Control type="text" defaultValue={editModalInfo.doctorName} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formDocSpec" >
                             <Form.Label>Specialisation</Form.Label>

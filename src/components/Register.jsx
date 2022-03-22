@@ -55,11 +55,11 @@ function Register() {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formUsername" >
                     <Form.Label>Preferred Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your preferred Username" onChange={(e) =>{setUsernameReg(e.target.value);}}/>
+                    <Form.Control type="text" placeholder="Enter your preferred Username" autoComplete="username" onChange={(e) =>{setUsernameReg(e.target.value);}}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formPassword" >
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type={showPass ? "password" : "text"} placeholder="Password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>
+                    <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="new-password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formCheckbox" >
                     <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />

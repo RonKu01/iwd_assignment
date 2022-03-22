@@ -154,6 +154,10 @@ function AppointmentTable() {
 
     const columns = [
         {
+            dataField: 'appointmentID',
+            text: 'ID',
+        },
+        {
             dataField: 'patName',
             text: 'Full Name',
         },
@@ -174,6 +178,7 @@ function AppointmentTable() {
           text: 'Status'
         },
     ];
+
     const rowEvents = {
         onClick: (e, row) => {
             setEditModalInfo(row)
@@ -186,7 +191,6 @@ function AppointmentTable() {
         padding: "2rem"
     };
 
-
     return (
         <div className="body-dashboard">
             <Card className="fixed-card-new">
@@ -194,8 +198,7 @@ function AppointmentTable() {
                     {showAlert ? <AlertModalContent /> : null}
 
                     <h1 className="h1 mb-3">Appointment Table</h1>
-                    {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
-                    <ToolkitProvider bootstrap4={true} keyField="patID" data={ patItems } columns={ columns } search>
+                    <ToolkitProvider bootstrap4={true} keyField="appointmentID" data={ patItems } columns={ columns } search>
                         {
                             props => (
                                 <div>
