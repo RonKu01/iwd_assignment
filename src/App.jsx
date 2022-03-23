@@ -33,7 +33,7 @@ import Specialist_List from './components/specialism/Specialist_List';
 import Appointment from "./components/doctor/Appointment";
 import View_Appointment from "./components/patient/View_Appointment";
 import StartMeeting from "./components/doctor/StartMeeting";
-import JoinMeeting from "./components/doctor/joinMeeting";
+import JoinMeeting from "./components/patient/JoinMeeting";
 
 class App extends Component {
     render() {

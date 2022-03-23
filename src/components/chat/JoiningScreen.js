@@ -65,7 +65,6 @@ export function JoiningScreen({
                                   onClickStartMeeting,
                               }) {
 
-    console.log(meetingId);
     const [readyToJoin, setReadyToJoin] = useState(false);
     const videoPlayerRef = useRef();
     const theme = useTheme();

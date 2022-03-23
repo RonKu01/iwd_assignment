@@ -404,6 +404,21 @@ app.get("/getPatAppointment", ( req, res) =>{
     );
 });
 
+app.get("/getPatAppointmentByAppointmentID", ( req, res) =>{
+
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID  WHERE patient.loginId = ? AND appointment.appointmentID = ?",
+        [sess_loginId, sess_appointmentId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            // let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send({ meetingID: result[0].meetingID });
+        }
+    );
+});
+
 app.get("/patient", ( req, res) =>{
 
     db.query("SELECT * FROM appointment INNER JOIN patient ON patient.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ?",

@@ -54,7 +54,7 @@ function View_Appointment() {
                 appointmentID: appointmentID})
             .then((response)=> {
                 setShowAlert(true);
-                setTimeout(() => { window.location.href = "/start_meeting"; }, 300);   });
+                setTimeout(() => { window.location.href = "/join_meeting"; }, 300);   });
         handleCloseEdit();
     }
 

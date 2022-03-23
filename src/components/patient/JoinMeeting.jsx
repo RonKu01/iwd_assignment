@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
+import {MeetingConsumer, MeetingProvider, useConnection, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
 import Axios from "axios";
 
 function JoinMeeting() {
@@ -21,6 +21,18 @@ function JoinMeeting() {
         }
     };
 
+    const getMeetingId = async () => {
+        if(API_AUTH_URL){
+            const res = await fetch(`${API_AUTH_URL}/getPatAppointmentByAppointmentID`, {
+                method: "GET",
+            });
+            const { meetingID } = await res.json();
+            return meetingID;
+        }else{
+            console.error("Error: ", Error("Please add a token or Auth Server URL"));
+        }
+    };
+
     const getToken = async () => {
         if(API_AUTH_URL){
             const res = await fetch(`${API_AUTH_URL}/get-token`, {
@@ -35,10 +47,12 @@ function JoinMeeting() {
 
     const getMeetingAndToken = async () => {
         const token = await getToken();
-        const appointmentId = await getAppointmentId();
+        const appointmentID = await getAppointmentId();
+        const meetingID = await getMeetingId();
 
         setToken(token);
-        setAppointmentId(appointmentId);
+        setAppointmentId(appointmentID);
+        setMeetingId(meetingID);
     };
 
     const chunk = (arr) => {
@@ -46,6 +60,15 @@ function JoinMeeting() {
         while (arr.length) newArr.push(arr.splice(0, 3));
         return newArr;
     };
+
+    const { connection } = useConnection("<connection-id>", {
+        onMeeting: {
+            // This event will be emitted to all participants of Meeting B
+            onChatMessage: ({ message, participantId }) => {
+                alert(`${participantId} says: ${message}`);
+            },
+        },
+    });
 
     function MeetingGrid(props) {
         const [joined, setJoined] = useState(false)
@@ -61,12 +84,19 @@ function JoinMeeting() {
             setJoined(true)
             join()
         }
+
+        const leftMeeting = () => {
+            if (window.confirm("Do you want to leave meeting?") === true) {
+                window.location.href = "/dashboard_patient"
+            }
+        }
+
         return (
             <div>
                 {joined ?
                     (
                         <div >
-                            <button  onClick={leave}>
+                            <button  onClick={leftMeeting}>
                                 Leave
                             </button>
                             <button  onClick={toggleMic}>
@@ -80,12 +110,16 @@ function JoinMeeting() {
                             </button>
                         </div>
                     )
-                    : (<button  onClick={joinMeeting}>
-                        Join
-                    </button>)}
-                <div
-                    className="wrapper"
-                >
+                    : (
+                        //Styling for the Chat System (JOIN BUTTON)
+                        <div>Meeting ID : {meetingId}
+                            <button  onClick={joinMeeting}>
+                                Join
+                            </button>
+                        </div>
+                    )
+                }
+                <div className="wrapper">
                     {chunk([...participants.keys()]).map((k) => (
                         <div className="box" key={k} style={{ display: "flex" }}>
                             {k.map((l) => (
@@ -93,6 +127,7 @@ function JoinMeeting() {
                             ))}
                         </div>
                     ))}
+
                 </div>
 
             </div>
@@ -102,7 +137,7 @@ function JoinMeeting() {
     function JoinScreen() {
         return (
             <div>
-                <input type="text" placeholder="Enter Meeting Id" onChange={(e) => {setMeetingId(e.target.value)}}  />
+                <input type="text" placeholder="Enter Meeting Id" defaultValue={meetingId} />
                 <button  onClick={getMeetingAndToken}>
                     Join
                 </button>
@@ -213,15 +248,12 @@ function JoinMeeting() {
 
     useEffect(getMeetingAndToken, []);
     return token && meetingId ? (
-        <MeetingProvider
-            config={{
+        <MeetingProvider config={{
                 meetingId,
                 micEnabled: true,
                 webcamEnabled: true,
                 name: "Patient",
-            }}
-            token={token}
-        >
+            }} token={token}>
             <MeetingConsumer>
                 {() => <MeetingGrid />}
             </MeetingConsumer>
