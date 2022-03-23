@@ -10,6 +10,8 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
 
+import "./doctor.scss";
+
 function DoctorTable() {
 
     const [docItems, setDocItems] = useState([])
