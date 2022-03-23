@@ -97,23 +97,23 @@ function PatientTable() {
                     <Form>
                         <Form.Group className="mb-3" controlId="addDOB" >
                             <Form.Label>Date of Birth</Form.Label>
-                            <Form.Control type="date" placeholder="Date of Birth" id="addDOB" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
+                            <Form.Control type="date" placeholder="Date of Birth" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Group className="mb-3" controlId="addFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your full name" id="addFullName"/>
+                            <Form.Control type="text" placeholder="Enter your full name"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAddress" >
+                        <Form.Group className="mb-3" controlId="addAddress" >
                             <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="addAddress"/>
+                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formUsername" >
+                        <Form.Group className="mb-3" controlId="addUsername" >
                             <Form.Label>Preferred Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your preferred Username" id="addUsername"/>
+                            <Form.Control type="text" placeholder="Enter your preferred Username" autoComplete="username"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Group className="mb-3" controlId="addPassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="addPassword"/>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="new-password"/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -134,17 +134,17 @@ function PatientTable() {
                 <Modal.Body>
                     <Form>
                         <Form.Control type ="hidden" id="updateLoginID" defaultValue={editModalInfo.loginID} />
-                        <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Group className="mb-3" controlId="updateFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your full name" id="updateFullName" defaultValue={editModalInfo.patName} readOnly/>
+                            <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.patName} readOnly/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAddress" >
+                        <Form.Group className="mb-3" controlId="updateAddress" >
                             <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" id="updateAddress" defaultValue={editModalInfo.patAddress}/>
+                            <Form.Control as="textarea" rows={3} placeholder="Enter your Address" defaultValue={editModalInfo.patAddress}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Group className="mb-3" controlId="updatePassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updatePassword" defaultValue={editModalInfo.password}/>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="update-password" defaultValue={editModalInfo.password} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>

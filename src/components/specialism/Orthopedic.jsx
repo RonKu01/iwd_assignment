@@ -43,28 +43,28 @@ function Orthopedic() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                         <Form.Group className="mb-3" controlId="formMode" >
+                        <Form.Group className="mb-3" controlId="addMode" >
                             <Form.Label>Preferred Mode</Form.Label>
-                            <Form.Select aria-label="Default select example" id="addMode">
+                            <Form.Select aria-label="Default select example">
                                 <option value="online">Online Consultation</option>
                                 <option value="visit">Visit Clinic</option>
                             </Form.Select>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formDate" >
+                        <Form.Group className="mb-3" controlId="addDate" >
                             <Form.Label>Preferred Date</Form.Label>
                             <DatePicker onChange={onChangeDate} value={valueDate} />
-                            <Form.Control id="addDate" type="hidden" defaultValue={valueDate}/>
+                            <Form.Control type="hidden" defaultValue={valueDate}/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formTime" >
+                        <Form.Group className="mb-3" controlId="addTime" >
                             <Form.Label>Preferred Time</Form.Label>
                             <TimePicker onChange={onChange} value={value} />
-                            <Form.Control id="addTime" type="hidden" defaultValue={value}/>
+                            <Form.Control type="hidden" defaultValue={value}/>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formPurpose" >
+                        <Form.Group className="mb-3" controlId="addPurpose" >
                             <Form.Label>Purpose of Visit</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Your Purpose of Visit" id="addPurpose"/>
+                            <Form.Control type="text" placeholder="Enter Your Purpose of Visit"/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -116,10 +116,10 @@ function Orthopedic() {
                         <Card.Body>
                             <Card.Title>{item.doctorName}</Card.Title>
                             <Card.Text>
-                                <h6><b>Specialisation: </b> {item.specialisationName}</h6>
-                                <h6><b>Years of experience: </b> {item.year} years</h6>
-                                <h6><b>Qualifications: </b> {item.qualifications}</h6>
-                                <h6><b>Condition Consulted: </b>{item.conditionConsulted}</h6>
+                                <b>Specialisation: </b> {item.specialisationName} <br />
+                                <b>Years of experience: </b> {item.year} years<br />
+                                <b>Qualifications: </b> {item.qualifications}<br />
+                                <b>Condition Consulted: </b><br />{item.conditionConsulted}
                             </Card.Text>
                         </Card.Body>
 

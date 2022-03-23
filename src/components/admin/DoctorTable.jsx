@@ -119,9 +119,9 @@ function DoctorTable() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="formDocSpec" >
+                        <Form.Group className="mb-3" controlId="addDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
-                            <Form.Select aria-label="Default select example" id="addDocSpec">
+                            <Form.Select aria-label="Default select example">
                                 <option>Open this select menu</option>
                                 {
                                     specialismItems.map(specialism => (
@@ -130,29 +130,29 @@ function DoctorTable() {
                                 }
                             </Form.Select>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocName" >
+                        <Form.Group className="mb-3" controlId="addDocFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your full name" id="addDocFullName"/>
+                            <Form.Control type="text" placeholder="Enter your full name" />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="addDocYear" >
                             <Form.Label>Year of Experience</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Year of Experience" id="addDocYear"/>
+                            <Form.Control type="text" placeholder="Enter Year of Experience"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="addDocQualification" >
                             <Form.Label>Qualifications</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Qualifications" id="addDocQualification"/>
+                            <Form.Control type="text" placeholder="Enter Qualifications"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="addDocCondition" >
                             <Form.Label>Condition Consulted</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Year of Experience" id="addDocCondition"/>
+                            <Form.Control type="text" placeholder="Enter Year of Experience"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formUsername" >
+                        <Form.Group className="mb-3" controlId="addDocUsername" >
                             <Form.Label>Preferred Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your preferred Username" id="addDocUsername"/>
+                            <Form.Control type="text" placeholder="Enter your preferred Username" autoComplete="username"/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Group className="mb-3" controlId="addDocPassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="addDocPassword"/>
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="new-password"/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -177,9 +177,9 @@ function DoctorTable() {
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control type="text" defaultValue={editModalInfo.doctorName} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocSpec" >
+                        <Form.Group className="mb-3" controlId="updateDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
-                            <Form.Select aria-label="Default select example" id="updateDocSpec">
+                            <Form.Select aria-label="Default select example">
                                 <option value={editModalInfo.specialisationID}>{editModalInfo.specialisationName} (Default)</option>
                                 {
                                     specialismItems.map(specialism => (
@@ -188,21 +188,21 @@ function DoctorTable() {
                                 }
                             </Form.Select>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="updateDocYear" >
                             <Form.Label>Year of Experience</Form.Label>
-                            <Form.Control type="text" id="updateDocYear" defaultValue={editModalInfo.year} />
+                            <Form.Control type="text" defaultValue={editModalInfo.year} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="updateDocQualification" >
                             <Form.Label>Qualifications</Form.Label>
-                            <Form.Control as="textarea" rows={3} id="updateDocQualification" defaultValue={editModalInfo.qualifications} />
+                            <Form.Control as="textarea" rows={3} defaultValue={editModalInfo.qualifications} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="updateDocCondition" >
                             <Form.Label>Condition Consulted</Form.Label>
-                            <Form.Control as="textarea" rows={7} id="updateDocCondition" defaultValue={editModalInfo.conditionConsulted} />
+                            <Form.Control as="textarea" rows={7} defaultValue={editModalInfo.conditionConsulted} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Group className="mb-3" controlId="updateDocPassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updateDocPassword" defaultValue={editModalInfo.password} />
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="update-password" defaultValue={editModalInfo.password} />
                         </Form.Group>
                     </Form>
 

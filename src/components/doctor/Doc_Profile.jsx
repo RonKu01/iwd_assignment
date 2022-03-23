@@ -42,7 +42,6 @@ function Doc_Profile() {
         conditionConsulted = item.conditionConsulted
     })
 
-    console.log(doctorName);
 
     const [specialismItems, setSpecialismItems] = useState([])
     useEffect(() =>{
@@ -99,13 +98,13 @@ function Doc_Profile() {
                     <Form>
 
                         <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={loginID} />
-                        <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Group className="mb-3" controlId="updateFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" id="updateFullName" defaultValue={doctorName} readonly />
+                            <Form.Control type="text" defaultValue={doctorName} readOnly />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocSpec" >
+                        <Form.Group className="mb-3" controlId="updateDocSpec" >
                             <Form.Label>Specialisation</Form.Label>
-                            <Form.Select aria-label="Default select example" id="updateDocSpec">
+                            <Form.Select aria-label="Default select example">
                                 <option value={specialisationID}>{specialisationName} (Default)</option>
                                 {
                                     specialismItems.map(specialism => (
@@ -114,21 +113,21 @@ function Doc_Profile() {
                                 }
                             </Form.Select>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocYear" >
+                        <Form.Group className="mb-3" controlId="updateDocYear" >
                             <Form.Label>Year of Experience</Form.Label>
-                            <Form.Control type="text" id="updateDocYear" defaultValue={year} />
+                            <Form.Control type="text" defaultValue={year} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocQualification" >
+                        <Form.Group className="mb-3" controlId="updateDocQualification" >
                             <Form.Label>Qualifications</Form.Label>
-                            <Form.Control as="textarea" rows={3} id="updateDocQualification" defaultValue={qualifications} />
+                            <Form.Control as="textarea" rows={3} defaultValue={qualifications} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formDocCondition" >
+                        <Form.Group className="mb-3" controlId="updateDocCondition" >
                             <Form.Label>Condition Consulted</Form.Label>
-                            <Form.Control as="textarea" rows={5} id="updateDocCondition" defaultValue={conditionConsulted} />
+                            <Form.Control as="textarea" rows={5}  defaultValue={conditionConsulted} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Group className="mb-3" controlId="updateDocPassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updateDocPassword" defaultValue={password} />
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="update-password" defaultValue={password} />
                         </Form.Group>
                         {/*<Form.Group className="mb-3" controlId="formCheckbox" >*/}
                         {/*    <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />*/}
