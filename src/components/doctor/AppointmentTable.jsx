@@ -11,6 +11,8 @@ import Axios from "axios";
 import moment from "moment";
 import StartMeeting from "./StartMeeting";
 
+import "./doctor_appointment.scss";
+
 function AppointmentTable() {
 
     const [patItems, setPatItems] = useState([])

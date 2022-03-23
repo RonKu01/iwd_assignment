@@ -11,6 +11,8 @@ import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
 
+import "./patient.scss";
+
 function PatientTable() {
 
     const [patItems, setPatItems] = useState([])
