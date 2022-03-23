@@ -81,17 +81,17 @@ function Patient_Profile() {
                 <div className="pt-1">
                     <Form>
                         <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={loginID} />
-                        <Form.Group className="mb-3" controlId="formFullName" >
+                        <Form.Group className="mb-3" controlId="updateFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" id="updateFullName" defaultValue={patName} readOnly />
+                            <Form.Control type="text" defaultValue={patName} readOnly />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAddress" >
+                        <Form.Group className="mb-3" controlId="updateAddress" >
                             <Form.Label>Address</Form.Label>
-                            <Form.Control as="textarea" rows={3} id="updateAddress" defaultValue={patAddress} />
+                            <Form.Control as="textarea" rows={3} defaultValue={patAddress} />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formPassword" >
+                        <Form.Group className="mb-3" controlId="updatePassword" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" id="updatePassword" defaultValue={password} />
+                            <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="update-password" defaultValue={password} />
                         </Form.Group>
                         {/*<Form.Group className="mb-3" controlId="formCheckbox" >*/}
                         {/*    <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />*/}

@@ -95,10 +95,9 @@ function View_Appointment() {
                         <Form>
                             <Form.Control type="hidden" id="updateAppointmentID"
                                           defaultValue={editModalInfo.appointmentID}/>
-                            <Form.Group className="mb-3" controlId="formPatName">
+                            <Form.Group className="mb-3" controlId="updateFullName">
                                 <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter your full name" id="updateFullName"
-                                              defaultValue={editModalInfo.patName} readOnly/>
+                                <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.patName} readOnly/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formAppointmentType">
                                 <Form.Label>Appointment Type</Form.Label>
@@ -178,7 +177,7 @@ function View_Appointment() {
 
                     <h1 className="h1 mb-3">Appointment Table </h1>
                     {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
-                    <ToolkitProvider bootstrap4={true} keyField="patID" data={ patItems } columns={ columns } search>
+                    <ToolkitProvider bootstrap4={true} keyField="appointmentID" data={ patItems } columns={ columns } search>
                         {
                             props => (
                                 <div>
