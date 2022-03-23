@@ -1,12 +1,7 @@
 export const MenuItems = [
     {
-        title: 'Doctor',
-        url: '/doctor',
-        cName: 'nav-links'
-    },
-    {
-        title: 'Patient',
-        url: '/patient',
+        title: 'Home',
+        url: '/dashboard_admin',
         cName: 'nav-links'
     },
     {

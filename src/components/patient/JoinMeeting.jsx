@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {MeetingConsumer, MeetingProvider, useConnection, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
+import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
 import Axios from "axios";
 
 function JoinMeeting() {
@@ -60,15 +60,6 @@ function JoinMeeting() {
         while (arr.length) newArr.push(arr.splice(0, 3));
         return newArr;
     };
-
-    const { connection } = useConnection("<connection-id>", {
-        onMeeting: {
-            // This event will be emitted to all participants of Meeting B
-            onChatMessage: ({ message, participantId }) => {
-                alert(`${participantId} says: ${message}`);
-            },
-        },
-    });
 
     function MeetingGrid(props) {
         const [joined, setJoined] = useState(false)
