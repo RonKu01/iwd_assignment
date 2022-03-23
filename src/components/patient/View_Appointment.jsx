@@ -10,6 +10,7 @@ import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
 import Navbar from "../navbar/Navbar_Patient";
+import "./view_appointment.scss";
 
 function View_Appointment() {
 
