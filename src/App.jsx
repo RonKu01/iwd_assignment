@@ -28,12 +28,12 @@ import Patient_Profile from './components/patient/Patient_Profile';
 import Medical_Summary from './components/patient/medical_summary';
 import Book_Appointment from './components/patient/book_appointment';
 import Doc_Profile from "./components/doctor/Doc_Profile";
-import Consultation_Summary from './components/consultation/Consultation_Summary'
 import Specialist_List from './components/specialism/Specialist_List';
 import Appointment from "./components/doctor/Appointment";
 import View_Appointment from "./components/patient/View_Appointment";
 import StartMeeting from "./components/doctor/StartMeeting";
 import JoinMeeting from "./components/patient/JoinMeeting";
+import Add_Consultation_Summary from './components/doctor/Add_Consultation_Summary';
 
 class App extends Component {
     render() {
@@ -70,7 +70,8 @@ class App extends Component {
                 <Route path="/view_appointment" element={<View_Appointment/>} />
 
                 <Route path="/start_meeting" element={<StartMeeting />} />
-                    <Route path="/join_meeting" element={<JoinMeeting />} />
+                <Route path="/join_meeting" element={<JoinMeeting />} />
+                <Route path="/add_consultation_summary" element={<Add_Consultation_Summary />} />
             </Routes>
         );
     }

@@ -84,12 +84,19 @@ function StartMeeting() {
             setJoined(true)
             join()
         }
+
+        const leftMeeting = () => {
+            if (window.confirm("Do you want to leave meeting?") === true) {
+                window.location.href = "/add_consultation_summary"
+            }
+        }
+
         return (
             <div>
                 {joined ?
                     (
                         <div >
-                            <button  onClick={leave}>
+                            <button  onClick={leftMeeting}>
                                 Leave
                             </button>
                             <button  onClick={toggleMic}>

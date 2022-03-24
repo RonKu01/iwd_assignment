@@ -128,6 +128,10 @@ function AppointmentTable() {
                                 <Form.Label>Time</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
                             </Form.Group>
+                            <Form.Group className="mb-3" controlId="formPurpose">
+                                <Form.Label>Purpose of Visit</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.purpose} readOnly/>
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="formStatus">
                                 <Form.Label>Status</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
@@ -135,8 +139,8 @@ function AppointmentTable() {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={updateBtn} data-value1="Decline">Decline</Button>
                         <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                        <Button variant="danger" onClick={updateBtn} data-value1="Decline">Decline</Button>
                         <Button variant="primary" onClick={updateBtn} data-value1="Accept">Accept</Button>
                         {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
                     </Modal.Footer>
@@ -175,6 +179,10 @@ function AppointmentTable() {
             dataField: 'appointmentTime',
             text: 'Time'
         },
+        {
+            dataField: 'purpose',
+            text: 'Purpose'
+          },
         {
           dataField: 'status',
           text: 'Status'

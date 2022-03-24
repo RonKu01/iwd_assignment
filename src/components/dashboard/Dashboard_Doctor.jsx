@@ -41,7 +41,7 @@ function Dashboard_Doctor() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Link className="link-nostyle" to={"/view_appointment"}>
+                        <Link className="link-nostyle" to={"/add_consultation_summary"}>
                             <Card.Img variant="top"  height="180" />
                             <Card.Body>
                                 <Card.Title>View Consultation</Card.Title>
