@@ -29,7 +29,7 @@ function Specialist_List() {
                         <Col lg={true} key={index}>
                             <Card className="card-new">
                                 <Link className="link-nostyle" to={"/" + item.specialisationName}>
-                                    <Card.Img variant="top"  height="180" />
+                                    <Card.Img variant="top"  height="180" src={item.image} />
                                     <Card.Body>
                                         <Card.Title>{item.specialisationName}</Card.Title>
                                         <Card.Text>

@@ -434,7 +434,6 @@ app.get("/patient", ( req, res) =>{
     );
 });
 
-
 app.put("/updateStatus",(req, res)=>{
     const status = req.body.status
     const appointmentID = req.body.appointmentID
