@@ -1,6 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
 import Axios from "axios";
+import { blue } from "@material-ui/core/colors";
+import { border, borderRadius, padding } from "@mui/system";
+
 
 function JoinMeeting() {
     const [token, setToken] = useState(null);
@@ -103,10 +106,50 @@ function JoinMeeting() {
                     )
                     : (
                         //Styling for the Chat System (JOIN BUTTON)
-                        <div>Meeting ID : {meetingId}
-                            <button  onClick={joinMeeting}>
+                        <div 
+                           
+                           style={{ 
+                             
+                            background: "#ADD8E6",
+                            margin: "auto",
+                            height: "969px",
+                            width: "1920px",
+                            justifyContent: "center",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)"
+                          
+                           }}> 
+                            <h6 style={{fontSize:"150px",
+                                        justifyContent: "center",  
+                                        alignItems: "center",
+                                        display:"flex",
+                                        paddingTop: "100px" }}>  Welcome </h6>
+
+                           <h1 style={{ justifyContent: "center",  
+                                        alignItems: "center",
+                                        fontSize:"50px",
+                                        display:"flex",
+                                        paddingTop: "100px"
+                                     }}> Your Meeting ID :<br></br> {meetingId} </h1>
+
+                            <div  style={{
+
+                                   padding:"100px",
+                                   justifyContent: "center",  
+                                   alignItems: "center",
+                                   display:"flex",
+                                   paddingTop: "100px",   
+                                   
+                                   }}>
+
+                            <button style={{width: "200px", height:"50px"}} onClick={joinMeeting}>                                  
+
                                 Join
                             </button>
+                            </div>
+
                         </div>
                     )
                 }

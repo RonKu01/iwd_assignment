@@ -80,6 +80,12 @@ export function MeetingDetailsScreen({
                     endAdornment: (
                         <InputAdornment position="end">
                             <Button
+
+                       style={{
+                       marginTop: "10px",
+                       padding : "10px",
+                       width: "100%",
+                        }}
                                 disabled={!meetingId.match("\\w{4}\\-\\w{4}\\-\\w{4}")}
                                 color="primary"
                                 variant="contained"
