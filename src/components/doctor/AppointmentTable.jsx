@@ -9,8 +9,6 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
-import StartMeeting from "./StartMeeting";
-
 import "./doctor_appointment.scss";
 
 function AppointmentTable() {
@@ -214,7 +212,7 @@ function AppointmentTable() {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
-                                    <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
+                                    <BootstrapTable id="doc_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />
                                 </div>
