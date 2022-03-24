@@ -376,7 +376,7 @@ app.post("/registerAppointment", (req, res)=>{
 
 app.get("/getPatListByDoc", ( req, res) =>{
 
-    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ?",
+    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ? ORDER BY appointmentDate ASC",
         [sess_loginId],
         function (err, result) {
             if (err) {

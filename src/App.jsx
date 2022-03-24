@@ -34,6 +34,7 @@ import View_Appointment from "./components/patient/View_Appointment";
 import StartMeeting from "./components/doctor/StartMeeting";
 import JoinMeeting from "./components/patient/JoinMeeting";
 import Add_Consultation_Summary from './components/doctor/Add_Consultation_Summary';
+import Consultation_Table from './components/consultation/Consultation_Table';
 
 class App extends Component {
     render() {
@@ -72,6 +73,8 @@ class App extends Component {
                 <Route path="/start_meeting" element={<StartMeeting />} />
                 <Route path="/join_meeting" element={<JoinMeeting />} />
                 <Route path="/add_consultation_summary" element={<Add_Consultation_Summary />} />
+                <Route path="/consultation_table" element={<Consultation_Table />} />
+
             </Routes>
         );
     }

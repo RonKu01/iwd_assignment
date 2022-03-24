@@ -31,7 +31,7 @@ function Dashboard_Doctor() {
                         <Link className="link-nostyle" to={"/appointment"}>
                             <Card.Img variant="top" height="180" />
                             <Card.Body>
-                                <Card.Title>View Appointment</Card.Title>
+                                <Card.Title>View My Appointment</Card.Title>
                                 <Card.Text>
                                     Click here to view your appointment!
                                 </Card.Text>
@@ -41,10 +41,10 @@ function Dashboard_Doctor() {
                 </Col>
                 <Col lg={true}>
                     <Card className="card-new">
-                        <Link className="link-nostyle" to={"/add_consultation_summary"}>
+                        <Link className="link-nostyle" to={"/consultation_table"}>
                             <Card.Img variant="top"  height="180" />
                             <Card.Body>
-                                <Card.Title>View Consultation</Card.Title>
+                                <Card.Title>View My Consultation</Card.Title>
                                 <Card.Text>
                                     Click here to view your consultation!
                                 </Card.Text>
