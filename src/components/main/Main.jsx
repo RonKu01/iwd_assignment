@@ -12,7 +12,7 @@ class Main extends Component{
                     <Card className="card">
                         <Card.Body className="card-body">
                             <Card.Text className="title-text">
-                                Welcome to <br/>MedCare
+                                Welcome to MedCare
                             </Card.Text>
                             <Button variant="primary" href="/login">Login Here!    </Button> <Button variant="primary" href="/register">Register Now!</Button>
                         </Card.Body>

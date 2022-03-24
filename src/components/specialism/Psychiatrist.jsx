@@ -113,7 +113,6 @@ function Psychiatrist() {
         {doctorList.map((item, index) =>{
             return(
                 <Card key={index} style={{ width: '80%', height: 'auto'}}>
-                  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
                   <Card.Body>
                     <Card.Title>{item.doctorName}</Card.Title>
                     <Card.Text>

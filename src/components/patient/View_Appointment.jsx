@@ -184,7 +184,7 @@ function View_Appointment() {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
-                                    <BootstrapTable bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
+                                    <BootstrapTable id="patient_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />
                                 </div>
