@@ -1,9 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
 import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
-import Axios from "axios";
-import { blue } from "@material-ui/core/colors";
-import { border, borderRadius, padding } from "@mui/system";
-
 
 function JoinMeeting() {
     const [token, setToken] = useState(null);
@@ -144,12 +140,10 @@ function JoinMeeting() {
                                    
                                    }}>
 
-                            <button style={{width: "200px", height:"50px"}} onClick={joinMeeting}>                                  
-
+                            <button style={{width: "200px", height:"50px"}} onClick={joinMeeting}>
                                 Join
                             </button>
                             </div>
-
                         </div>
                     )
                 }
@@ -169,15 +163,15 @@ function JoinMeeting() {
     }
 
     function JoinScreen() {
+
+        const backBtn = () => {
+            window.location.href = "/view_appointment"
+        }
+
         return (
             <div>
-                <input type="text" placeholder="Enter Meeting Id" defaultValue={meetingId} />
-                <button  onClick={getMeetingAndToken}>
-                    Join
-                </button>
-                <button  onClick={getMeetingAndToken}>
-                    Create Meeting
-                </button>
+                <p>Meeting havent started yet. Please wait until the meeting period and try to join again.</p>
+                <button onClick={backBtn} >Go Back</button>
             </div>
         )
     }
