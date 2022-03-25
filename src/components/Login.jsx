@@ -49,6 +49,7 @@ function Login() {
                     <Form.Group className="mb-3" controlId="formCheckbox" >
                         <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />
                     </Form.Group>
+
                     <div className="d-grid gap-2">
                         <Button variant="primary" className="mb-3" onClick={login}>Login</Button>
                         <Button variant="outline-primary" href="/register">Register Here</Button>

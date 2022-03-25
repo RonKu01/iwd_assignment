@@ -44,9 +44,9 @@ function Dashboard_Doctor() {
                         <Link className="link-nostyle" to={"/consultation_table"}>
                             <Card.Img variant="top"  height="180" />
                             <Card.Body>
-                                <Card.Title>View My Consultation</Card.Title>
+                                <Card.Title>View Consultation History</Card.Title>
                                 <Card.Text>
-                                    Click here to view your consultation!
+                                    Click here to view Consultation History!
                                 </Card.Text>
                             </Card.Body>
                         </Link>

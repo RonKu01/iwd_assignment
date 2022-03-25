@@ -108,12 +108,12 @@ function Dermatologist() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
-
-            <h1 className= "specialList-h1-style">List of Dermatologist Doctors</h1>
+            <div className="pt-lg-5"/>
+            <h1 className="specialList-h1-style" style={{marginLeft : '10%'}}>List of Dermatologist Doctors</h1>
 
         {doctorList.map((item, index) =>{
             return(
-                <Card key={index} style={{ width: '100rem', height: '20rem'}}>
+                <Card key={index} style={{ width: '80%', height: 'auto'}}>
                   <Card.Body>
                     <Card.Title>{item.doctorName}</Card.Title>
                     <Card.Text>

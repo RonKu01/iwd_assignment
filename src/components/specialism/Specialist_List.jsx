@@ -20,10 +20,10 @@ function Specialist_List() {
     return (
         <div className="body-dashboard">
             <Navbar />
+            <div className="pt-lg-5"/>
             <h1 className="specialList-h1-style" style={{marginLeft : '5%'}}>Choose Your Specialist</h1>
 
             <Row xl={3} lg={3}  className="g-1">
-
                 {specialismItems.map((item, index) =>{
                     return(
                         <Col lg={true} key={index}>

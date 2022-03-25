@@ -376,7 +376,22 @@ app.post("/registerAppointment", (req, res)=>{
 
 app.get("/getPatListByDoc", ( req, res) =>{
 
-    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ? ORDER BY appointmentDate ASC",
+    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ? ORDER BY appointmentDate DESC",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
+app.get("/getConsultHistoryByDoc", ( req, res) =>{
+
+    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID INNER JOIN consultation ON consultation.appointmentID = appointment.appointmentID WHERE doctor.loginId = ? ORDER BY appointmentDate DESC",
         [sess_loginId],
         function (err, result) {
             if (err) {
@@ -390,8 +405,7 @@ app.get("/getPatListByDoc", ( req, res) =>{
 });
 
 app.get("/getPatAppointment", ( req, res) =>{
-
-    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID  WHERE patient.loginId = ?",
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID INNER JOIN doctor ON appointment.doctorID = doctor.doctorID  WHERE patient.loginId = ? ORDER BY appointmentDate DESC",
         [sess_loginId],
         function (err, result) {
             if (err) {
@@ -406,7 +420,7 @@ app.get("/getPatAppointment", ( req, res) =>{
 
 app.get("/getPatAppointmentByAppointmentID", ( req, res) =>{
 
-    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID  WHERE patient.loginId = ? AND appointment.appointmentID = ?",
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID  WHERE patient.loginId = ? AND appointment.appointmentID = ? ORDER BY appointmentDate DESC",
         [sess_loginId, sess_appointmentId],
         function (err, result) {
             if (err) {
@@ -420,8 +434,7 @@ app.get("/getPatAppointmentByAppointmentID", ( req, res) =>{
 });
 
 app.get("/patient", ( req, res) =>{
-
-    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ?",
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID WHERE doctor.loginId = ? ORDER BY appointmentDate DESC",
         [sess_loginId],
         function (err, result) {
             if (err) {
@@ -489,7 +502,7 @@ app.get("/getMeetingDetails", (req, res) => {
 app.post("/getMeetingDetails", ( req, res) =>{
     const appointmentId = req.body.appointmentId
 
-    db.query("SELECT * FROM appointment WHERE appointmentID = ?",
+    db.query("SELECT * FROM appointment WHERE appointmentID = ? ORDER BY appointmentDate DESC",
         [appointmentId],
         (err, result) => {
             if (err){
@@ -500,6 +513,22 @@ app.post("/getMeetingDetails", ( req, res) =>{
                 res.send(result);
             }else{
                 res.send({message: "Appointment doesn't exist!"})
+            }
+        }
+    );
+});
+
+app.post("/addConsultation", ( req, res) =>{
+    const appointmentId = sess_appointmentId;
+    const dignosis = req.body.diagnosis;
+    const treatment = req.body.medication;
+
+    db.query("INSERT INTO consultation (appointmentID, dignosis, treatment) VALUES (?, ?, ?)",
+        [appointmentId, dignosis, treatment], (err, result)=> {
+            if (err) {
+                res.send({message: "System Error: Failed to insert!"})
+            } else {
+                res.send({message: "Submit Successfully!"})
             }
         }
     );

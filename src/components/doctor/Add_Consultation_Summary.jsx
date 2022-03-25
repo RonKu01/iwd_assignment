@@ -1,42 +1,52 @@
-import React from "react";
+import React, {useState} from "react";
 import Navbar from "../navbar/Navbar_Doctor";
 import "../dashboard/dashboard.scss";
 import {Card, Col, Row, Form, Button} from "react-bootstrap";
+import "./add_consultation.scss";
+import Axios from "axios";
 
 function Add_Consultation_Summary() {
+
+    const [diagnosis, setDiagnosis] = useState("");
+    const [medication, setMedication] = useState("");
+
+    const submitMedicalReport =()=> {
+        Axios.post("http://localhost:3005/addConsultation",
+            {diagnosis: diagnosis, medication: medication,
+            }).then((response)=> {
+            alert("Submitted Successfully!");
+            setTimeout(() => { window.location.href = "/dashboard_doctor"; }, 300);
+        });
+    };
+
     return (
-        <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
+        <div className="body-dashboard" >
             <Navbar />
+            <main className="main-container">
+                <h1 className="specialList-h1-style">Consultation Summary</h1>
+                <div className="pt-lg-1"/>
 
-            <h1 style={{padding: '40px', color: 'blue'}}>Consultation Summary</h1>
+                <h6>Patients Information</h6>
+                <h3>Medical Report</h3>
+                <div className="pt-lg-3"/>
 
-            <h6 style={{textAlign: 'center', color: 'black'}}>Patients Information</h6>
-            
-            <Form style={{padding: '10px 150px 10px 150px'}}>
- 
-
- 
-  <h3 style={{textAlign: 'center', color: 'black'}}>Medical Report</h3>
-
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridDiagnosis">
-      <Form.Label>Diagnosis </Form.Label>
-      <Form.Control type="FirstName" placeholder="Patient is diagnosed with the following medical problem" style={{width: '1300px', height: '100px'}}/>
-    </Form.Group>
-  </Row>
-
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridMedication">
-      <Form.Label>Medication/Treatments </Form.Label>
-      <Form.Control type="Medication" placeholder="Medication/Treatment for the patients is the following" style={{width: '1300px', height: '100px'}} />
-    </Form.Group>
-
-  </Row>
-
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
+                <Form>
+                    <Form.Group className="mb-3" as={Col} controlId="formGridDiagnosis">
+                        <Form.Label>Diagnosis </Form.Label>
+                        <Form.Control as="textarea" rows={5} placeholder="Patient is diagnosed with the following medical problem" onChange={(e) =>{setDiagnosis(e.target.value);}} />
+                    </Form.Group>
+                    <div className="pt-3"/>
+                    <Form.Group className="mb-3" as={Col} controlId="formGridMedication">
+                        <Form.Label>Medication/Treatments </Form.Label>
+                        <Form.Control as="textarea" rows={5} placeholder="Medication/Treatment for the patients is the following" onChange={(e) =>{setMedication(e.target.value);}} />
+                    </Form.Group>
+                    <div className="d-grid gap-2">
+                        <Button variant="primary" onClick={submitMedicalReport}>
+                            Submit
+                        </Button>
+                    </div>
+                </Form>
+            </main>
         </div>
     );
 }

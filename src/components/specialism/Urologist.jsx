@@ -107,7 +107,8 @@ function Urologist() {
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
             <Navbar />
-            <h1 className= "specialList-h1-style">List of Urologist Doctors</h1>
+            <div className="pt-lg-5"/>
+            <h1 className="specialList-h1-style" style={{marginLeft : '10%'}}>List of Urologist Doctors</h1>
 
         {doctorList.map((item, index) =>{
             return(

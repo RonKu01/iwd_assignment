@@ -82,7 +82,7 @@ function View_Appointment() {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={closeBtn}>Close</Button>
-                        <Button variant="primary" onClick={startMeeting} data-value1="Accept">Start Meeting</Button>
+                        <Button variant="primary" onClick={startMeeting} data-value1="Accept">Join Meeting</Button>
                     </Modal.Footer>
                 </Modal>
             )
@@ -141,6 +141,10 @@ function View_Appointment() {
             text: 'Full Name',
         },
         {
+            dataField: 'doctorName',
+            text: 'Doctor Name',
+        },
+        {
             dataField: 'appointmentType',
             text: 'Appointment Type'
         },
@@ -151,6 +155,10 @@ function View_Appointment() {
         {
             dataField: 'appointmentTime',
             text: 'Time'
+        },
+        {
+            dataField: 'purpose',
+            text: 'Purpose'
         },
         {
             dataField: 'status',
