@@ -51,7 +51,7 @@ function Login() {
                     </Form.Group>
 
                     <div className="d-grid gap-2">
-                        <Button variant="primary" className="mb-3" onClick={login}>Login</Button>
+                        <Button variant="primary" className="mb-2" onClick={login}>Login</Button>
                         <Button variant="outline-primary" href="/register">Register Here</Button>
                     </div>
                 </Form>

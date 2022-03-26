@@ -66,7 +66,6 @@ function Register() {
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button variant="primary" onClick={register}>Register</Button>
-                    <Button variant="outline-primary" className="mb-3" type="submit">Login Here</Button>
                 </div>
             </Form>
         </main>

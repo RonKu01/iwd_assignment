@@ -15,7 +15,7 @@ class Main extends Component{
                                 Welcome to <br/> MedCare
                             </Card.Text>
                             <div className="pt-lg-3"/>
-                            <Button variant="primary" href="/login">Login Here!    </Button> <Button variant="primary" href="/register">Register Now!</Button>
+                            <Button variant="primary" href="/login">Login Here!    </Button> <Button variant="outline-primary" href="/register">Register Now!</Button>
                         </Card.Body>
                     </Card>
                 </main>
