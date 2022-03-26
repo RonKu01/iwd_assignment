@@ -88,7 +88,7 @@ function Urologist() {
         let purpose = document.getElementById('addPurpose').value;
         let docID = doctorID;
 
-        prefDate = moment(prefDate).utc().format('YYYY-MM-DD')
+        prefDate = moment(prefDate).add(2, 'day');
 
         Axios.post("http://localhost:3005/registerAppointment",
             {
