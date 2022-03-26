@@ -32,7 +32,7 @@ function Urologist() {
       setShowAddModal(handleShowAdd);
   }
 
-  const AddModalContent = () => {
+    const AddModalContent = () => {
     const [valueDate, onChangeDate] = useState("" );
     const [value, onChange] = useState("");
 
@@ -75,6 +75,7 @@ function Urologist() {
         </Modal>
     )
 }
+
     const onClick = (e) =>{
         const value1 = e.currentTarget.getAttribute("data-value1")
         setDoctorID(value1);
@@ -102,7 +103,6 @@ function Urologist() {
         });
         handleCloseAdd();
     };
-
 
     return (
         <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>

@@ -10,11 +10,11 @@ class Main extends Component{
                 <Navbar />
                 <main>
                     <Card className="card" id="main">
-                        <Card.Body className="card-body">
+                        <Card.Body className="card-body" id="main-body">
                             <Card.Text className="title-text">
-                                Welcome to MedCare
+                                Welcome to <br/> MedCare
                             </Card.Text>
-                            <div className="pt-lg-5"/>
+                            <div className="pt-lg-3"/>
                             <Button variant="primary" href="/login">Login Here!    </Button> <Button variant="primary" href="/register">Register Now!</Button>
                         </Card.Body>
                     </Card>
