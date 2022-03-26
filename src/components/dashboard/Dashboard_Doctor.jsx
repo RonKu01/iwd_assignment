@@ -27,6 +27,19 @@ function Dashboard_Doctor() {
         <div className="centerDiv">
             <Row xl={3} lg={3} className="g-1">
                 <Col lg={true}>
+                    <Card className="card-new">
+                        <Link className="link-nostyle" to={"/doc_profile"}>
+                            <Card.Img variant="top"  height="180" />
+                            <Card.Body>
+                                <Card.Title>Update Profile</Card.Title>
+                                <Card.Text>
+                                    Click here to update your profile!
+                                </Card.Text>
+                            </Card.Body>
+                        </Link>
+                    </Card>
+                </Col>
+                <Col lg={true}>
                     <Card className="card-new ">
                         <Link className="link-nostyle" to={"/appointment"}>
                             <Card.Img variant="top" height="180" />
@@ -47,19 +60,6 @@ function Dashboard_Doctor() {
                                 <Card.Title>View Consultation History</Card.Title>
                                 <Card.Text>
                                     Click here to view Consultation History!
-                                </Card.Text>
-                            </Card.Body>
-                        </Link>
-                    </Card>
-                </Col>
-                <Col lg={true}>
-                    <Card className="card-new">
-                        <Link className="link-nostyle" to={"/doc_profile"}>
-                            <Card.Img variant="top"  height="180" />
-                            <Card.Body>
-                                <Card.Title>Update Profile</Card.Title>
-                                <Card.Text>
-                                    Click here to update your profile!
                                 </Card.Text>
                             </Card.Body>
                         </Link>
