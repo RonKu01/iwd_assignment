@@ -10,7 +10,7 @@ import axios from "axios";
 import Axios from "axios";
 import moment from "moment";
 import Navbar from "../navbar/Navbar_Patient";
-import "./view_appointment.scss";
+import "./medical_summary.scss";
 
 function Medical_Summary() {
 
@@ -60,11 +60,14 @@ function Medical_Summary() {
             </Modal.Header>
             <Modal.Body>
               <Form>
-                <Form.Control type="hidden" id="updateAppointmentID"
-                              defaultValue={editModalInfo.appointmentID}/>
+                <Form.Control type="hidden" id="updateAppointmentID" defaultValue={editModalInfo.appointmentID}/>
                 <Form.Group className="mb-3" controlId="updateFullName">
                   <Form.Label>Full Name</Form.Label>
                   <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.patName} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="updateDoctorName">
+                  <Form.Label>Doctor Name</Form.Label>
+                  <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.doctorName} readOnly/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formAppointmentType">
                   <Form.Label>Appointment Type</Form.Label>
@@ -78,9 +81,13 @@ function Medical_Summary() {
                   <Form.Label>Time</Form.Label>
                   <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formStatus">
-                  <Form.Label>Status</Form.Label>
-                  <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
+                <Form.Group className="mb-3" controlId="formDiagnosis">
+                  <Form.Label>Diagnosis</Form.Label>
+                  <Form.Control type="text" defaultValue={editModalInfo.dignosis} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formTreatment">
+                  <Form.Label>Treatment</Form.Label>
+                  <Form.Control type="text" defaultValue={editModalInfo.treatment} readOnly/>
                 </Form.Group>
               </Form>
             </Modal.Body>
@@ -158,7 +165,8 @@ function Medical_Summary() {
                     <div>
                       <SearchBar { ...props.searchProps } />
                       <hr />
-                      <BootstrapTable id="patient_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
+                      <h6>*click on the row you wish to view*</h6>
+                      <BootstrapTable id="medical_summary_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                       { ...props.baseProps }
                       />
                     </div>
