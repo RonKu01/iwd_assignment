@@ -98,7 +98,11 @@ function View_Appointment() {
                                           defaultValue={editModalInfo.appointmentID}/>
                             <Form.Group className="mb-3" controlId="updateFullName">
                                 <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.patName} readOnly/>
+                                <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="updateDoctorName">
+                                <Form.Label>Doctor Name</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.doctorName} readOnly/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formAppointmentType">
                                 <Form.Label>Appointment Type</Form.Label>
@@ -111,6 +115,10 @@ function View_Appointment() {
                             <Form.Group className="mb-3" controlId="formAppointmentTime">
                                 <Form.Label>Time</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formPurpose">
+                                <Form.Label>Purpose of Meeting</Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.purpose} readOnly/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formStatus">
                                 <Form.Label>Status</Form.Label>
@@ -192,6 +200,7 @@ function View_Appointment() {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
+                                    <h6>*click on the row you wish to view*</h6>
                                     <BootstrapTable id="patient_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />

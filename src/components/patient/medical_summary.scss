@@ -1,4 +1,4 @@
-#patient_appointment_table {
+#medical_summary_table {
   table-layout: auto;
 
   @media
@@ -46,7 +46,7 @@
     td:nth-of-type(3):before { content: "Appointment Type"; }
     td:nth-of-type(4):before { content: "Date"; }
     td:nth-of-type(5):before { content: "Time"; }
-    td:nth-of-type(6):before { content: "Purpose"; }
-    td:nth-of-type(7):before { content: "Status"; }
+    td:nth-of-type(6):before { content: "Diagnosis"; }
+    td:nth-of-type(7):before { content: "Treatment"; }
   }
 }
