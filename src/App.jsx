@@ -34,7 +34,7 @@ import View_Appointment from "./components/patient/View_Appointment";
 import StartMeeting from "./components/doctor/StartMeeting";
 import JoinMeeting from "./components/patient/JoinMeeting";
 import Add_Consultation_Summary from './components/doctor/Add_Consultation_Summary';
-import Consultation_Table from './components/consultation/Consultation_Table';
+import Consultation_Table from './components/doctor/Consultation_Table';
 
 class App extends Component {
     render() {

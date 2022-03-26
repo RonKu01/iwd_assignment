@@ -191,7 +191,6 @@ function View_Appointment() {
             <Card className="fixed-card-new">
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
-
                     <h1 className="h1 mb-3">Appointment Table </h1>
                     {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
                     <ToolkitProvider bootstrap4={true} keyField="appointmentID" data={ patItems } columns={ columns } search>
@@ -211,6 +210,7 @@ function View_Appointment() {
                 </Card.Body>
             </Card>
 
+            <div className="mb-2">&nbsp;</div>
             {showEdit ? <EditModalContent /> : null}
         </div>
     );

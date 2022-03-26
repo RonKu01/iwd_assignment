@@ -225,6 +225,7 @@ function PatientTable() {
                 </Card.Body>
             </Card>
 
+            <div className="mb-2">&nbsp;</div>
             {showEdit ? <EditModalContent /> : null}
             {showAdd ? <AddModalContent /> : null}
         </div>

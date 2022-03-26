@@ -222,7 +222,7 @@ function AppointmentTable() {
                     </ToolkitProvider>
                 </Card.Body>
             </Card>
-
+            <div className="mb-2">&nbsp;</div>
             {showEdit ? <EditModalContent /> : null}
         </div>
     );

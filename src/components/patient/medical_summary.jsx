@@ -157,8 +157,7 @@ function Medical_Summary() {
           <Card.Body style={pat_card}>
             {showAlert ? <AlertModalContent /> : null}
 
-            <h1 className="h1 mb-3">Appointment Table </h1>
-            {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
+            <h1 className="h1 mb-3">Medical History </h1>
             <ToolkitProvider bootstrap4={true} keyField="appointmentID" data={ patItems } columns={ columns } search>
               {
                 props => (
@@ -176,6 +175,7 @@ function Medical_Summary() {
           </Card.Body>
         </Card>
 
+        <div className="mb-2">&nbsp;</div>
         {showEdit ? <EditModalContent /> : null}
       </div>
   );
