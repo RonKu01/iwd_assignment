@@ -17,8 +17,8 @@ $assetsPath: "../../assets";
   opacity: 1;
 
   @media screen and (max-width: 1024px) {
-    margin: 10% auto 10%;
     width: 80%;
+    margin: 10% auto 10%;
   }
 }
 
@@ -48,8 +48,15 @@ $assetsPath: "../../assets";
 
   @media screen and (max-width: 1024px) {
     width: 85%;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 5%;
+    margin-bottom: 10%;
     padding: 1rem;
+  }
+}
+
+#main {
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+    margin: 40% auto 10%;
   }
 }

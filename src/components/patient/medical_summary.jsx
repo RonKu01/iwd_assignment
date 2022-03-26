@@ -1,171 +1,176 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import axios from "axios";
+import Axios from "axios";
+import moment from "moment";
 import Navbar from "../navbar/Navbar_Patient";
-import "../dashboard/dashboard.scss";
-import {Card, Col, Row, Form, Button} from "react-bootstrap";
-import image1 from "../../assets/login_page.jpg";
+import "./view_appointment.scss";
 
 function Medical_Summary() {
-    return (
-        <div className="body-container" style={{backgroundImage: 'none', backgroundColor: 'white'}}>
-            <Navbar />
 
-            <h1 style={{padding: '40px', color: 'blue'}}>Medical Summary</h1>
+  const [patItems, setPatItems] = useState([])
+  useEffect(() =>{
+    const fetchPostList = async () => {
+      const {data} = await axios('http://localhost:3005/getPatAppointmentDone')
+      for (let i=0; i < data.length; i ++){
+        data[i].patDob = moment(data[i].patDob).utc().format('DD MMM YYYY')
+        data[i].appointmentDate = moment(data[i].appointmentDate).utc().format('DD MMM YYYY')
+      }
+      setPatItems(data)
+    }
+    fetchPostList()
+  }, [setPatItems])
 
-            <h6 style={{textAlign: 'center', color: 'black'}}>Patients Information</h6>
+  const {SearchBar} = Search;
+  const pagination = paginationFactory({
+    sizePerPageList: [{
+      text: '5', value: 5
+    }, {
+      text: '10', value: 10
+    }],
+  });
 
-            <Form style={{padding: '10px 150px 10px 150px'}}>
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridFirstName">
-      <Form.Label>First Name</Form.Label>
-      <Form.Control type="FirstName" placeholder="Enter your first name" />
-    </Form.Group>
+  const [editModalInfo, setEditModalInfo] = useState([]);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const handleCloseEdit = () => setShowEdit(false);
+  const handleShowEdit = () => setShowEdit(true);
 
-    <Form.Group as={Col} controlId="formGridLastName">
-      <Form.Label>Last Name</Form.Label>
-      <Form.Control type="LastName" placeholder="Enter your last name" />
-    </Form.Group>
-  </Row>
- 
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridAge">
-      <Form.Label>Age</Form.Label>
-      <Form.Control type="age" placeholder="Enter your age" />
-    </Form.Group>
+  const [showAlert, setShowAlert] = useState(false);
 
-    <Form.Group as={Col} controlId="formGridBirthDate">
-      <Form.Label>Birth Date</Form.Label>
-      <Form.Control type="BirthDate" placeholder="DD/MM/YYYY" />
-    </Form.Group>
+  const closeBtn =() =>{
+    handleCloseEdit();
+  };
 
-    <Form>
-    <Form.Label>Gender</Form.Label>
+  const toggleTrueFalseEdit = () => {
+    setShowEditModal(handleShowEdit);
+  }
 
-  {['checkbox'].map((type) => (
-    <div key={`inline-${type}`} className="mb-3">
-      <Form.Check
-        inline
-        label="Male"
-        name="groupMale"
-        type={type}
-        id={`inline-${type}-male`}
-      />
-      <Form.Check
-        inline
-        label="Female"
-        name="groupFemale"
-        type={type}
-        id={`inline-${type}-female`}
-      />
-     <Form.Check
-        inline
-        label="Others"
-        name="groupOther"
-        type={type}
-        id={`inline-${type}-Others`}
-      />
-    </div>
-  ))}
-</Form>
-  </Row>
+  const EditModalContent = () => {
+      return (
+          <Modal show={showEdit} onHide={handleCloseEdit}>
+            <Modal.Header closeButton>
+              <Modal.Title>Medical History</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Control type="hidden" id="updateAppointmentID"
+                              defaultValue={editModalInfo.appointmentID}/>
+                <Form.Group className="mb-3" controlId="updateFullName">
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.patName} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formAppointmentType">
+                  <Form.Label>Appointment Type</Form.Label>
+                  <Form.Control type="text" defaultValue={editModalInfo.appointmentType} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formAppointmentDate">
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control type="text" defaultValue={editModalInfo.appointmentDate} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formAppointmentTime">
+                  <Form.Label>Time</Form.Label>
+                  <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formStatus">
+                  <Form.Label>Status</Form.Label>
+                  <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={closeBtn}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+      )
+  }
 
-  <Form.Group className="mb-3" controlId="formGridAddress1">
-    <Form.Label>Address</Form.Label>
-    <Form.Control placeholder="1234 Main St" />
-  </Form.Group>
+  const AlertModalContent = () =>{
+    return(
+        <Alert show={showAlert} variant="success">
+          <Alert.Heading>Success! </Alert.Heading>
+          <p>Updating Appointment... Please Wait!</p>
+        </Alert>
+    )
+  }
 
-  <Form.Group className="mb-3" controlId="formGridAddress2">
-    <Form.Label>Address 2</Form.Label>
-    <Form.Control placeholder="Apartment, studio, or floor" />
-  </Form.Group>
+  const columns = [
+    {
+      dataField: 'patName',
+      text: 'Full Name',
+    },
+    {
+      dataField: 'doctorName',
+      text: 'Doctor Name',
+    },
+    {
+      dataField: 'appointmentType',
+      text: 'Appointment Type'
+    },
+    {
+      dataField: 'appointmentDate',
+      text: 'Date'
+    },
+    {
+      dataField: 'appointmentTime',
+      text: 'Time'
+    },
+    {
+      dataField: 'dignosis',
+      text: 'Diagnosis'
+    },
+    {
+      dataField: 'treatment',
+      text: 'Treatment'
+    },
+  ];
 
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridCity">
-      <Form.Label>City</Form.Label>
-      <Form.Control />
-    </Form.Group>
+  const rowEvents = {
+    onClick: (e, row) => {
+      setEditModalInfo(row)
+      toggleTrueFalseEdit()
+    }
+  };
 
-    <Form.Group as={Col} controlId="formGridState">
-      <Form.Label>State</Form.Label>
-      <Form.Select defaultValue="Choose...">
-        <option>Choose...</option>
-        <option>Kuala Lumpur</option>
-        <option>Penang</option>
-        <option>Selangor</option>
-        <option>Kedah</option>
-        <option>Perak</option>
-        <option>Kelantan</option>
-        <option>Johor</option>
-        <option>Terengganu</option>
-        <option>Malacca</option>
-        <option>Pahang</option>
-        <option>Negeri Sembilan</option>
-        <option>Sabah</option>
-        <option>Perlis</option>
-        <option>Sarawak</option>
-      </Form.Select>
-    </Form.Group>
+  const pat_card = {
+    width: "100%",
+    padding: "2rem"
+  };
 
-    <Form.Group as={Col} controlId="formGridZip">
-      <Form.Label>Zip</Form.Label>
-      <Form.Control />
-    </Form.Group>
-  </Row>
- 
-  <h6 style={{textAlign: 'center', color: 'black'}}>Medical Report</h6>
+  return (
+      <div className="body-dashboard">
+        <Navbar />
+        <Card className="fixed-card-new">
+          <Card.Body style={pat_card}>
+            {showAlert ? <AlertModalContent /> : null}
 
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridDiagnosis">
-      <Form.Label>Diagnosis </Form.Label>
-      <Form.Control type="FirstName" placeholder="Patient is diagnosed with the following medical problem" style={{width: '1300px', height: '100px'}}/>
-    </Form.Group>
+            <h1 className="h1 mb-3">Appointment Table </h1>
+            {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
+            <ToolkitProvider bootstrap4={true} keyField="appointmentID" data={ patItems } columns={ columns } search>
+              {
+                props => (
+                    <div>
+                      <SearchBar { ...props.searchProps } />
+                      <hr />
+                      <BootstrapTable id="patient_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
+                                      { ...props.baseProps }
+                      />
+                    </div>
+                )
+              }
+            </ToolkitProvider>
+          </Card.Body>
+        </Card>
 
-  </Row>
-
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridMedication">
-      <Form.Label>Medication/Treatments </Form.Label>
-      <Form.Control type="Medication" placeholder="Medication/Treatment for the patients is the following" style={{width: '1300px', height: '100px'}} />
-    </Form.Group>
-
-  </Row>
-
-
-
-  <h6 style={{textAlign: 'center', color: 'black'}}>Doctors Information</h6>
-
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridFirstName">
-      <Form.Label>First Name</Form.Label>
-      <Form.Control type="FirstName" placeholder="Enter your first name" />
-    </Form.Group>
-
-    <Form.Group as={Col} controlId="formGridLastName">
-      <Form.Label>Last Name</Form.Label>
-      <Form.Control type="LastName" placeholder="Enter your last name" />
-    </Form.Group>
-  </Row>
- 
-  <Row className="mb-3">
-    <Form.Group as={Col} controlId="formGridMedicalID">
-      <Form.Label>Mediacal ID</Form.Label>
-      <Form.Control type="age" placeholder="Enter your Medical ID" />
-    </Form.Group>
-
-    <Form.Group as={Col} controlId="formGridSpecialisation">
-      <Form.Label>Specialisation</Form.Label>
-      <Form.Control type="Specialisation" placeholder=" Enter your specialisation" />
-    </Form.Group>
-    </Row>
-
-   
-
-
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
-        </div>
-    );
+        {showEdit ? <EditModalContent /> : null}
+      </div>
+  );
 }
 
 export default Medical_Summary;

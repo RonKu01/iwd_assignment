@@ -405,7 +405,21 @@ app.get("/getConsultHistoryByDoc", ( req, res) =>{
 });
 
 app.get("/getPatAppointment", ( req, res) =>{
-    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID INNER JOIN doctor ON appointment.doctorID = doctor.doctorID  WHERE patient.loginId = ? ORDER BY appointmentDate DESC",
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID INNER JOIN doctor ON appointment.doctorID = doctor.doctorID  WHERE patient.loginId = ? AND status != 'Done' ORDER BY appointmentDate DESC",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
+app.get("/getPatAppointmentDone", ( req, res) =>{
+    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID INNER JOIN doctor ON appointment.doctorID = doctor.doctorID INNER JOIN consultation ON consultation.appointmentID = appointment.appointmentID  WHERE patient.loginId = ? AND status = 'Done' ORDER BY appointmentDate DESC",
         [sess_loginId],
         function (err, result) {
             if (err) {
@@ -427,7 +441,6 @@ app.get("/getPatAppointmentByAppointmentID", ( req, res) =>{
                 res.send({err: err})
             }
 
-            // let data = Object.values(JSON.parse(JSON.stringify(result)));
             res.send({ meetingID: result[0].meetingID });
         }
     );
@@ -522,13 +535,22 @@ app.post("/addConsultation", ( req, res) =>{
     const appointmentId = sess_appointmentId;
     const dignosis = req.body.diagnosis;
     const treatment = req.body.medication;
+    const status = "Done";
 
     db.query("INSERT INTO consultation (appointmentID, dignosis, treatment) VALUES (?, ?, ?)",
         [appointmentId, dignosis, treatment], (err, result)=> {
             if (err) {
                 res.send({message: "System Error: Failed to insert!"})
             } else {
-                res.send({message: "Submit Successfully!"})
+                db.query("UPDATE appointment SET status = ? WHERE appointmentID = ?",
+                    [status, appointmentId], (err, result)=>{
+                        if (err){
+                            res.send({message: "System: Failed to update !"});
+                        } else {
+                            res.send({message: "System: Submitted Successfully"});
+                        }
+                    }
+                )
             }
         }
     );

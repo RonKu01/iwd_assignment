@@ -9,7 +9,7 @@ class Main extends Component{
             <div className="body-container">
                 <Navbar />
                 <main>
-                    <Card className="card">
+                    <Card className="card" id="main">
                         <Card.Body className="card-body">
                             <Card.Text className="title-text">
                                 Welcome to MedCare
