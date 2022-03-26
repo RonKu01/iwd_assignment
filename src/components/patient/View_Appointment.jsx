@@ -68,15 +68,15 @@ function View_Appointment() {
             return (
                 <Modal show={showEdit} onHide={handleCloseEdit}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Create Meeting</Modal.Title>
+                        <Modal.Title>Join Meeting</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
                             <Form.Control type="hidden" id="updateAppointmentID"
                                           defaultValue={editModalInfo.appointmentID}/>
                             <Form.Group className="mb-3" controlId="formPatName">
-                                <Form.Label>Join Meeting</Form.Label>
-                                <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
+                                <Form.Label>Join Meeting with </Form.Label>
+                                <Form.Control type="text" defaultValue={editModalInfo.doctorName} readOnly/>
                             </Form.Group>
                         </Form>
                     </Modal.Body>
@@ -94,8 +94,7 @@ function View_Appointment() {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <Form.Control type="hidden" id="updateAppointmentID"
-                                          defaultValue={editModalInfo.appointmentID}/>
+                            <Form.Control type="hidden" id="updateAppointmentID" defaultValue={editModalInfo.appointmentID}/>
                             <Form.Group className="mb-3" controlId="updateFullName">
                                 <Form.Label>Full Name</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
@@ -117,7 +116,7 @@ function View_Appointment() {
                                 <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formPurpose">
-                                <Form.Label>Purpose of Meeting</Form.Label>
+                                <Form.Label>Purpose of Visit</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.purpose} readOnly/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formStatus">
@@ -144,6 +143,10 @@ function View_Appointment() {
     }
 
     const columns = [
+        {
+            dataField: 'appointmentID',
+            text: 'ID',
+        },
         {
             dataField: 'patName',
             text: 'Full Name',

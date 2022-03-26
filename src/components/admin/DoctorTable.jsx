@@ -177,7 +177,7 @@ function DoctorTable() {
                         <Form.Control type ="hidden" id="updateDocLoginID" defaultValue={editModalInfo.loginID} />
                         <Form.Group className="mb-3" controlId="updateFullName" >
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.doctorName} />
+                            <Form.Control type="text" defaultValue={editModalInfo.doctorName} readOnly/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="updateDocSpec" >
                             <Form.Label>Specialisation</Form.Label>

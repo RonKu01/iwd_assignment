@@ -89,7 +89,7 @@ function AppointmentTable() {
                             <Form.Control type="hidden" id="updateAppointmentID"
                                           defaultValue={editModalInfo.appointmentID}/>
                             <Form.Group className="mb-3" controlId="formPatName">
-                                <Form.Label>Create Meeting</Form.Label>
+                                <Form.Label>Meeting with Patient: </Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
                             </Form.Group>
                         </Form>

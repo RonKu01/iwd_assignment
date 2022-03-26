@@ -62,25 +62,17 @@ function Consultation_Table() {
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppointmentType">
-                            <Form.Label>Appointment Type</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.appointmentType} readOnly/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppointmentDate">
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.appointmentDate} readOnly/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formAppointmentTime">
-                            <Form.Label>Time</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
-                        </Form.Group>
                         <Form.Group className="mb-3" controlId="formDignosis">
                             <Form.Label>Dignosis</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.dignosis} readOnly />
+                            <Form.Control as="textarea" rows={3} defaultValue={editModalInfo.dignosis} readOnly />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formTreatment">
                             <Form.Label>Treatment</Form.Label>
-                            <Form.Control type="text" defaultValue={editModalInfo.treatment} readOnly />
+                            <Form.Control as="textarea" rows={3}  defaultValue={editModalInfo.treatment} readOnly />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formFeedback">
+                            <Form.Label>Feedback</Form.Label>
+                            <Form.Control as="textarea" rows={3}  defaultValue={editModalInfo.treatment} readOnly />
                         </Form.Group>
 
                 </Form>

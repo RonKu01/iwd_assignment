@@ -48,6 +48,21 @@ function Medical_Summary() {
     handleCloseEdit();
   };
 
+  const updateFeedback = () =>{
+    let patFeedbackID = document.getElementById('addFeedbackID').value;
+    let patFeedback = document.getElementById('addFeedback').value;
+
+    Axios.post("http://localhost:3005/patFeedback",
+        {
+          comment: patFeedback,
+          feedbackID: patFeedbackID,
+        }).then((response)=> {
+      setShowAlert(true);
+      setTimeout(() => { window.location.href = "/doctor"; }, 2000);
+    });
+    handleCloseEdit();
+  }
+
   const toggleTrueFalseEdit = () => {
     setShowEditModal(handleShowEdit);
   }
@@ -60,38 +75,27 @@ function Medical_Summary() {
             </Modal.Header>
             <Modal.Body>
               <Form>
-                <Form.Control type="hidden" id="updateAppointmentID" defaultValue={editModalInfo.appointmentID}/>
-                <Form.Group className="mb-3" controlId="updateFullName">
-                  <Form.Label>Full Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.patName} readOnly/>
-                </Form.Group>
+                <Form.Control type="hidden" id="updateConsultID" defaultValue={editModalInfo.consultID}/>
                 <Form.Group className="mb-3" controlId="updateDoctorName">
                   <Form.Label>Doctor Name</Form.Label>
                   <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.doctorName} readOnly/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formAppointmentType">
-                  <Form.Label>Appointment Type</Form.Label>
-                  <Form.Control type="text" defaultValue={editModalInfo.appointmentType} readOnly/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formAppointmentDate">
-                  <Form.Label>Date</Form.Label>
-                  <Form.Control type="text" defaultValue={editModalInfo.appointmentDate} readOnly/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formAppointmentTime">
-                  <Form.Label>Time</Form.Label>
-                  <Form.Control type="text" defaultValue={editModalInfo.appointmentTime} readOnly/>
-                </Form.Group>
                 <Form.Group className="mb-3" controlId="formDiagnosis">
                   <Form.Label>Diagnosis</Form.Label>
-                  <Form.Control type="text" defaultValue={editModalInfo.dignosis} readOnly/>
+                  <Form.Control as="textarea" rows={3} defaultValue={editModalInfo.dignosis} readOnly/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formTreatment">
                   <Form.Label>Treatment</Form.Label>
-                  <Form.Control type="text" defaultValue={editModalInfo.treatment} readOnly/>
+                  <Form.Control as="textarea" rows={3} defaultValue={editModalInfo.treatment} readOnly/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formFeedback">
+                  <Form.Label>Feedback</Form.Label>
+                  <Form.Control as="textarea" rows={3} palceholder = "Insert Feedback" defaultValue={editModalInfo.treatment} />
                 </Form.Group>
               </Form>
             </Modal.Body>
             <Modal.Footer>
+              <Button variant="primary" onClick={updateFeedback}>Save Changes</Button>
               <Button variant="secondary" onClick={closeBtn}>Close</Button>
             </Modal.Footer>
           </Modal>
@@ -108,6 +112,10 @@ function Medical_Summary() {
   }
 
   const columns = [
+    {
+      dataField: 'consultID',
+      text: 'ID',
+    },
     {
       dataField: 'patName',
       text: 'Full Name',
