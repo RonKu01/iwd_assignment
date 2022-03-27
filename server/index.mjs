@@ -418,20 +418,6 @@ app.get("/getPatAppointment", ( req, res) =>{
     );
 });
 
-app.get("/getPatAppointmentDone", ( req, res) =>{
-    db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID INNER JOIN doctor ON appointment.doctorID = doctor.doctorID INNER JOIN consultation ON consultation.appointmentID = appointment.appointmentID  WHERE patient.loginId = ? AND status = 'Done' ORDER BY appointmentDate DESC",
-        [sess_loginId],
-        function (err, result) {
-            if (err) {
-                res.send({err: err})
-            }
-
-            let data = Object.values(JSON.parse(JSON.stringify(result)));
-            res.send(data);
-        }
-    );
-});
-
 app.get("/getPatAppointmentByAppointmentID", ( req, res) =>{
 
     db.query("SELECT * FROM appointment INNER JOIN patient ON patient.patID = appointment.patID  WHERE patient.loginId = ? AND appointment.appointmentID = ? ORDER BY appointmentDate DESC",
@@ -547,10 +533,52 @@ app.post("/addConsultation", ( req, res) =>{
                         if (err){
                             res.send({message: "System: Failed to update !"});
                         } else {
-                            res.send({message: "System: Submitted Successfully"});
+                            db.query("INSERT INTO feedback (appointmentID) VALUES (?)",
+                                [appointmentId], (err, result)=> {
+                                    if (err) {
+                                        res.send({message: "System Error: Failed to insert!"})
+                                    } else {
+                                        res.send({message: "System: Submitted Successfully"});
+                                    }
+                                }
+                            );
                         }
                     }
                 )
+            }
+        }
+    );
+});
+
+app.get("/getPatAppointmentDone", ( req, res) =>{
+    db.query("SELECT * FROM appointment INNER JOIN feedback ON feedback.appointmentID = appointment.appointmentID INNER JOIN patient ON patient.patID = appointment.patID INNER JOIN doctor ON appointment.doctorID = doctor.doctorID INNER JOIN consultation ON consultation.appointmentID = appointment.appointmentID  WHERE patient.loginId = ? AND status = 'Done' ORDER BY appointmentDate DESC",
+        [sess_loginId],
+        function (err, result) {
+            if (err) {
+                res.send({err: err})
+            }
+
+            let data = Object.values(JSON.parse(JSON.stringify(result)));
+            res.send(data);
+        }
+    );
+});
+
+//database need to change column
+app.put("/addFeedback", ( req, res) =>{
+    const appointmentId = req.body.appointmentID;
+    const feedback = req.body.feedback;
+
+    db.query("UPDATE feedback SET feedback = ? WHERE appointmentID = ?",
+        [feedback, appointmentId], (err, result)=> {
+            if (err) {
+                res.send({message: "System Error: Failed to insert!"})
+            } else {
+                if (err){
+                    res.send({message: "System: Failed to update !"});
+                } else {
+                    res.send({message: "System: Feedback Submitted Successfully"});
+                }
             }
         }
     );

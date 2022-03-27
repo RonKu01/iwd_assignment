@@ -49,22 +49,60 @@ function Medical_Summary() {
   };
 
   const updateFeedback = () =>{
-    let patFeedbackID = document.getElementById('addFeedbackID').value;
-    let patFeedback = document.getElementById('addFeedback').value;
+    let patFeedback = document.getElementById('formFeedback').value;
+    let appointmentID = document.getElementById('appointmentID').value;
 
-    Axios.post("http://localhost:3005/patFeedback",
+    Axios.put("http://localhost:3005/addFeedback",
         {
-          comment: patFeedback,
-          feedbackID: patFeedbackID,
+          feedback: patFeedback,
+          appointmentID: appointmentID,
         }).then((response)=> {
       setShowAlert(true);
-      setTimeout(() => { window.location.href = "/doctor"; }, 2000);
+      setTimeout(() => { window.location.href = "/medical_summary"; }, 1500);
     });
     handleCloseEdit();
   }
 
   const toggleTrueFalseEdit = () => {
     setShowEditModal(handleShowEdit);
+  }
+
+  const Feedback = () => {
+    if (editModalInfo.feedback === ""){
+      return(
+          <Form.Group className="mb-3" controlId="formFeedback">
+            <Form.Label>Feedback</Form.Label>
+            <Form.Control as="textarea" rows={3} palceholder = "Insert Feedback" defaultValue={editModalInfo.feedback} />
+          </Form.Group>
+      )
+    }
+    else {
+      return(
+          <Form.Group className="mb-3" controlId="formFeedback">
+            <Form.Label>Feedback</Form.Label>
+            <Form.Control as="textarea" rows={3} palceholder = "Insert Feedback" defaultValue={editModalInfo.feedback} readOnly />
+          </Form.Group>
+      )
+    }
+  }
+
+  const ModalFooter = () => {
+    // Below treatment -> feedback
+    if (editModalInfo.feedback === ""){
+      return(
+          <Modal.Footer>
+            <Button variant="primary" onClick={updateFeedback}>Save Changes</Button>
+            <Button variant="secondary" onClick={closeBtn}>Close</Button>
+          </Modal.Footer>
+      )
+    }
+    else {
+      return(
+          <Modal.Footer>
+            <Button variant="secondary" onClick={closeBtn}>Close</Button>
+          </Modal.Footer>
+      )
+    }
   }
 
   const EditModalContent = () => {
@@ -75,7 +113,7 @@ function Medical_Summary() {
             </Modal.Header>
             <Modal.Body>
               <Form>
-                <Form.Control type="hidden" id="updateConsultID" defaultValue={editModalInfo.consultID}/>
+                <Form.Control type="hidden" id="appointmentID" defaultValue={editModalInfo.appointmentID}/>
                 <Form.Group className="mb-3" controlId="updateDoctorName">
                   <Form.Label>Doctor Name</Form.Label>
                   <Form.Control type="text" placeholder="Enter your full name" defaultValue={editModalInfo.doctorName} readOnly/>
@@ -88,16 +126,10 @@ function Medical_Summary() {
                   <Form.Label>Treatment</Form.Label>
                   <Form.Control as="textarea" rows={3} defaultValue={editModalInfo.treatment} readOnly/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formFeedback">
-                  <Form.Label>Feedback</Form.Label>
-                  <Form.Control as="textarea" rows={3} palceholder = "Insert Feedback" defaultValue={editModalInfo.treatment} />
-                </Form.Group>
+                <Feedback />
               </Form>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={updateFeedback}>Save Changes</Button>
-              <Button variant="secondary" onClick={closeBtn}>Close</Button>
-            </Modal.Footer>
+            <ModalFooter />
           </Modal>
       )
   }
@@ -106,7 +138,7 @@ function Medical_Summary() {
     return(
         <Alert show={showAlert} variant="success">
           <Alert.Heading>Success! </Alert.Heading>
-          <p>Updating Appointment... Please Wait!</p>
+          <p>Submitted Feedback... Please Wait!</p>
         </Alert>
     )
   }
