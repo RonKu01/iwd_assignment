@@ -1,5 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
+import Navbar from "../navbar/Navbar_Patient";
+import {Card} from "react-bootstrap";
+import {Button} from "@material-ui/core";
+import "./join_meeting.scss";
 
 function JoinMeeting() {
     const [token, setToken] = useState(null);
@@ -102,48 +106,64 @@ function JoinMeeting() {
                     )
                     : (
                         //Styling for the Chat System (JOIN BUTTON)
-                        <div 
-                           
-                           style={{ 
-                             
-                            background: "#ADD8E6",
-                            margin: "auto",
-                            height: "969px",
-                            width: "1920px",
-                            justifyContent: "center",
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)"
-                          
-                           }}> 
-                            <h6 style={{fontSize:"150px",
-                                        justifyContent: "center",  
-                                        alignItems: "center",
-                                        display:"flex",
-                                        paddingTop: "100px" }}>  Welcome </h6>
+                        // <div
+                        //
+                        //    style={{
+                        //
+                        //     background: "#ADD8E6",
+                        //     margin: "auto",
+                        //     height: "969px",
+                        //     width: "1920px",
+                        //     justifyContent: "center",
+                        //     position: "absolute",
+                        //     top: "50%",
+                        //     left: "50%",
+                        //     transform: "translate(-50%, -50%)"
+                        //
+                        //    }}>
+                        //     <h6 style={{fontSize:"150px",
+                        //                 justifyContent: "center",
+                        //                 alignItems: "center",
+                        //                 display:"flex",
+                        //                 paddingTop: "100px" }}>  Welcome </h6>
+                        //
+                        //    <h1 style={{ justifyContent: "center",
+                        //                 alignItems: "center",
+                        //                 fontSize:"50px",
+                        //                 display:"flex",
+                        //                 paddingTop: "100px"
+                        //              }}> Your Meeting ID :<br></br> {meetingId} </h1>
+                        //
+                        //     <div  style={{
+                        //
+                        //            padding:"100px",
+                        //            justifyContent: "center",
+                        //            alignItems: "center",
+                        //            display:"flex",
+                        //            paddingTop: "100px",
+                        //
+                        //            }}>
+                        //
+                        //     <button style={{width: "200px", height:"50px"}} onClick={joinMeeting}>
+                        //         Join
+                        //     </button>
+                        //     </div>
+                        // </div>
 
-                           <h1 style={{ justifyContent: "center",  
-                                        alignItems: "center",
-                                        fontSize:"50px",
-                                        display:"flex",
-                                        paddingTop: "100px"
-                                     }}> Your Meeting ID :<br></br> {meetingId} </h1>
-
-                            <div  style={{
-
-                                   padding:"100px",
-                                   justifyContent: "center",  
-                                   alignItems: "center",
-                                   display:"flex",
-                                   paddingTop: "100px",   
-                                   
-                                   }}>
-
-                            <button style={{width: "200px", height:"50px"}} onClick={joinMeeting}>
-                                Join
-                            </button>
-                            </div>
+                        <div>
+                            <main>
+                                <Navbar />
+                                <Card className="card" id="main" style={{backgroundColor: "#ADD8E6"}}>
+                                    <Card.Body className="card-body" id="main-body">
+                                        <Card.Text className="title-text" id="joinTxt">
+                                            <h1 id="joinTxt">Welcome to Meeting!</h1>
+                                            <h6>MeetingID : {meetingId} </h6>
+                                        </Card.Text>
+                                        <div className="pt-lg-3"/>
+                                        <Button variant="contained" onClick={joinMeeting} id="joinBtn" >Join Now!</Button>
+                                    </Card.Body>
+                                </Card>
+                            </main>
                         </div>
                     )
                 }
@@ -163,15 +183,24 @@ function JoinMeeting() {
     }
 
     function JoinScreen() {
-
         const backBtn = () => {
             window.location.href = "/view_appointment"
         }
 
         return (
-            <div>
-                <p>Meeting havent started yet. Please wait until the meeting period and try to join again.</p>
-                <button onClick={backBtn} >Go Back</button>
+            <div className="body-container">
+                <main>
+                    <Navbar />
+                    <Card className="card" id="main">
+                        <Card.Body className="card-body" id="main-body">
+                            <Card.Text className="title-text">
+                                <h5>Meeting have not started yet. Please wait until the meeting period and try to join again.</h5>
+                            </Card.Text>
+                            <div className="pt-lg-3"/>
+                            <button onClick={backBtn} >Go Back</button>
+                        </Card.Body>
+                    </Card>
+                </main>
             </div>
         )
     }

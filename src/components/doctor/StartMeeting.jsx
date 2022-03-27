@@ -1,6 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
 import {MeetingConsumer, MeetingProvider, useMeeting, useParticipant} from "@videosdk.live/react-sdk";
 import Axios from "axios";
+import Navbar from "../navbar/Navbar_Doctor";
+import {Card} from "react-bootstrap";
+import {Button} from "@material-ui/core";
+import "./start_meeting.scss"
 
 function StartMeeting() {
     const [token, setToken] = useState(null);
@@ -110,12 +114,25 @@ function StartMeeting() {
                             </button>
                         </div>
                     )
-                    : (<button  onClick={joinMeeting}>
-                        Join
-                    </button>)}
-                <div
-                    className="wrapper"
-                >
+                    : (
+                        <div>
+                            <main>
+                                <Navbar />
+                                <Card className="card" id="main" style={{backgroundColor: "#ADD8E6"}}>
+                                    <Card.Body className="card-body" id="main-body">
+                                        <Card.Text className="title-text" id="joinTxt">
+                                            <h1 id="joinTxt">Welcome to Meeting!</h1>
+                                            <h6>MeetingID : {meetingId} </h6>
+                                        </Card.Text>
+                                        <div className="pt-lg-3"/>
+                                        <Button variant="contained" onClick={joinMeeting} id="joinBtn" >Join Now!</Button>
+                                    </Card.Body>
+                                </Card>
+                            </main>
+                        </div>
+                    )
+                }
+                <div className="wrapper">
                     {chunk([...participants.keys()]).map((k) => (
                         <div className="box" key={k} style={{ display: "flex" }}>
                             {k.map((l) => (
@@ -131,14 +148,17 @@ function StartMeeting() {
 
     function JoinScreen() {
         return (
-            <div>
-                <input type="text" placeholder="Enter Meeting Id" onChange={(e) => {setMeetingId(e.target.value)}}  />
-                <button  onClick={getMeetingAndToken}>
-                    Join
-                </button>
-                <button  onClick={getMeetingAndToken}>
-                    Create Meeting
-                </button>
+            <div className="body-container">
+                <Navbar />
+                <main>
+                    <Card className="card" id="main">
+                        <Card.Body className="card-body" id="main-body">
+                            <Card.Text className="title-text">
+                                Preparing Meeting..... Please Wait!
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </main>
             </div>
         )
     }
@@ -243,15 +263,7 @@ function StartMeeting() {
 
     useEffect(getMeetingAndToken, []);
     return token && meetingId ? (
-        <MeetingProvider
-            config={{
-                meetingId,
-                micEnabled: true,
-                webcamEnabled: true,
-                name: "Doctor",
-            }}
-            token={token}
-        > metingId: {meetingId}
+        <MeetingProvider config={{meetingId, micEnabled: true, webcamEnabled: true, name: "Doctor",}} token={token}>
             <MeetingConsumer>
                 {() => <MeetingGrid />}
             </MeetingConsumer>

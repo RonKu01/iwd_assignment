@@ -93,9 +93,6 @@ function Patient_Profile() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="update-password" defaultValue={password} />
                         </Form.Group>
-                        {/*<Form.Group className="mb-3" controlId="formCheckbox" >*/}
-                        {/*    <Form.Check type="checkbox" label="Show Password" onChange={() => setShowPass(!showPass)} />*/}
-                        {/*</Form.Group>*/}
                         <div>
                             <Button variant="primary" onClick={updatePat}>Save Changes</Button>
                         </div>
