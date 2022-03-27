@@ -72,7 +72,7 @@ function Consultation_Table() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formFeedback">
                             <Form.Label>Feedback</Form.Label>
-                            <Form.Control as="textarea" rows={3}  defaultValue={editModalInfo.treatment} readOnly />
+                            <Form.Control as="textarea" rows={3}  defaultValue={editModalInfo.feedback} readOnly />
                         </Form.Group>
 
                 </Form>
@@ -112,8 +112,12 @@ function Consultation_Table() {
             text: 'Dignosis'
           },
         {
-          dataField: 'treatment',
-          text: 'Treatment'
+            dataField: 'treatment',
+            text: 'Treatment'
+        },
+        {
+            dataField: 'feedback',
+            text: 'Feedback'
         },
     ];
 

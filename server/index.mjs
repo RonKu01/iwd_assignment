@@ -391,7 +391,7 @@ app.get("/getPatListByDoc", ( req, res) =>{
 
 app.get("/getConsultHistoryByDoc", ( req, res) =>{
 
-    db.query("SELECT * FROM appointment INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID INNER JOIN consultation ON consultation.appointmentID = appointment.appointmentID WHERE doctor.loginId = ? ORDER BY appointmentDate DESC",
+    db.query("SELECT * FROM appointment INNER JOIN feedback ON feedback.appointmentID = appointment.appointmentID INNER JOIN doctor ON doctor.doctorID = appointment.doctorID  INNER JOIN patient ON appointment.patID = patient.patID INNER JOIN consultation ON consultation.appointmentID = appointment.appointmentID WHERE doctor.loginId = ? ORDER BY appointmentDate DESC",
         [sess_loginId],
         function (err, result) {
             if (err) {
