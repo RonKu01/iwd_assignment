@@ -6,7 +6,6 @@ import Axios from "axios";
 
 function Appointment() {
 
-    //Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
     Axios.defaults.withCredentials = true;
     useEffect(() => {
@@ -20,7 +19,6 @@ function Appointment() {
     }, []);
 
     return (
-
         <div>
             <Navbar />
             <main className="body-dashboard">

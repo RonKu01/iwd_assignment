@@ -18,8 +18,8 @@ function Dashboard_Patient() {
         } else {
             window.location.href = "/";
         }
-    });
-}, []);
+     });
+    }, []);
 
 return (
     <div className="body-dashboard">
