@@ -204,7 +204,7 @@ function Medical_Summary() {
                     <div>
                       <SearchBar { ...props.searchProps } />
                       <hr />
-                      <h6>*click on the row you wish to view*</h6>
+                      <h6>*Click on the row you wish to view*</h6>
                       <BootstrapTable id="medical_summary_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                       { ...props.baseProps }
                       />

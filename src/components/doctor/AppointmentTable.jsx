@@ -210,7 +210,7 @@ function AppointmentTable() {
                                 <div>
                                     <SearchBar  { ...props.searchProps } />
                                     <hr />
-                                    <h6>*Click (1) row to Accept Meeting.* <br />*Once Meeting Accepted, click the row Again to Start Meeting*</h6>
+                                    <h6>*Click (1) row to Accept Meeting. Once Meeting Accepted, click the row Again to Start Meeting*</h6>
                                     <BootstrapTable id="doc_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />

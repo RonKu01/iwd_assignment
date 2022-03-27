@@ -145,6 +145,7 @@ function Consultation_Table() {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
+                                    <h6>*Click on the row you wish to view*</h6>
                                     <BootstrapTable id="doc_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />

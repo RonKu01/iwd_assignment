@@ -224,7 +224,7 @@ function View_Appointment() {
                                 <div>
                                     <SearchBar { ...props.searchProps } />
                                     <hr />
-                                    <h6>*click on the row you wish to view*</h6>
+                                    <h6>*If status is Pending, Click the row if you want to cancel Meeting. Once Meeting Accepted, click the row to Join Meeting*</h6>
                                     <BootstrapTable id="patient_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />
