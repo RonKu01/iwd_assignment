@@ -138,9 +138,7 @@ function AppointmentTable() {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={closeBtn}>Close</Button>
-                        <Button variant="danger" onClick={updateBtn} data-value1="Decline">Decline</Button>
                         <Button variant="primary" onClick={updateBtn} data-value1="Accept">Accept</Button>
-                        {/*<Button variant="primary" onClick={updateAppt}>Save Changes</Button>*/}
                     </Modal.Footer>
                 </Modal>
             )
@@ -212,7 +210,7 @@ function AppointmentTable() {
                                 <div>
                                     <SearchBar  { ...props.searchProps } />
                                     <hr />
-                                    <h6>*click on the row you wish to view*</h6>
+                                    <h6>*Click (1) row to Accept Meeting.* <br />*Once Meeting Accepted, click the row Again to Start Meeting*</h6>
                                     <BootstrapTable id="doc_appointment_table" bootstrap4={true} rowEvents={rowEvents} pagination={pagination}
                                                     { ...props.baseProps }
                                     />

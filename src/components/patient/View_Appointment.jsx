@@ -48,6 +48,22 @@ function View_Appointment() {
         handleCloseEdit();
     };
 
+    const cancelBtn =(e) =>{
+        const status = e.currentTarget.getAttribute("data-value1")
+        let appointmentID = document.getElementById('updateAppointmentID').value;
+
+        Axios.put("http://localhost:3005/updateStatus",
+            {
+                status: status,
+                appointmentID: appointmentID})
+            .then((response)=> {
+                setShowAlert(true);
+                setTimeout(() => { window.location.href = "/view_appointment"; }, 2000);
+            });
+        handleCloseEdit();
+    }
+
+
     const startMeeting = () =>{
         let appointmentID = document.getElementById('updateAppointmentID').value;
         Axios.put("http://localhost:3005/updateMeetingDetails",
@@ -86,7 +102,21 @@ function View_Appointment() {
                     </Modal.Footer>
                 </Modal>
             )
-        } else {
+        } else if (editModalInfo.status === "Cancelled"){
+            return (
+                <Modal show={showEdit} onHide={handleCloseEdit}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Meeting Cancelled</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>This meeting had already been cancelled by the Patient</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+            )
+        }else{
             return (
                 <Modal show={showEdit} onHide={handleCloseEdit}>
                     <Modal.Header closeButton>
@@ -95,10 +125,6 @@ function View_Appointment() {
                     <Modal.Body>
                         <Form>
                             <Form.Control type="hidden" id="updateAppointmentID" defaultValue={editModalInfo.appointmentID}/>
-                            <Form.Group className="mb-3" controlId="updateFullName">
-                                <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" defaultValue={editModalInfo.patName} readOnly/>
-                            </Form.Group>
                             <Form.Group className="mb-3" controlId="updateDoctorName">
                                 <Form.Label>Doctor Name</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.doctorName} readOnly/>
@@ -119,14 +145,11 @@ function View_Appointment() {
                                 <Form.Label>Purpose of Visit</Form.Label>
                                 <Form.Control type="text" defaultValue={editModalInfo.purpose} readOnly/>
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formStatus">
-                                <Form.Label>Status</Form.Label>
-                                <Form.Control type="text" defaultValue={editModalInfo.status} readOnly/>
-                            </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={closeBtn}>Close</Button>
+                        <Button variant="danger" onClick={cancelBtn} data-value1="Cancelled">Cancelled</Button>
                     </Modal.Footer>
                 </Modal>
             )
@@ -195,7 +218,6 @@ function View_Appointment() {
                 <Card.Body style={pat_card}>
                     {showAlert ? <AlertModalContent /> : null}
                     <h1 className="h1 mb-3">Appointment Table </h1>
-                    {/* <button className="btn btn-primary mb-3 float-end" onClick={toggleTrueFalseAdd}> Add Patient</button> */}
                     <ToolkitProvider bootstrap4={true} keyField="appointmentID" data={ patItems } columns={ columns } search>
                         {
                             props => (
