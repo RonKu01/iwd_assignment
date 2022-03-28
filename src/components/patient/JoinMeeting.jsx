@@ -92,17 +92,16 @@ function JoinMeeting() {
                 {joined ?
                     (
                         <div>
-                            <Navbar/>
                             <button class="btn btn-danger" style={{margin: "0.5%"}} onClick={leftMeeting}>
                                 Leave
                             </button>
-                            <button class="btn btn-danger" style={{margin: "0.5%"}} onClick={toggleMic}>
+                            <button class="btn btn-outline-secondary" style={{margin: "0.5%"}} onClick={toggleMic}>
                                 Mic
                             </button>
-                            <button class="btn btn-danger" style={{margin: "0.5%"}} onClick={toggleWebcam}>
+                            <button class="btn btn-outline-secondary" style={{margin: "0.5%"}} onClick={toggleWebcam}>
                                 Webcam
                             </button>
-                            <button class="btn btn-danger" style={{margin: "0.5%"}} onClick={toggleScreenShare}>
+                            <button class="btn btn-outline-secondary" style={{margin: "0.5%"}} onClick={toggleScreenShare}>
                                 ScreenShare
                             </button>
                         </div>
