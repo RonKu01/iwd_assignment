@@ -99,19 +99,18 @@ function StartMeeting() {
             <div>
                 {joined ?
                     (
-                        <div >
-                            <Navbar/>
-                            <button class="leaveButton" onClick={leftMeeting}>
+                        <div>
+                            <button class="btn btn-danger" style={{margin: "0.5%"}} onClick={leftMeeting}>
                                 Leave
                             </button>
-                            <button class="micButton" onClick={toggleMic}>
-                                Toggle Mic
+                            <button class="btn btn-outline-secondary" style={{margin: "0.5%"}} onClick={toggleMic}>
+                                Mic
                             </button>
-                            <button class="webcamButton" onClick={toggleWebcam}>
-                                Toggle Webcam
+                            <button class="btn btn-outline-secondary" style={{margin: "0.5%"}} onClick={toggleWebcam}>
+                                Webcam
                             </button>
-                            <button class="screenButton" onClick={toggleScreenShare}>
-                                Toggle ScreenShare
+                            <button class="btn btn-outline-secondary" style={{margin: "0.5%"}} onClick={toggleScreenShare}>
+                                ScreenShare
                             </button>
                         </div>
                     )
@@ -133,7 +132,9 @@ function StartMeeting() {
                         </div>
                     )
                 }
-                <div className="wrapper">
+
+                <div className="mb-2">&nbsp;</div>
+                <div className="wrapper" style={{margin: "0.5%"}}>
                     {chunk([...participants.keys()]).map((k) => (
                         <div className="box" key={k} style={{ display: "flex" }}>
                             {k.map((l) => (
@@ -233,15 +234,13 @@ function StartMeeting() {
             }
         }, [screenShareStream, screenShareOn]);
 
-
         return (
             <div key={props.participantId} >
                 <audio ref={micRef} autoPlay />
                 {webcamRef ||  micOn ? (<div>
                     <h2>{displayName}</h2>
                     <video
-                        height={"100%"}
-                        width={"100%"}
+                        className= "video"
                         ref={webcamRef}
                         autoPlay
                     />
@@ -250,14 +249,13 @@ function StartMeeting() {
                     <div>
                         <h2>Screen Shared</h2>
                         <video
-                            height={"100%"}
-                            width={"100%"}
+                            className= "sshare"
                             ref={screenShareRef}
                             autoPlay
                         />
                     </div>) : null }
                 <br/>
-                <span class="setDisplay">Mic:{micOn ? "Yes": "No"}, Camera: {webcamOn ? "Yes" : "No"}, Screen Share: {screenShareOn ? "Yes" : "No"}</span>
+                <span>Mic:{micOn ? "Yes": "No"} <br /> Camera: {webcamOn ? "Yes" : "No"}  <br />Screen Share: {screenShareOn ? "Yes" : "No"}</span>
             </div>
         );
     }
