@@ -100,17 +100,18 @@ function StartMeeting() {
                 {joined ?
                     (
                         <div >
-                            <button  onClick={leftMeeting}>
+                            <Navbar/>
+                            <button class="leaveButton" onClick={leftMeeting}>
                                 Leave
                             </button>
-                            <button  onClick={toggleMic}>
-                                toggleMic
+                            <button class="micButton" onClick={toggleMic}>
+                                Toggle Mic
                             </button>
-                            <button  onClick={toggleWebcam}>
-                                toggleWebcam
+                            <button class="webcamButton" onClick={toggleWebcam}>
+                                Toggle Webcam
                             </button>
-                            <button  onClick={toggleScreenShare}>
-                                toggleScreenShare
+                            <button class="screenButton" onClick={toggleScreenShare}>
+                                Toggle ScreenShare
                             </button>
                         </div>
                     )
@@ -256,7 +257,7 @@ function StartMeeting() {
                         />
                     </div>) : null }
                 <br/>
-                <span>Mic:{micOn ? "Yes": "No"}, Camera: {webcamOn ? "Yes" : "No"}, Screen Share: {screenShareOn ? "Yes" : "No"}</span>
+                <span class="setDisplay">Mic:{micOn ? "Yes": "No"}, Camera: {webcamOn ? "Yes" : "No"}, Screen Share: {screenShareOn ? "Yes" : "No"}</span>
             </div>
         );
     }

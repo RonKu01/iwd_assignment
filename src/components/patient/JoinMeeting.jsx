@@ -86,69 +86,30 @@ function JoinMeeting() {
         }
 
         return (
+            
             <div>
+                
                 {joined ?
                     (
-                        <div >
-                            <button  onClick={leftMeeting}>
+                        <div>
+                            <Navbar/>
+                            <button class="leaveButton" onClick={leftMeeting}>
                                 Leave
                             </button>
-                            <button  onClick={toggleMic}>
-                                toggleMic
+                            <button class="micButton" onClick={toggleMic}>
+                                Toggle Mic
                             </button>
-                            <button  onClick={toggleWebcam}>
-                                toggleWebcam
+                            <button class="webcamButton" onClick={toggleWebcam}>
+                                Toggle Webcam
                             </button>
-                            <button  onClick={toggleScreenShare}>
-                                toggleScreenShare
+                            <button class="screenButton" onClick={toggleScreenShare}>
+                                Toggle ScreenShare
                             </button>
                         </div>
+                    
                     )
                     : (
-                        //Styling for the Chat System (JOIN BUTTON)
-                        // <div
-                        //
-                        //    style={{
-                        //
-                        //     background: "#ADD8E6",
-                        //     margin: "auto",
-                        //     height: "969px",
-                        //     width: "1920px",
-                        //     justifyContent: "center",
-                        //     position: "absolute",
-                        //     top: "50%",
-                        //     left: "50%",
-                        //     transform: "translate(-50%, -50%)"
-                        //
-                        //    }}>
-                        //     <h6 style={{fontSize:"150px",
-                        //                 justifyContent: "center",
-                        //                 alignItems: "center",
-                        //                 display:"flex",
-                        //                 paddingTop: "100px" }}>  Welcome </h6>
-                        //
-                        //    <h1 style={{ justifyContent: "center",
-                        //                 alignItems: "center",
-                        //                 fontSize:"50px",
-                        //                 display:"flex",
-                        //                 paddingTop: "100px"
-                        //              }}> Your Meeting ID :<br></br> {meetingId} </h1>
-                        //
-                        //     <div  style={{
-                        //
-                        //            padding:"100px",
-                        //            justifyContent: "center",
-                        //            alignItems: "center",
-                        //            display:"flex",
-                        //            paddingTop: "100px",
-                        //
-                        //            }}>
-                        //
-                        //     <button style={{width: "200px", height:"50px"}} onClick={joinMeeting}>
-                        //         Join
-                        //     </button>
-                        //     </div>
-                        // </div>
+                        
 
                         <div>
                             <main>
@@ -298,7 +259,7 @@ function JoinMeeting() {
                         />
                     </div>) : null }
                 <br/>
-                <span>Mic:{micOn ? "Yes": "No"}, Camera: {webcamOn ? "Yes" : "No"}, Screen Share: {screenShareOn ? "Yes" : "No"}</span>
+                <span  class="setDisplay" >Mic:{micOn ? "Yes": "No"}, Camera: {webcamOn ? "Yes" : "No"}, Screen Share: {screenShareOn ? "Yes" : "No"}</span>
             </div>
         );
     }
