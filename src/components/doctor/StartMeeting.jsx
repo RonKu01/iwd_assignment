@@ -136,7 +136,7 @@ function StartMeeting() {
                 <div className="mb-2">&nbsp;</div>
                 <div className="wrapper" style={{margin: "0.5%"}}>
                     {chunk([...participants.keys()]).map((k) => (
-                        <div className="box" key={k} style={{ display: "flex" }}>
+                        <div className="box" key={k} style={{ display: "flex", width: "100%", height: "auto" }}>
                             {k.map((l) => (
                                 <ParticipantView key={l} participantId={l} />
                             ))}
@@ -235,7 +235,7 @@ function StartMeeting() {
         }, [screenShareStream, screenShareOn]);
 
         return (
-            <div key={props.participantId} >
+            <div key={props.participantId} style={{width: "45%", height: "auto"}}>
                 <audio ref={micRef} autoPlay />
                 {webcamRef ||  micOn ? (<div>
                     <h2>{displayName}</h2>
