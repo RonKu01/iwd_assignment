@@ -14,6 +14,19 @@ import "./doctor.scss";
 
 function DoctorTable() {
 
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
+
     const [docItems, setDocItems] = useState([])
     useEffect(() =>{
         const fetchPostList = async () => {

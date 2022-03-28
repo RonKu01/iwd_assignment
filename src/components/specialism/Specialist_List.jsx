@@ -4,8 +4,21 @@ import "./Speciality_List.scss";
 import {Card, Container, Col, Row, Table, Button} from "react-bootstrap";
 import {Link} from "react-router-dom"
 import axios from "axios";
+import Axios from "axios";
 
 function Specialist_List() {
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
 
     const [specialismItems, setSpecialismItems] = useState([])
     useEffect(() =>{

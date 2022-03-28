@@ -8,6 +8,18 @@ import TimePicker from 'react-time-picker';
 import moment from "moment";
 
 function Fertality() {
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
    
     let specialisationID = 8;
     const [doctorList, setDoctorList] = useState([])

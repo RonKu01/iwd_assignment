@@ -4,6 +4,10 @@ import "./dashboard.scss";
 import {Card, CardGroup, Col, Row, Table, Button} from "react-bootstrap";
 import {Link} from "react-router-dom"
 import Axios from "axios";
+import image16 from  "./pat_profile.jpg";
+import image17 from  "./pat_app.jpg";
+import image18 from  "./pat_medical.jpeg";
+
 
 function Dashboard_Patient() {
 
@@ -29,7 +33,7 @@ return (
                 <Col lg={true}>
                     <Card className="card-new ">
                         <Link className="link-nostyle" to={"/specialist_list"}>
-                            <Card.Img variant="top" height="180" />
+                            <Card.Img variant="top" src={image16} height="180" />
                             <Card.Body>
                                 <Card.Title>Book Appointment</Card.Title>
                                 <Card.Text>
@@ -42,7 +46,7 @@ return (
                 <Col lg={true}>
                     <Card className="card-new">
                         <Link className="link-nostyle" to={"/view_appointment"}>
-                            <Card.Img variant="top"  height="180" />
+                            <Card.Img variant="top" src={image17} height="180" />
                             <Card.Body>
                                 <Card.Title>View Appointment</Card.Title>
                                 <Card.Text>
@@ -55,7 +59,7 @@ return (
                 <Col lg={true}>
                     <Card className="card-new">
                         <Link className="link-nostyle" to={"/medical_summary"}>
-                            <Card.Img variant="top"  height="180" />
+                            <Card.Img variant="top" src={image18} height="180" />
                             <Card.Body>
                                 <Card.Title>View Medical History</Card.Title>
                                 <Card.Text>

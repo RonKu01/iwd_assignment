@@ -4,8 +4,22 @@ import Navbar from "../navbar/Navbar_Patient";
 import {Card} from "react-bootstrap";
 import {Button} from "@material-ui/core";
 import "./join_meeting.scss";
+import Axios from "axios";
 
 function JoinMeeting() {
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
+
     const [token, setToken] = useState(null);
     const [meetingId, setMeetingId] = useState(null);
     const [appointmentId, setAppointmentId] = useState(null);

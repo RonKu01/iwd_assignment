@@ -7,6 +7,19 @@ import {Button} from "@material-ui/core";
 import "./start_meeting.scss"
 
 function StartMeeting() {
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
+
     const [token, setToken] = useState(null);
     const [meetingId, setMeetingId] = useState(null);
     const [appointmentId, setAppointmentId] = useState(null);

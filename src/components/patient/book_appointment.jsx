@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Patient";
 import {Form, Col, Row, Button} from "react-bootstrap";
 import Calendar from 'react-calendar';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import Axios from "axios";
 
 function Book_Appointment() {
+  const [loginID, setLoginID] = useState("");
+
+  Axios.defaults.withCredentials = true;
+  useEffect(() => {
+    Axios.get("http://localhost:3005/login").then((response) => {
+      if (response.data.loggedIn === true) {
+        setLoginID(response.data.loginID);
+      } else {
+        window.location.href = "/";
+      }
+    });
+  }, []);
+
   const [startDate, setStartDate] = useState(new Date());
 
     return (

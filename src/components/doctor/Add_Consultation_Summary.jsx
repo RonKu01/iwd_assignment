@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../navbar/Navbar_Doctor";
 import "../dashboard/dashboard.scss";
 import {Card, Col, Row, Form, Button} from "react-bootstrap";
@@ -6,6 +6,18 @@ import "./add_consultation.scss";
 import Axios from "axios";
 
 function Add_Consultation_Summary() {
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
 
     const [diagnosis, setDiagnosis] = useState("");
     const [medication, setMedication] = useState("");

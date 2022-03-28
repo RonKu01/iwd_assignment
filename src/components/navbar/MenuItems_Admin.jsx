@@ -4,9 +4,4 @@ export const MenuItems = [
         url: '/dashboard_admin',
         cName: 'nav-links'
     },
-    {
-        title: 'Feedback',
-        url: '/feedback',
-        cName: 'nav-links'
-    },
 ]

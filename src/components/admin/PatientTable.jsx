@@ -14,6 +14,19 @@ import moment from "moment";
 import "./patient.scss";
 
 function PatientTable() {
+    const [loginID, setLoginID] = useState("");
+
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        Axios.get("http://localhost:3005/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setLoginID(response.data.loginID);
+            } else {
+                window.location.href = "/";
+            }
+        });
+    }, []);
+
 
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{

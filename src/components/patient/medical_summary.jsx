@@ -13,6 +13,18 @@ import Navbar from "../navbar/Navbar_Patient";
 import "./medical_summary.scss";
 
 function Medical_Summary() {
+  const [loginID, setLoginID] = useState("");
+
+  Axios.defaults.withCredentials = true;
+  useEffect(() => {
+    Axios.get("http://localhost:3005/login").then((response) => {
+      if (response.data.loggedIn === true) {
+        setLoginID(response.data.loginID);
+      } else {
+        window.location.href = "/";
+      }
+    });
+  }, []);
 
   const [patItems, setPatItems] = useState([])
   useEffect(() =>{
