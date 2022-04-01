@@ -15,7 +15,6 @@ import "./doctor.scss";
 function DoctorTable() {
 
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -67,31 +66,32 @@ function DoctorTable() {
     const [showPass, setShowPass] = useState(true);
 
     const registerDoc =()=> {
-
         let docSpec = document.getElementById('addDocSpec').value;
         let docFullName = document.getElementById('addDocFullName').value;
         let docYear = document.getElementById('addDocYear').value;
-
         let docUsername = document.getElementById('addDocUsername').value;
         let docPassword = document.getElementById('addDocPassword').value;
-
         let docQualification = document.getElementById('addDocQualification').value;
         let docCondition = document.getElementById('addDocCondition').value;
 
-        Axios.post("http://localhost:3005/docRegister",
-            {
-                username: docUsername,
-                password: docPassword,
-                specialisationID: docSpec,
-                doctorName: docFullName,
-                year: docYear,
-                qualifications: docQualification,
-                conditionConsulted: docCondition,
-            }).then((response)=> {
-            setShowAlert(true);
-            setTimeout(() => { window.location.href = "/doctor"; }, 2000);
-        });
-        handleCloseAdd();
+        if (docSpec !== "" && docFullName !== "" && docYear !== "" && docUsername !== "" && docPassword !== "" &&  docQualification!== "" && docCondition!== "" ) {
+            Axios.post("http://localhost:3005/docRegister",
+                {
+                    username: docUsername,
+                    password: docPassword,
+                    specialisationID: docSpec,
+                    doctorName: docFullName,
+                    year: docYear,
+                    qualifications: docQualification,
+                    conditionConsulted: docCondition,
+                }).then((response)=> {
+                setShowAlert(true);
+                setTimeout(() => { window.location.href = "/doctor"; }, 2000);
+            });
+            handleCloseAdd();
+        } else {
+            alert("Please fill in all data before register!");
+        }
     };
 
     const updateDoc =() =>{
@@ -103,20 +103,27 @@ function DoctorTable() {
         let docCondition = document.getElementById('updateDocCondition').value;
         let docPassword = document.getElementById('updateDocPassword').value;
 
-        Axios.put("http://localhost:3005/updateDoc",
-            {
-                specialisationID: docSpec,
-                doctorName : docName,
-                year: docYear,
-                qualifications : docQualification,
-                conditionConsulted : docCondition,
-                password: docPassword,
-                id: loginId})
-            .then((response)=> {
-                setShowAlert(true);
-                setTimeout(() => { window.location.href = "/doctor"; }, 2000);
-            });
-        handleCloseEdit();
+        if (loginId !== "" && docName !== "" && docSpec !== "" && docYear !== "" && docQualification !== "" &&  docCondition!== "" && docPassword!== "" ) {
+            Axios.put("http://localhost:3005/updateDoc",
+                {
+                    specialisationID: docSpec,
+                    doctorName: docName,
+                    year: docYear,
+                    qualifications: docQualification,
+                    conditionConsulted: docCondition,
+                    password: docPassword,
+                    id: loginId
+                })
+                .then((response) => {
+                    setShowAlert(true);
+                    setTimeout(() => {
+                        window.location.href = "/doctor";
+                    }, 2000);
+                });
+            handleCloseEdit();
+        } else {
+            alert("Please fill in all data before update!");
+        }
     };
 
     const toggleTrueFalseAdd = () => {
