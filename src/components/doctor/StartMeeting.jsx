@@ -7,6 +7,7 @@ import {Button} from "@material-ui/core";
 import "./start_meeting.scss"
 
 function StartMeeting() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;

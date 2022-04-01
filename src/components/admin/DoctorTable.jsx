@@ -14,6 +14,7 @@ import "./doctor.scss";
 
 function DoctorTable() {
 
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
     Axios.defaults.withCredentials = true;
     useEffect(() => {
@@ -90,7 +91,7 @@ function DoctorTable() {
             });
             handleCloseAdd();
         } else {
-            alert("Please fill in all data before register!");
+            alert("Please fill in all data before add new doctor!");
         }
     };
 

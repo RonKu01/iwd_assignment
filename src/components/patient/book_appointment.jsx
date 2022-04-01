@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Axios from "axios";
 
 function Book_Appointment() {
+  // Check whether User Already or not. If not, redirect to login page.
   const [loginID, setLoginID] = useState("");
 
   Axios.defaults.withCredentials = true;

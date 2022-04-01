@@ -6,6 +6,7 @@ import "./add_consultation.scss";
 import Axios from "axios";
 
 function Add_Consultation_Summary() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;

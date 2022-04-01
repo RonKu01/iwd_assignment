@@ -73,19 +73,27 @@ function Doc_Profile() {
         let docCondition = document.getElementById('updateDocCondition').value;
         let docPassword = document.getElementById('updateDocPassword').value;
 
-        Axios.put("http://localhost:3005/updateDoc",
-            {
-                specialisationID: docSpec,
-                doctorName : docName,
-                year: docYear,
-                qualifications : docQualification,
-                conditionConsulted : docCondition,
-                password: docPassword,
-                id: loginId})
-            .then((response)=> {
-                setShowAlert(true);
-                setTimeout(() => { window.location.href = "/doc_profile"; }, 2000);
-            });
+        if (loginId !== "" && docName !== "" && docSpec !== "" && docYear !== "" && docQualification !== "" &&  docCondition!== "" && docPassword!== "" ) {
+
+            Axios.put("http://localhost:3005/updateDoc",
+                {
+                    specialisationID: docSpec,
+                    doctorName: docName,
+                    year: docYear,
+                    qualifications: docQualification,
+                    conditionConsulted: docCondition,
+                    password: docPassword,
+                    id: loginId
+                })
+                .then((response) => {
+                    setShowAlert(true);
+                    setTimeout(() => {
+                        window.location.href = "/doc_profile";
+                    }, 2000);
+                });
+        }else{
+            alert("Please fill in all data before update!");
+        }
     };
 
     return (

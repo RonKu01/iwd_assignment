@@ -5,7 +5,7 @@ import AppointmentTable from "./AppointmentTable";
 import Axios from "axios";
 
 function Appointment() {
-
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
     Axios.defaults.withCredentials = true;
     useEffect(() => {

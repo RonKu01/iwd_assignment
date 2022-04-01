@@ -10,6 +10,7 @@ import image11 from  "./admin_pat.jpg";
 
 function Dashboard_Admin() {
 
+    //Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;

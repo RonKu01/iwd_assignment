@@ -7,6 +7,7 @@ import "./join_meeting.scss";
 import Axios from "axios";
 
 function JoinMeeting() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;

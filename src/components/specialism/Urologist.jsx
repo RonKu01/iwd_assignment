@@ -8,6 +8,7 @@ import TimePicker from 'react-time-picker';
 import moment from "moment";
 
 function Urologist() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;

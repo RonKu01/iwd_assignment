@@ -15,13 +15,31 @@ function Register() {
     const [showPass, setShowPass] = useState(true);
 
     const register =()=> {
-        Axios.post("http://localhost:3005/patRegister",
-            {username: usernameReg, password: passwordReg, fullName: fullNameReg, dob: dobReg, address: addressReg,
-        }).then((response)=> {
+        let patFullName = document.getElementById('addFullName').value;
+        let patDOB = document.getElementById('addDOB').value;
+        let patAddress = document.getElementById('addAddress').value;
+        let patUsername = document.getElementById('addUsername').value;
+        let patPassword = document.getElementById('addPassword').value;
+
+        if (patFullName !== "" && patDOB !== "" && patAddress !== "" && patUsername !== "" && patPassword !== "") {
+
+            Axios.post("http://localhost:3005/patRegister",
+            {
+                username: usernameReg,
+                password: passwordReg,
+                fullName: fullNameReg,
+                dob: dobReg,
+                address: addressReg,
+            }).then((response) => {
             setShowAlert(true);
-            setTimeout(() => { window.location.href = "/login"; }, 2000);
-        });
-    };
+            setTimeout(() => {
+                window.location.href = "/login";
+            }, 2000);
+            });
+        }else{
+            alert("Please fill in all data before register!");
+        };
+    }
 
     const AlertModalContent = () =>{
         return(
@@ -41,23 +59,23 @@ function Register() {
             <h1>Registration</h1>
             <div className="pt-1"/>
             <Form>
-                <Form.Group className="mb-3" controlId="formFullName" >
+                <Form.Group className="mb-3" controlId="addFullName" >
                     <Form.Label>Full Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter your full name" onChange={(e) =>{setFullNameReg(e.target.value);}}/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="forumDOB" >
+                <Form.Group className="mb-3" controlId="addDOB" >
                     <Form.Label>Date of Birth</Form.Label>
                     <Form.Control type="date" placeholder="Date of Birth" value={dobReg} onChange={(e) =>{setDobReg(e.target.value);}} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formAddress" >
+                <Form.Group className="mb-3" controlId="addAddress" >
                     <Form.Label>Address</Form.Label>
                     <Form.Control as="textarea" rows={3} placeholder="Enter your Address" onChange={(e) =>{setAddressReg(e.target.value);}}/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formUsername" >
+                <Form.Group className="mb-3" controlId="addUsername" >
                     <Form.Label>Preferred Username</Form.Label>
                     <Form.Control type="text" placeholder="Enter your preferred Username" autoComplete="username" onChange={(e) =>{setUsernameReg(e.target.value);}}/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formPassword" >
+                <Form.Group className="mb-3" controlId="addPassword" >
                     <Form.Label>Password</Form.Label>
                     <Form.Control type={showPass ? "password" : "text"} placeholder="Password" autoComplete="new-password" onChange={(e) =>{setPasswordReg(e.target.value);}}/>
                 </Form.Group>

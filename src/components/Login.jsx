@@ -10,22 +10,29 @@ function Login() {
     const [showPass, setShowPass] = useState(true);
 
     const login = () => {
-        Axios.post("http://localhost:3005/login", {
-            username: username,
-            password: password,
-        }).then((response)=>{
-            if (response.data.message){
-                setShowAlert(true);
-            } else {
-                if(response.data[0].role === "Patient"){
-                    window.location.href = "/dashboard_patient";
-                } else if (response.data[0].role === "Doctor"){
-                    window.location.href = "/dashboard_doctor";
-                }else{
-                    window.location.href = "/dashboard_admin";
+        let login = document.getElementById('formUsername').value;
+        let password = document.getElementById('formPassword').value;
+
+        if (login !== "" && password !== "") {
+            Axios.post("http://localhost:3005/login", {
+                username: username,
+                password: password,
+            }).then((response) => {
+                if (response.data.message) {
+                    setShowAlert(true);
+                } else {
+                    if (response.data[0].role === "Patient") {
+                        window.location.href = "/dashboard_patient";
+                    } else if (response.data[0].role === "Doctor") {
+                        window.location.href = "/dashboard_doctor";
+                    } else {
+                        window.location.href = "/dashboard_admin";
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            alert("Please fill in all data before login!");
+        }
     };
 
     return (

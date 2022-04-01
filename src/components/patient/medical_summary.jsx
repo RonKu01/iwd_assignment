@@ -13,6 +13,7 @@ import Navbar from "../navbar/Navbar_Patient";
 import "./medical_summary.scss";
 
 function Medical_Summary() {
+  // Check whether User Already or not. If not, redirect to login page.
   const [loginID, setLoginID] = useState("");
 
   Axios.defaults.withCredentials = true;
@@ -64,15 +65,22 @@ function Medical_Summary() {
     let patFeedback = document.getElementById('formFeedback').value;
     let appointmentID = document.getElementById('appointmentID').value;
 
-    Axios.put("http://localhost:3005/addFeedback",
-        {
-          feedback: patFeedback,
-          appointmentID: appointmentID,
-        }).then((response)=> {
-      setShowAlert(true);
-      setTimeout(() => { window.location.href = "/medical_summary"; }, 1500);
-    });
-    handleCloseEdit();
+    if (patFeedback !== "") {
+
+      Axios.put("http://localhost:3005/addFeedback",
+          {
+            feedback: patFeedback,
+            appointmentID: appointmentID,
+          }).then((response) => {
+        setShowAlert(true);
+        setTimeout(() => {
+          window.location.href = "/medical_summary";
+        }, 1500);
+      });
+      handleCloseEdit();
+    }else{
+      alert ("Please insert feedback before update!")
+    }
   }
 
   const toggleTrueFalseEdit = () => {

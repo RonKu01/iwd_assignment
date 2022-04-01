@@ -14,6 +14,7 @@ import moment from "moment";
 import "./patient.scss";
 
 function PatientTable() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;
@@ -73,13 +74,25 @@ function PatientTable() {
         let patUsername = document.getElementById('addUsername').value;
         let patPassword = document.getElementById('addPassword').value;
 
-        Axios.post("http://localhost:3005/patRegister",
-            {username: patUsername, password: patPassword, fullName: patFullName, dob: dobReg, address: patAddress,
-            }).then((response)=> {
-            setShowAlert(true);
-            setTimeout(() => { window.location.href = "/patient"; }, 2000);
-        });
-        handleCloseAdd();
+        if (patFullName !== "" && patDOB !== "" && patAddress !== "" && patUsername !== "" && patPassword !== "") {
+
+            Axios.post("http://localhost:3005/patRegister",
+                {
+                    username: patUsername,
+                    password: patPassword,
+                    fullName: patFullName,
+                    dob: dobReg,
+                    address: patAddress,
+                }).then((response) => {
+                setShowAlert(true);
+                setTimeout(() => {
+                    window.location.href = "/patient";
+                }, 2000);
+            });
+            handleCloseAdd();
+        }else{
+            alert("Please fill in all data before add new patient!");
+        }
     };
 
     const update =() =>{
@@ -87,12 +100,19 @@ function PatientTable() {
         let patAddress = document.getElementById('updateAddress').value;
         let patPassword = document.getElementById('updatePassword').value;
 
-        Axios.put("http://localhost:3005/updatePat", {address: patAddress, password: patPassword, id: loginId})
-            .then((response)=> {
-            setShowAlert(true);
-            setTimeout(() => { window.location.href = "/patient"; }, 2000);
-        });
-        handleCloseEdit();
+        if (patAddress !== "" && patPassword !== "") {
+
+            Axios.put("http://localhost:3005/updatePat", {address: patAddress, password: patPassword, id: loginId})
+                .then((response) => {
+                    setShowAlert(true);
+                    setTimeout(() => {
+                        window.location.href = "/patient";
+                    }, 2000);
+                });
+            handleCloseEdit();
+        }else{
+            alert("Please fill in all data before update!");
+        }
     };
 
     const toggleTrueFalseAdd = () => {

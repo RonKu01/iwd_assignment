@@ -12,6 +12,7 @@ import moment from "moment";
 import "./doctor_appointment.scss";
 
 function AppointmentTable() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;

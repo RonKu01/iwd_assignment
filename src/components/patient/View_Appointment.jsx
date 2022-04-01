@@ -13,6 +13,7 @@ import Navbar from "../navbar/Navbar_Patient";
 import "./view_appointment.scss";
 
 function View_Appointment() {
+    // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
 
     Axios.defaults.withCredentials = true;
