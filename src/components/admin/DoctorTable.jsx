@@ -166,7 +166,7 @@ function DoctorTable() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="addDocCondition" >
                             <Form.Label>Condition Consulted</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Year of Experience"/>
+                            <Form.Control type="text" placeholder="Enter Condition Consulted"/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="addDocUsername" >
                             <Form.Label>Preferred Username</Form.Label>
