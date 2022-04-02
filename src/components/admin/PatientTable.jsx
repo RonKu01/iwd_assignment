@@ -16,7 +16,6 @@ import "./patient.scss";
 function PatientTable() {
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -28,7 +27,7 @@ function PatientTable() {
         });
     }, []);
 
-
+    //Get all patient data from database
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{
         const fetchPostList = async () => {
@@ -41,6 +40,7 @@ function PatientTable() {
         fetchPostList()
     }, [setPatItems])
 
+    //Declaration for every element needed
     const [dobReg, setDobReg] = useState(new Date());
 
     const {SearchBar} = Search;
@@ -66,8 +66,8 @@ function PatientTable() {
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
 
+    // Function for register Patient account
     const register = () => {
-
         let patFullName = document.getElementById('addFullName').value;
         let patDOB = document.getElementById('addDOB').value;
         let patAddress = document.getElementById('addAddress').value;
@@ -75,7 +75,6 @@ function PatientTable() {
         let patPassword = document.getElementById('addPassword').value;
 
         if (patFullName !== "" && patDOB !== "" && patAddress !== "" && patUsername !== "" && patPassword !== "") {
-
             Axios.post("http://localhost:3005/patRegister",
                 {
                     username: patUsername,
@@ -95,6 +94,7 @@ function PatientTable() {
         }
     };
 
+    // Function for update patient profile
     const update =() =>{
         let loginId = document.getElementById('updateLoginID').value;
         let patAddress = document.getElementById('updateAddress').value;
@@ -122,6 +122,7 @@ function PatientTable() {
         setShowEditModal(handleShowEdit);
     }
 
+    //Add Modal will shown when this called.
     const AddModalContent = () => {
         return (
                 <Modal show={showAdd} onHide={handleCloseAdd}>
@@ -160,6 +161,7 @@ function PatientTable() {
         )
     }
 
+    //Edit Modal will shown when this called.
     const EditModalContent = () => {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -191,6 +193,7 @@ function PatientTable() {
         )
     }
 
+    //This is just a successful alert msg.
     const AlertModalContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
@@ -200,6 +203,7 @@ function PatientTable() {
         )
     }
 
+    //columns for datatable;
     const columns = [
         {
             dataField: 'patID',
@@ -219,6 +223,7 @@ function PatientTable() {
         },
     ];
 
+    // when users click on the rows (datatable), this function will called
     const rowEvents = {
         onClick: (e, row) => {
             setEditModalInfo(row)

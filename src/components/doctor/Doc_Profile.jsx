@@ -9,7 +9,6 @@ function Doc_Profile() {
 
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -21,6 +20,7 @@ function Doc_Profile() {
         });
     }, []);
 
+    //Get the (1) doctor data from database
     const [doctorDetails, setDoctorDetails] = useState([])
     useEffect(() =>{
         const getDoctorDetails = async () => {
@@ -32,6 +32,7 @@ function Doc_Profile() {
 
    let doctorName, password, specialisationID, specialisationName, year, qualifications, conditionConsulted;
 
+   //Mapping doctor data into variable
     doctorDetails.map((item, index) =>{
         doctorName = item.doctorName
         password = item.password
@@ -42,7 +43,7 @@ function Doc_Profile() {
         conditionConsulted = item.conditionConsulted
     })
 
-
+    //Get all specialism type from database
     const [specialismItems, setSpecialismItems] = useState([])
     useEffect(() =>{
         const fetchSpecialismList = async () => {
@@ -55,6 +56,7 @@ function Doc_Profile() {
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
 
+    //This is just a successful alert msg.
     const AlertContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
@@ -64,6 +66,7 @@ function Doc_Profile() {
         )
     };
 
+    // Function for update doctor profile
     const updateDoc =() =>{
         let loginId = document.getElementById('updateDocLoginID').value;
         let docName = document.getElementById('updateFullName').value;

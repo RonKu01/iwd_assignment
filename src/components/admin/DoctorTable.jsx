@@ -27,6 +27,7 @@ function DoctorTable() {
         });
     }, []);
 
+    //Get all doctor data from database
     const [docItems, setDocItems] = useState([])
     useEffect(() =>{
         const fetchPostList = async () => {
@@ -36,6 +37,7 @@ function DoctorTable() {
         fetchPostList()
     }, [setDocItems])
 
+    //Get all specialism type from database
     const [specialismItems, setSpecialismItems] = useState([])
     useEffect(() =>{
         const fetchSpecialismList = async () => {
@@ -45,6 +47,7 @@ function DoctorTable() {
         fetchSpecialismList()
     }, [setSpecialismItems])
 
+    //Declaration for every element needed
     const {SearchBar} = Search;
     const pagination = paginationFactory({
         sizePerPageList: [{
@@ -66,6 +69,7 @@ function DoctorTable() {
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
 
+    // Function for register doctor account
     const registerDoc =()=> {
         let docSpec = document.getElementById('addDocSpec').value;
         let docFullName = document.getElementById('addDocFullName').value;
@@ -95,6 +99,7 @@ function DoctorTable() {
         }
     };
 
+    // Function for update doctor profile
     const updateDoc =() =>{
         let loginId = document.getElementById('updateDocLoginID').value;
         let docName = document.getElementById('updateFullName').value;
@@ -127,13 +132,17 @@ function DoctorTable() {
         }
     };
 
+    //Add Modal will shown when this called.
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
     }
+
+    //Edit Modal will shown when this called.
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }
 
+    //This modal will show up when register a new doctor
     const AddModalContent = () => {
         return (
                 <Modal show={showAdd} onHide={handleCloseAdd}>
@@ -187,6 +196,7 @@ function DoctorTable() {
         )
     }
 
+    //This modal will show up when update a doctor profile
     const EditModalContent = () => {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -238,6 +248,7 @@ function DoctorTable() {
         )
     }
 
+    //This is just a successful alert msg.
     const AlertModalContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
@@ -247,6 +258,7 @@ function DoctorTable() {
         )
     }
 
+    //columns for datatable;
     const columns = [
         {
             dataField: 'doctorID',
@@ -298,12 +310,14 @@ function DoctorTable() {
         },
     ];
 
+    // when users click on the rows (datatable), this function will called
     const rowEvents = {
         onClick: (e, row) => {
             setEditModalInfo(row)
             toggleTrueFalseEdit()
         }
     };
+
     const doc_card = {
         width: "100%",
         padding: "2rem"

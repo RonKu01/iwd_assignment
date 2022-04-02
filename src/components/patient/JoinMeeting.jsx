@@ -9,7 +9,6 @@ import Axios from "axios";
 function JoinMeeting() {
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -27,6 +26,7 @@ function JoinMeeting() {
 
     const API_AUTH_URL = 'http://localhost:3005';
 
+    //Function below is to get appointmentID from API
     const getAppointmentId = async () => {
         if(API_AUTH_URL){
             const res = await fetch(`${API_AUTH_URL}/getMeetingDetails`, {
@@ -39,6 +39,7 @@ function JoinMeeting() {
         }
     };
 
+    //Function below is to get the meetingId from API
     const getMeetingId = async () => {
         if(API_AUTH_URL){
             const res = await fetch(`${API_AUTH_URL}/getPatAppointmentByAppointmentID`, {
@@ -51,6 +52,7 @@ function JoinMeeting() {
         }
     };
 
+    // API call to generate authentication token
     const getToken = async () => {
         if(API_AUTH_URL){
             const res = await fetch(`${API_AUTH_URL}/get-token`, {
@@ -63,6 +65,7 @@ function JoinMeeting() {
         }
     };
 
+    //Patient read meetingID & appointmentID form database
     const getMeetingAndToken = async () => {
         const token = await getToken();
         const appointmentID = await getAppointmentId();
@@ -73,12 +76,14 @@ function JoinMeeting() {
         setMeetingId(meetingID);
     };
 
+    // Helper function for participant loop.
     const chunk = (arr) => {
         const newArr = [];
         while (arr.length) newArr.push(arr.splice(0, 3));
         return newArr;
     };
 
+    //Meeting grid will include whole meeting interface.
     function MeetingGrid(props) {
         const [joined, setJoined] = useState(false)
         const {
@@ -101,9 +106,7 @@ function JoinMeeting() {
         }
 
         return (
-            
             <div>
-                
                 {joined ?
                     (
                         <div>
@@ -156,6 +159,7 @@ function JoinMeeting() {
         )
     }
 
+    //JoinScreen Component
     function JoinScreen() {
         const backBtn = () => {
             window.location.href = "/view_appointment"
@@ -179,11 +183,13 @@ function JoinMeeting() {
         )
     }
 
+    //ParticipantView Component
     function ParticipantView(props){
         const webcamRef = useRef(null);
         const micRef = useRef(null);
         const screenShareRef = useRef(null);
 
+        //useParticipant hook will help you to handle mic, webcam and screen share.
         const {
             displayName,
             webcamStream,

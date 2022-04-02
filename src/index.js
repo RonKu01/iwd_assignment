@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 
+//Default index.js to run React file (App.jsx)
 ReactDOM.render(
     <BrowserRouter>
         <App />

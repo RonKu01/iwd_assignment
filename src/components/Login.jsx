@@ -3,12 +3,14 @@ import {Alert, Button, Form} from "react-bootstrap";
 import Navbar from "./navbar/Navbar";
 import Axios from "axios";
 
+// This is the login Page for the system
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
 
+    //Function below is to verify user credentials
     const login = () => {
         let login = document.getElementById('formUsername').value;
         let password = document.getElementById('formPassword').value;
@@ -40,7 +42,7 @@ function Login() {
             <Navbar />
             <main className="main-container">
                 <Alert show={showAlert} variant="danger">
-                    <h5>Incorrect Username and Password !</h5>
+                    <h5>Incorrect Username or Password !</h5>
                 </Alert>
                 <h1>Login</h1>
                 <div className="pt-1"/>

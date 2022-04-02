@@ -9,7 +9,6 @@ import "./start_meeting.scss"
 function StartMeeting() {
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -28,6 +27,7 @@ function StartMeeting() {
     const API_BASE_URL = "https://api.zujonow.com";
     const API_AUTH_URL = 'http://localhost:3005';
 
+    //Function below is to get auto generated appointmentID from API
     const getAppointmentId = async () => {
         if(API_AUTH_URL){
             const res = await fetch(`${API_AUTH_URL}/getMeetingDetails`, {
@@ -40,6 +40,7 @@ function StartMeeting() {
         }
     };
 
+    // API call to generate authentication token
     const getToken = async () => {
         if(API_AUTH_URL){
             const res = await fetch(`${API_AUTH_URL}/get-token`, {
@@ -52,6 +53,7 @@ function StartMeeting() {
         }
     };
 
+    // API call to create meeting
     const createMeeting = async ({ token }) => {
         const url = `${API_BASE_URL}/api/meetings`;
         const options = {
@@ -66,6 +68,7 @@ function StartMeeting() {
         return meetingId;
     };
 
+    //Function below is to save meetingID & appointmentID into the database, so patient can read the data and join meeting.
     const getMeetingAndToken = async () => {
         const token = await getToken();
         const meetingId = await createMeeting({ token });
@@ -82,12 +85,14 @@ function StartMeeting() {
         })
     };
 
+    // Helper function for participant loop.
     const chunk = (arr) => {
         const newArr = [];
         while (arr.length) newArr.push(arr.splice(0, 3));
         return newArr;
     };
 
+    //Meeting grid will include whole meeting interface.
     function MeetingGrid(props) {
         const [joined, setJoined] = useState(false)
         const {
@@ -162,6 +167,7 @@ function StartMeeting() {
         )
     }
 
+    //JoinScreen Component
     function JoinScreen() {
         return (
             <div className="body-container">
@@ -179,11 +185,13 @@ function StartMeeting() {
         )
     }
 
+    //ParticipantView Component
     function ParticipantView(props){
         const webcamRef = useRef(null);
         const micRef = useRef(null);
         const screenShareRef = useRef(null);
 
+        //useParticipant hook will help you to handle mic, webcam and screen share.
         const {
             displayName,
             webcamStream,

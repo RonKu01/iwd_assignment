@@ -6,12 +6,10 @@ import Axios from "axios";
 import axios from "axios";
 import moment from "moment";
 
-
-
 function Patient_Profile() {
+
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -23,6 +21,7 @@ function Patient_Profile() {
         });
     }, []);
 
+    //Get the (1) patient data from database
     const [patDetails, setPatDetails] = useState([])
     useEffect(() =>{
         const getPatDetails = async () => {
@@ -37,6 +36,7 @@ function Patient_Profile() {
 
     let patName, patAddress, password;
 
+    //Mapping patient data into variable
     patDetails.map((item, index) =>{
         patName = item.patName
         patAddress = item.patAddress
@@ -46,6 +46,7 @@ function Patient_Profile() {
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
 
+    //This is just a successful alert msg.
     const AlertContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
@@ -55,6 +56,7 @@ function Patient_Profile() {
         )
     };
 
+    // Function for update patient profile
     const updatePat =() =>{
         let loginId = document.getElementById('updateLoginID').value;
         let patAddress = document.getElementById('updateAddress').value;
@@ -70,7 +72,6 @@ function Patient_Profile() {
                 setTimeout(() => { window.location.href = "/Patient_Profile"; }, 2000);
             });
     };
-
 
     return (
         <div className="">

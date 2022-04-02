@@ -15,7 +15,6 @@ import "./view_appointment.scss";
 function View_Appointment() {
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -27,6 +26,7 @@ function View_Appointment() {
         });
     }, []);
 
+    //Get the patient data that had booked appointment.
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{
         const fetchPostList = async () => {
@@ -40,6 +40,7 @@ function View_Appointment() {
         fetchPostList()
     }, [setPatItems])
 
+    //Declaration for every element needed
     const {SearchBar} = Search;
     const pagination = paginationFactory({
         sizePerPageList: [{
@@ -48,19 +49,19 @@ function View_Appointment() {
             text: '10', value: 10
         }],
     });
-
     const [editModalInfo, setEditModalInfo] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
-
     const [showAlert, setShowAlert] = useState(false);
 
+    // Modal will close when this called.
     const closeBtn =() =>{
         handleCloseEdit();
     };
 
+    // Function for patient to cancel the appointment
     const cancelBtn =(e) =>{
         const status = e.currentTarget.getAttribute("data-value1")
         let appointmentID = document.getElementById('updateAppointmentID').value;
@@ -76,7 +77,7 @@ function View_Appointment() {
         handleCloseEdit();
     }
 
-
+    // Function for patient to Join meeting
     const startMeeting = () =>{
         let appointmentID = document.getElementById('updateAppointmentID').value;
         Axios.put("http://localhost:3005/updateMeetingDetails",
@@ -88,11 +89,14 @@ function View_Appointment() {
         handleCloseEdit();
     }
 
+    //Modal will open when this called
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }
 
+    //Modal will open when this called.
     const EditModalContent = () => {
+        //If status is 'Accept', it will output the code below with 'Join Meeting' button
         if (editModalInfo.status === "Accept") {
             return (
                 <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -116,6 +120,7 @@ function View_Appointment() {
                 </Modal>
             )
         } else if (editModalInfo.status === "Cancelled"){
+            //If status is 'Cancel', it will output the cancellation msg.
             return (
                 <Modal show={showEdit} onHide={handleCloseEdit}>
                     <Modal.Header closeButton>
@@ -130,6 +135,7 @@ function View_Appointment() {
                 </Modal>
             )
         }else{
+            //If status is 'Pending', it will output the code below with 'Cancel' button.
             return (
                 <Modal show={showEdit} onHide={handleCloseEdit}>
                     <Modal.Header closeButton>
@@ -169,6 +175,7 @@ function View_Appointment() {
         }
     }
 
+    //This is just a successful alert msg.
     const AlertModalContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
@@ -178,6 +185,7 @@ function View_Appointment() {
         )
     }
 
+    //columns for datatable;
     const columns = [
         {
             dataField: 'appointmentID',
@@ -212,6 +220,8 @@ function View_Appointment() {
             text: 'Status'
         },
     ];
+
+    // when users click on the rows (datatable), this function will called
     const rowEvents = {
         onClick: (e, row) => {
             setEditModalInfo(row)

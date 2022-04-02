@@ -10,7 +10,6 @@ import moment from "moment";
 function Orthopedic() {
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -22,7 +21,10 @@ function Orthopedic() {
         });
     }, []);
 
+    //This specialisationID below is follow the ID in database
     let specialisationID = 9;
+
+    //Get all Orthopedic doctor data from database
     const [doctorList, setDoctorList] = useState([])
     useEffect(() =>{
       const fetchDoctorBySpecialism = async () => {
@@ -39,13 +41,14 @@ function Orthopedic() {
     const [showAdd, setShowAdd] = useState(false);
     const handleCloseAdd = () => setShowAdd(false);
     const handleShowAdd = () => setShowAdd(true);
-
     const [doctorID, setDoctorID] = useState("")
 
+    //Modal will shown when this called.
     const toggleTrueFalseAdd = () => {
         setShowAddModal(handleShowAdd);
     }
 
+    //This modal will show up when patient want to book appointment with the doctor
     const AddModalContent = () => {
         const [valueDate, onChangeDate] = useState("" );
         const [value, onChange] = useState("");
@@ -90,12 +93,14 @@ function Orthopedic() {
         )
     }
 
+    //This onClick function help to pass doctorID to the API.
     const onClick = (e) =>{
         const value1 = e.currentTarget.getAttribute("data-value1")
         setDoctorID(value1);
         toggleTrueFalseAdd();
     }
 
+    //Function for book appointment
     const registerAppointment =()=> {
         let prefMode = document.getElementById('addMode').value;
         let prefDate = document.getElementById('addDate').value;

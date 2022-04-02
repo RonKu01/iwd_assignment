@@ -39,6 +39,7 @@ import Consultation_Table from './components/doctor/Consultation_Table';
 class App extends Component {
     render() {
         return (
+            //Declare ALL react routing below
             <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/login" element={<Login />} />
@@ -47,11 +48,9 @@ class App extends Component {
                 <Route path="/dashboard_admin" element={<Dashboard_Admin />} />
                 <Route path="/dashboard_patient" element={<Dashboard_Patient />} />
                 <Route path="/dashboard_doctor" element={<Dashboard_Doctor />} />
-
                 <Route path="/patient" element={<PatientTable />} />
                 <Route path="/doctor" element={<DoctorTable />} />
                 <Route path="/Doc_Profile" element={<Doc_Profile />} />
-
                 <Route path="/psychiatrist" element={<Psychiatrist />} />
                 <Route path="/urologist" element={<Urologist/>} />
                 <Route path="/dermatologist" element={<Dermatologist/>} />
@@ -61,20 +60,16 @@ class App extends Component {
                 <Route path="/otolaryn" element={<Otolaryn />} />
                 <Route path="/fertality" element={<Fertality/>} />
                 <Route path="/Orthopedic" element={<Orthopedic/>} />
-
                 <Route path="/appointment" element={<Appointment/>} />
-
                 <Route path="/patient_profile" element={<Patient_Profile/>} />
                 <Route path="/medical_summary" element={<Medical_Summary/>} />
                 <Route path="/book_appointment" element={<Book_Appointment/>} />
                 <Route path="/specialist_list" element={<Specialist_List/>} />
                 <Route path="/view_appointment" element={<View_Appointment/>} />
-
                 <Route path="/start_meeting" element={<StartMeeting />} />
                 <Route path="/join_meeting" element={<JoinMeeting />} />
                 <Route path="/add_consultation_summary" element={<Add_Consultation_Summary />} />
                 <Route path="/consultation_table" element={<Consultation_Table />} />
-
             </Routes>
         );
     }

@@ -26,6 +26,7 @@ function Consultation_Table() {
         });
     }, []);
 
+    //Get all patient data that had booked appointment to this specified doctor.
     const [patItems, setPatItems] = useState([])
     useEffect(() =>{
         const fetchPostList = async () => {
@@ -39,6 +40,7 @@ function Consultation_Table() {
         fetchPostList()
     }, [setPatItems])
 
+    //Declaration for every element needed
     const {SearchBar} = Search;
     const pagination = paginationFactory({
         sizePerPageList: [{
@@ -53,14 +55,17 @@ function Consultation_Table() {
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
 
+    // Modal will close when this called.
     const closeBtn =() =>{
         handleCloseEdit();
     };
 
+    //Modal will shown when this called.
     const toggleTrueFalseEdit = () => {
         setShowEditModal(handleShowEdit);
     }
 
+    //This modal will show up for doctor have a clearer view of the consultation history
     const EditModalContent = () => {
         return (
             <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -99,6 +104,7 @@ function Consultation_Table() {
 
     }
 
+    //columns for datatable;
     const columns = [
         {
             dataField: 'appointmentID',
@@ -134,6 +140,7 @@ function Consultation_Table() {
         },
     ];
 
+    // when users click on the rows (datatable), this function will called
     const rowEvents = {
         onClick: (e, row) => {
             setEditModalInfo(row)

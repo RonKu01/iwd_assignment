@@ -3,6 +3,7 @@ import {Button, Card} from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import "./Main.scss";
 
+//Start-up Page
 class Main extends Component{
     render() {
         return (

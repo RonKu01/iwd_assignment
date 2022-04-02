@@ -8,7 +8,6 @@ import Axios from "axios";
 function Add_Consultation_Summary() {
     // Check whether User Already or not. If not, redirect to login page.
     const [loginID, setLoginID] = useState("");
-
     Axios.defaults.withCredentials = true;
     useEffect(() => {
         Axios.get("http://localhost:3005/login").then((response) => {
@@ -23,13 +22,18 @@ function Add_Consultation_Summary() {
     const [diagnosis, setDiagnosis] = useState("");
     const [medication, setMedication] = useState("");
 
+    // Function for submitting consultation form
     const submitMedicalReport =()=> {
-        Axios.post("http://localhost:3005/addConsultation",
-            {diagnosis: diagnosis, medication: medication,
-            }).then((response)=> {
-            alert("Submitted Successfully!");
-            setTimeout(() => { window.location.href = "/dashboard_doctor"; }, 300);
-        });
+        if (diagnosis !== "" && medication !== ""){
+            Axios.post("http://localhost:3005/addConsultation",
+                {diagnosis: diagnosis, medication: medication,
+                }).then((response)=> {
+                alert("Submitted Successfully!");
+                setTimeout(() => { window.location.href = "/dashboard_doctor"; }, 300);
+            });
+        } else {
+            alert("Please fill in all data before submit!");
+        }
     };
 
     return (

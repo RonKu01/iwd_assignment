@@ -3,6 +3,7 @@ import {Alert, Button, Form} from "react-bootstrap";
 import Navbar from "./navbar/Navbar";
 import Axios from "axios";
 
+//This is the user registration page.
 function Register() {
     const [fullNameReg, setFullNameReg] = useState("");
     const [dobReg, setDobReg] = useState(new Date());
@@ -14,6 +15,7 @@ function Register() {
     const [showAlert, setShowAlert] = useState(false);
     const [showPass, setShowPass] = useState(true);
 
+    //Function below is the register function that pass data into API
     const register =()=> {
         let patFullName = document.getElementById('addFullName').value;
         let patDOB = document.getElementById('addDOB').value;
@@ -41,6 +43,7 @@ function Register() {
         };
     }
 
+    //AlertModal is just a successful msg to user.
     const AlertModalContent = () =>{
         return(
             <Alert show={showAlert} variant="success">
@@ -49,7 +52,6 @@ function Register() {
             </Alert>
         )
     }
-
 
     return (
     <div className="body-container">

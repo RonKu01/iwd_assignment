@@ -15,7 +15,6 @@ import "./medical_summary.scss";
 function Medical_Summary() {
   // Check whether User Already or not. If not, redirect to login page.
   const [loginID, setLoginID] = useState("");
-
   Axios.defaults.withCredentials = true;
   useEffect(() => {
     Axios.get("http://localhost:3005/login").then((response) => {
@@ -27,6 +26,7 @@ function Medical_Summary() {
     });
   }, []);
 
+  //Get the patient data that had completed appointment with the specified doctor.
   const [patItems, setPatItems] = useState([])
   useEffect(() =>{
     const fetchPostList = async () => {
@@ -40,6 +40,7 @@ function Medical_Summary() {
     fetchPostList()
   }, [setPatItems])
 
+  //Declaration for every element needed
   const {SearchBar} = Search;
   const pagination = paginationFactory({
     sizePerPageList: [{
@@ -48,7 +49,6 @@ function Medical_Summary() {
       text: '10', value: 10
     }],
   });
-
   const [editModalInfo, setEditModalInfo] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -57,16 +57,17 @@ function Medical_Summary() {
 
   const [showAlert, setShowAlert] = useState(false);
 
+  // Modal will close when this called.
   const closeBtn =() =>{
     handleCloseEdit();
   };
 
+  // Function for patient to submit the feedback
   const updateFeedback = () =>{
     let patFeedback = document.getElementById('formFeedback').value;
     let appointmentID = document.getElementById('appointmentID').value;
 
     if (patFeedback !== "") {
-
       Axios.put("http://localhost:3005/addFeedback",
           {
             feedback: patFeedback,
@@ -79,14 +80,16 @@ function Medical_Summary() {
       });
       handleCloseEdit();
     }else{
-      alert ("Please insert feedback before update!")
+      alert ("Please insert feedback before submit!")
     }
   }
 
+  //Modal will open when this called
   const toggleTrueFalseEdit = () => {
     setShowEditModal(handleShowEdit);
   }
 
+  //Check whether patient had given feedback. If yes, patient can view the feedback. If No, patient can insert their feedback for the appointment.
   const Feedback = () => {
     if (editModalInfo.feedback === ""){
       return(
@@ -106,8 +109,8 @@ function Medical_Summary() {
     }
   }
 
+  //Footer Designed for the Modal
   const ModalFooter = () => {
-    // Below treatment -> feedback
     if (editModalInfo.feedback === ""){
       return(
           <Modal.Footer>
@@ -125,6 +128,7 @@ function Medical_Summary() {
     }
   }
 
+  //Modal will open when this called.
   const EditModalContent = () => {
       return (
           <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -154,6 +158,7 @@ function Medical_Summary() {
       )
   }
 
+  //This is just a successful alert msg.
   const AlertModalContent = () =>{
     return(
         <Alert show={showAlert} variant="success">
@@ -163,6 +168,7 @@ function Medical_Summary() {
     )
   }
 
+  //columns for datatable;
   const columns = [
     {
       dataField: 'consultID',
@@ -198,6 +204,7 @@ function Medical_Summary() {
     },
   ];
 
+  // when users click on the rows (datatable), this function will called
   const rowEvents = {
     onClick: (e, row) => {
       setEditModalInfo(row)
